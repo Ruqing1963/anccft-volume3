@@ -1,0 +1,18 @@
+﻿(A) Y_168: A_1 has 0^18, kappa = 7, the orbit of e^(i pi/3) (contains -1) with multiplicity 7, and the orbits of 2 sqrt 2 e^(+-i phi), phi = 0.162232 = 0.051640 pi, multiplicity 21 each   [     6 s]
+(S) 12 slices (alpha, Phi) x 601 values of K_2: 25 losses of stability of stable cluster equilibria (Z/3 copies counted once): cluster (real): 17, transverse, complex (Hopf): 7, sigma_t (real): 1
+(S) every Hopf event is in a block 2 sqrt 2 e^(+-i phi) (none in the e^(i pi/3) block); K_2 at the Hopf events in [-1.64, -0.37]   [    71 s]
+(L) alpha = 0.55: 6 Hopf points on 12 values of Phi; Omega_H in [0.0068, 0.0073], every slope d Re mu/d K_2 > 0: True   [   140 s]
+(P) Hopf point (K_1, K_2*, alpha, Phi) = (1, -0.5440732884161930553882581, 0.55, -1.4), in the block lambda = 2 sqrt 2 e^(-i phi):
+    cluster equilibrium d = (-1.7681332468697410981, 2.549346659052248793), rotation Omega - omega = -0.0973938232; Hopf frequency Omega_H = Im mu = -0.00741439514889039150276432; transversality d Re mu / d K_2 = 5.011606122478948997; residual 2.87e-41
+    full 168 x 168 Jacobian: 21 eigenvalues at +i Omega_H, 21 at -i Omega_H, 1 at 0 (rotation), all others Re <= -0.01802: a Hopf point of multiplicity 21 (+ 21 conjugate)   [   147 s]
+    next crossing of another eigenvalue after K_2*: delta = 0.0035 (e^(i pi/3) block, real); the Hopf pair is the only unstable direction for 0 < delta < 0.0035
+(D1) delta = +0.0005: linearization mu = 0.00252 +0.00740i. Growth rate of the rms deviation A and rotation rate of the critical-mode coordinate: 0.00255, 0.00743 for A in [2e-4, 1e-3]; 0.01030, 0.00480 for A in [3e-3, 1e-2]; 0.08706, 0.06095 for A in [1e-2, 3e-2]. The growth accelerates with the amplitude (destabilizing nonlinearity). End state: A = 0.4418, r = (0.9994, 0.9965, 0.8155), frequency spread 1.9e-13, shape change 4.4e-16   [   156 s]
+(D2) delta = +0.002: 3 generic perturbations in the 42-dimensional critical space and 3 pure character modes (of the 42 unstable characters) all end in frequency-locked states that are stationary in the rotating frame: A = 0.403, 0.407, 0.467, 0.521, 0.521, 0.521; r_0 = 0.999, 0.999, 1.000, 0.999, 0.999, 0.999   [   192 s]
+(D3) below threshold the equilibrium is stable, but perturbations of size eps_c escape to a locked state: delta = -0.002: eps_c in [0.0050, 0.0054], delta = -0.008: eps_c in [0.0173, 0.0189], delta = -0.032: eps_c in [0.0505, 0.0552]; eps_c -> 0 as delta -> 0-, fitted exponent 0.84   [   258 s]
+(C) 3 distinct Hopf points of (S), each run at delta = (distance to the next crossing)/5 from a perturbation of size 1e-3 in the critical space: outcomes {'locked, stationary': 3}; Omega_H in [0.0028, 0.0059]   [   277 s]
+    alpha = 0.1789, Phi = +0.8791, K_2* = -0.633132, Omega_H = 0.00283, slope 5.449, run at delta = 0.0001, next other crossing at delta = 0.0005 (e^(i pi/3) block, real): locked, stationary (A = 0.267, r = [0.9129, 0.9997, 0.9995])
+    alpha = 0.3549, Phi = +1.8254, K_2* = -1.633608, Omega_H = 0.00584, slope 2.411, run at delta = 0.0004, next other crossing at delta = 0.0020 (e^(i pi/3) block, real): locked, stationary (A = 0.216, r = [0.9657, 0.999, 0.9967])
+    alpha = 0.6528, Phi = -1.2673, K_2* = -0.684690, Omega_H = 0.00588, slope 4.376, run at delta = 0.0004, next other crossing at delta = 0.0020 (e^(i pi/3) block, real): locked, stationary (A = 0.322, r = [0.9996, 0.9989, 0.8926])
+    distance from K_2* to the next crossing of another eigenvalue: 0.0005 .. 0.0020 (kinds {'e^(i pi/3) block, real': 3}); every run is at delta = (that distance)/5, where exactly the 42 Hopf modes are unstable
+
+ALL CHECKS PASSED: (A) (S) (L) (P) (D1) (D2) (D3) (C).   [   278 s]

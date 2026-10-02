@@ -1,0 +1,175 @@
+% Volume III, Chapter 1 -- addendum: the first nonzero trace of the PGL_{d+1} companion on
+% A~_d complexes (open problem (a) of Remark V3P1:rem:scope).  Verified by code/v3p1_ad_trace.py.
+\section{The first nonzero trace in every rank}\label{V3P1:sec:tracead}
+
+This section settles open problem (a) of Remark~\ref{V3P1:rem:scope}: the value of the first
+nonzero trace $\Tr(C^{(d+1)})^{d+1}$ on $\Atilde d$ complexes. The answer is
+$n\prod_{i=1}^{d}(1-q^{i})$ under the $\Atilde d$ flag condition, which contains the rank-one value
+$-n(q-1)$ and Theorem~\ref{V3P1:thm:trace} as the cases $d=1,2$.
+
+\paragraph{Setting.} An $\Atilde d$ complex $Y$ has a type map $\tau\colon V\to\Z/(d+1)$, and for
+$1\le j\le d$ we let $A_j$ be the $0/1$ matrix with $A_j(x,y)=1$ iff $\{x,y\}$ is an edge and
+$\tau(y)=\tau(x)+j$; put $A_{d+1}=I$. The local hypothesis replacing (L) is
+\begin{itemize}
+\item[(L$_d$)] the link of every vertex $v$ is isomorphic to the flag complex of $\PG(d,q)$, the
+neighbours of type $\tau(v)+i$ going to the subspaces of codimension $i$ in $\F_q^{d+1}$
+($1\le i\le d$), adjacency in the link being containment. By the duality $U\mapsto U^{\perp}$ one
+may equally send them to the subspaces of dimension $i$; for $d=2$ that is \textup{(L)}.
+\end{itemize}
+A \emph{closed walk of increments} $\mathbf j=(j_1,\dots,j_r)$, $j_i\ge1$, is a sequence
+$x_0\to x_1\to\dots\to x_r=x_0$ with $A_{j_i}(x_{i-1},x_i)=1$ (the identity step for $j_i=d+1$). The
+\emph{flag condition} of rank $d$ is
+\begin{itemize}
+\item[(F$_d$)] every closed walk whose increments sum to $d+1$ has all its vertices in one simplex.
+\end{itemize}
+For $d=2$ the only increments with sum $3$ are $(1,1,1)$, $(1,2)$, $(2,1)$ and $(3)$, and (F$_2$) is the
+flag condition of Lemma~\ref{V3P1:lem:counts}(c). The companion is
+\[
+C^{(d+1)}=\begin{pmatrix}
+R_1&R_2&\cdots&R_d&R_{d+1}\\ I&0&\cdots&0&0\\ &\ddots&&&\vdots\\ 0&\cdots&&I&0\end{pmatrix},
+\qquad R_j=(-1)^{j-1}q^{\binom j2}A_j ,
+\]
+which is \eqref{V3P1:eq:C} for $d=2$. When the $A_j$ commute, $\det(xI-C^{(d+1)})=\sum_{j=0}^{d+1}(-1)^{j}
+q^{\binom j2}A_jx^{d+1-j}$, the local Hecke polynomial of $\PGL_{d+1}$; the companion of
+[Vol.~I--II, Ch.~\ref{M-chap:XX}, Thm.~\ref{M-XX:thm:hecke}] has the same excursion weights $R_j$
+(see the proof of Lemma~\ref{V3P1:lem:excursion}), hence the same traces of all powers. With
+$D_1=\operatorname{diag}(\zeta^{-\tau})$, $\zeta=e^{2\pi i/(d+1)}$, the proof of
+Proposition~\ref{V3P1:prop:grading} gives $DC^{(d+1)}D^{-1}=\zeta C^{(d+1)}$ verbatim, so
+$\Tr(C^{(d+1)})^{k}=0$ for $(d+1)\nmid k$.
+
+\begin{lemma}[Excursion expansion]\label{V3P1:lem:excursion}
+For every $k\ge1$, with no commutativity assumption,
+\[
+\Tr\bigl(C^{(d+1)}\bigr)^{k}=\sum_{\mathbf j}\,j_1\,(-1)^{k-r}\,q^{\sum_i\binom{j_i}2}\,
+\Tr\bigl(A_{j_1}A_{j_2}\cdots A_{j_r}\bigr),
+\]
+the sum over the compositions $\mathbf j=(j_1,\dots,j_r)$ of $k$ with all parts $\le d+1$.
+\end{lemma}
+
+\begin{proof}
+$\bigl((C^{(d+1)})^{k}\bigr)_{bb}$ is a sum over closed walks of length $k$ in the graph on the block
+indices $1,\dots,d+1$ whose arcs are $1\to j$ (weight $R_j$) and $i+1\to i$ (weight $I$). From block
+$1$, the arc $1\to j$ must be followed by $j\to j-1\to\dots\to1$, so every return to block $1$ is an
+\emph{excursion} of length $j$ and weight $R_j$. A closed walk of length $k$ is therefore a cyclic
+sequence of excursions of lengths $j_1,\dots,j_r$ with $\sum j_i=k$, together with the time at which
+it starts. Label the excursions so that the walk starts inside the first one; there are $j_1$ such
+starting times, and each contributes the trace of a cyclic rotation of $R_{j_1}\cdots R_{j_r}$, which
+is $\Tr(R_{j_1}\cdots R_{j_r})$. Finally $\prod_i(-1)^{j_i-1}=(-1)^{k-r}$. For the companion of
+[Vol.~I--II, Ch.~\ref{M-chap:XX}], whose row $0$ carries $q^{i}A_{i+1}$ and whose subdiagonal carries
+$-q^{i}I$, an excursion of length $j$ has weight
+$q^{j-1}A_j\prod_{l=0}^{j-2}(-q^{l})=(-1)^{j-1}q^{\binom j2}A_j=R_j$. Line (W) checks the expansion
+as an identity of non-commutative polynomials for $d\le6$, $k\le d+1$.
+\end{proof}
+
+\begin{lemma}[Closed walks are flags]\label{V3P1:lem:flagwalks}
+Let $\mathbf j$ be a composition of $d+1$ and let $\binom{d+1}{\mathbf j}_q=[d+1]_q!/\prod_i[j_i]_q!$ be
+the $q$-multinomial coefficient, $[k]_q=1+q+\dots+q^{k-1}$.
+\begin{enumerate}
+\item[(i)] Under \textup{(L$_d$)}, $\Tr(A_{j_1}\cdots A_{j_r})=n\binom{d+1}{\mathbf j}_q+s_{\mathbf j}$,
+where $s_{\mathbf j}\ge0$ is the number of closed walks of increments $\mathbf j$ whose vertices are not
+contained in one simplex. Under \textup{(F$_d$)}, $s_{\mathbf j}=0$.
+\item[(ii)] The Bruhat--Tits building of $\PGL_{d+1}$ over a non-archimedean local field with
+residue field $\F_q$ satisfies \textup{(L$_d$)} and \textup{(F$_d$)}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) A closed walk of increments $\mathbf j$ starting at $x_0$ whose vertices lie in a simplex is
+determined by $x_1,\dots,x_{r-1}$, which have types $\tau(x_0)+j_1+\dots+j_i$ and form a simplex of
+$\mathrm{Lk}(x_0)$, i.e.\ by (L$_d$) a chain $\F_q^{d+1}\supsetneq U_1\supsetneq\dots\supsetneq
+U_{r-1}\supsetneq0$ with $\operatorname{codim}(U_i\subset U_{i-1})=j_i$. Conversely every such chain gives
+such a walk, the last step $x_{r-1}\to x_0$ having increment $j_r$. The number of chains is the
+$q$-multinomial coefficient (choose $U_{r-1}$, then $U_{r-2}\supset U_{r-1}$, and so on), whatever the
+order of the parts. The remaining closed walks are counted by $s_{\mathbf j}$.
+
+(ii) The vertices are the homothety classes of lattices $L\subset K^{d+1}$, with uniformizer
+$\pi$; $[L]\to[L']$ has increment $j$ iff there are representatives with $L\supset L'\supset\pi L$ and
+$\dim L/L'=j$, and the simplices are the chains of such lattices. The link of $[L]$ is the flag complex
+of $L/\pi L\cong\F_q^{d+1}$. Given a closed walk $x_0\to\dots\to x_r=x_0$ with increments summing to
+$d+1$, choose $L_0$ in $x_0$ and inductively the unique representative $L_i$ of $x_i$ with
+$L_{i-1}\supset L_i\supset\pi L_{i-1}$. Then $[L_0:L_r]=q^{d+1}$ and $L_r$ is homothetic to $L_0$,
+so $L_r=\pi L_0$. Hence $L_0\supset L_1\supset\dots\supset L_{r-1}\supset\pi L_0$ is a chain, and the
+vertices of the walk span a simplex.
+\end{proof}
+
+\begin{theorem}[First nonzero trace in rank $d$]\label{V3P1:thm:tracead}
+Let $Y$ be a finite $\Atilde d$ complex satisfying \textup{(L$_d$)}, with $n$ vertices. Then
+$\Tr(C^{(d+1)})^{k}=0$ for $(d+1)\nmid k$, and
+\[
+\Tr\bigl(C^{(d+1)}\bigr)^{d+1}=n\prod_{i=1}^{d}\bigl(1-q^{i}\bigr)
++\sum_{\mathbf j}j_1(-1)^{d+1-r}q^{\sum_i\binom{j_i}2}s_{\mathbf j}.
+\]
+Under the flag condition \textup{(F$_d$)},
+\[
+\Tr\bigl(C^{(d+1)}\bigr)^{d+1}=n\prod_{i=1}^{d}\bigl(1-q^{i}\bigr)=(-1)^{d}\,n\,(q-1)^{d}\,[d]_q!\,.
+\]
+For $d=1,2,3,4$ this is $-n(q-1)$, $n(q-1)^{2}(q+1)$, $-n(q-1)^{3}(q+1)(q^{2}+q+1)$ and
+$n(q-1)^{4}(q+1)^{2}(q^{2}+1)(q^{2}+q+1)$.
+\end{theorem}
+
+\begin{proof}
+By Lemmas~\ref{V3P1:lem:excursion} and~\ref{V3P1:lem:flagwalks} it remains to show, with $m=d+1$,
+\[
+T_m:=\sum_{\mathbf j\models m}j_1(-1)^{m-r}q^{\sum\binom{j_i}2}\binom{m}{\mathbf j}_q=\prod_{i=1}^{m-1}(1-q^{i}).
+\]
+Write $\binom{m}{\mathbf j}_q=[m]_q!\prod_iE_{j_i}$ with $E_j=q^{\binom j2}/[j]_q!$ and work in
+$\Z[[q]][[t]]$. Put $F(t)=\sum_{j\ge1}(-1)^{j-1}E_jt^{j}$. Expanding $tF'(t)/(1-F(t))$ by the geometric
+series gives $\sum_{\mathbf j}j_1\prod_i(-1)^{j_i-1}E_{j_i}t^{\sum j_i}$, the $j_1$ coming from the
+derivative applied to the first factor; hence $T_m=[m]_q!\,[t^{m}]\bigl(-t\tfrac{d}{dt}\log(1-F(t))\bigr)$.
+Now $1-F(t)=\sum_{j\ge0}q^{\binom j2}(-t)^{j}/[j]_q!$, and since $[j]_q!=(q;q)_j/(1-q)^{j}$, Euler's
+identity $\sum_jq^{\binom j2}z^{j}/(q;q)_j=\prod_{i\ge0}(1+zq^{i})$ with $z=-(1-q)t$ gives
+$1-F(t)=\prod_{i\ge0}\bigl(1-(1-q)q^{i}t\bigr)$. Therefore
+\[
+-t\frac{d}{dt}\log(1-F(t))=\sum_{i\ge0}\frac{(1-q)q^{i}t}{1-(1-q)q^{i}t}
+=\sum_{k\ge1}t^{k}\,(1-q)^{k}\sum_{i\ge0}q^{ik}=\sum_{k\ge1}t^{k}\frac{(1-q)^{k}}{1-q^{k}},
+\]
+and $T_m=[m]_q!\,(1-q)^{m}/(1-q^{m})=\prod_{i=1}^{m}(1-q^{i})/(1-q^{m})=\prod_{i=1}^{m-1}(1-q^{i})$.
+Both sides are polynomials in $q$, so the identity in $\Z[[q]]$ is an identity of polynomials. The
+last form uses $1-q^{i}=-(q-1)[i]_q$.
+\end{proof}
+
+\begin{corollary}\label{V3P1:cor:tracead}
+Assume \textup{(L$_d$)} and \textup{(F$_d$)}.
+\begin{enumerate}
+\item[(i)] As a polynomial in $q$, $\Tr(C^{(d+1)})^{d+1}/n$ vanishes at $q=1$ to order exactly $d$. A
+thin complex ($q=1$) satisfying \textup{(F$_d$)} has $\Tr(C^{(d+1)})^{d+1}=0$.
+\item[(ii)] For $q\ge2$ the sign of $\Tr(C^{(d+1)})^{d+1}$ is $(-1)^{d}$. For odd $d$ it is negative, so
+no non-negative matrix, of any size, has the nonzero spectrum of $C^{(d+1)}$ (with multiplicities):
+the obstruction of the rank-one paragraph of Section~\ref{V3P1:sec:trace} recurs in every odd rank,
+and disappears in every even rank.
+\item[(iii)] On the constants, $A_j$ acts by $\binom{d+1}j_q$ and the local factor is
+$\prod_{i=0}^{d}(1-q^{i}u)$; its derivative at $u=1$ is $-\prod_{i=1}^{d}(1-q^{i})$. So the coincidence
+of Remark~\ref{V3P1:rem:coincidence} persists in every rank: the first nonzero trace per vertex and the
+derivative of the trivial local factor at $u=1$ are the same number up to sign.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(i) Each factor $1-q^{i}$ has a simple zero at $q=1$. (ii) Each factor is negative for $q\ge2$. The
+traces of the powers of a non-negative matrix are non-negative, and padding by zeros does not change
+them. (iii) $\sum_j(-1)^{j}q^{\binom j2}\binom{d+1}j_qx^{d+1-j}=\prod_{i=0}^{d}(x-q^{i})$ by the
+$q$-binomial theorem, and differentiate.
+\end{proof}
+
+\begin{remark}[Numerical record]\label{V3P1:rem:traceadnum}
+\texttt{code/v3p1\_ad\_trace.py} (numpy, scipy, sympy; about two minutes) checks: the excursion
+expansion as non-commutative words (W); the identity $T_m=\prod_{i<m}(1-q^{i})$ symbolically for
+$d\le12$, the order of the zero at $q=1$ and the sign (Q); the chain counts in $\F_q^{d+1}$ by
+enumeration of all subspaces for $(d,q)=(2,2),(3,2),(2,3),(3,3),(4,2)$, with per-vertex traces $3$,
+$-21$, $16$, $-416$, $315$ (F); the thin $\Atilde d$ tori $(\Z/m)^{d+1}/\Z(1,\dots,1)$ for $d=2,3,4$, which
+satisfy \textup{(F$_d$)} for $m\ge d+2$ and give $\Tr(C^{(d+1)})^{d+1}=0$ there, while for $m=d+1$ the
+excess walks of increments $(1,\dots,1)$ give $\Tr=(d+1)n$ (T); and $Y_{21}$, where
+$651=63+3\cdot196$ (Y). No finite thick $\Atilde3$ complex is constructed; for $d\ge3$ the thick case
+rests on Lemma~\ref{V3P1:lem:flagwalks}(ii) and on the per-vertex count (F).
+\end{remark}
+
+\begin{remark}[Corrections to the proposed programme]\label{V3P1:rem:traceadcorr}
+(1) The proposed $\Tr(C^{(4)})^{4}=n(q-1)^{3}(q+1)(q^{2}+1)$ is false: the value is
+$-n(q-1)^{3}(q+1)(q^{2}+q+1)$, e.g.\ $-21n$ instead of $15n$ at $q=2$; the sign is negative and the
+last factor is $[3]_q$, not $q^{2}+1$. (2) The proposed general form
+$n(q-1)^{d}\prod_j(q^{j+1}-1)/(q-1)$ is false; the correct product is $(-1)^{d}n(q-1)^{d}[d]_q!$. (3) For
+$d\ge3$ the trace is not a combination of the cell numbers $|F_k|$ alone: the words $A_{j_1}\cdots
+A_{j_r}$ count partial flags of every type, which is why the $q$-multinomials enter. (4) The vertex
+block of $L_E$ for $d\ge3$ (Chapter~\ref{chap:V3P4}, Remark~\ref{V3P4:rem:scope}(a)) is a different problem and is not
+addressed here.
+\end{remark}

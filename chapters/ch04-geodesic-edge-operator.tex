@@ -1,0 +1,481 @@
+% Volume III, Chapter 4 (drafted as "Chapter 30")
+\chapter{The Geodesic Edge Operator: Unitary Remainders, Ramanujan Equivalence, and Quantum Spectral Chaos}\label{chap:V3P4}
+\chaptermark{The Geodesic Edge Operator}
+\begin{chapterabstract}
+The proposed programme concerns the geodesic edge operator $L_E$ of an $\Atilde d$ complex. It
+asks for four claims. (a) After removing the Perron root $q^{d}$, the remainder $R$ has
+spectral radius exactly $q^{(d-1)/2}$ in a suitable inner product, so the Riemann hypothesis
+for the edge zeta function holds \emph{unconditionally}. (b) Under the $\PGL_{d+1}(\F_q)$
+symmetry the degenerate spectrum has Poisson spacings $e^{-s}$. (c) An arbitrarily small
+perturbation $\varepsilon V$ produces level repulsion, with a Brody crossover to GOE ($\beta=1$)
+or GUE ($\beta=2$). (d) All this ``unifies'' the Ramanujan property with quantum chaos. We
+prove the correct form of (a) and correct (b)--(d).
+
+(1) \emph{Structure.} $L_E$ is $q^{2}$-biregular and block-cyclic in the $\Z/3$ tail type,
+not block-tridiagonal. It satisfies four intertwining relations with the vertex operators.
+The subspace $\operatorname{im}\Psi=S^{t}\C^{V}+T^{t}\C^{V}+Q\C^{V}$ is invariant, and on it
+$L_E$ is a quotient of a $3n\times3n$ matrix whose characteristic polynomial is the Hecke
+pencil $\det P(u)$ of Chapter~\ref{chap:V3P1}.
+
+(2) \emph{The unitary remainder, unconditionally.} On
+$W=(\operatorname{im}\Psi)^{\perp}=\ker S\cap\ker T\cap\ker Q^{t}$, $L_E^{t}$ is exactly $\sqrt
+q$ times an isometry. So the compression of $L_E$ to $W$ is $\sqrt q$ times a unitary (in fact
+real orthogonal) operator, for every complex satisfying (L). The mechanism is local: the
+point--hyperplane incidence of $\PG(d,q)$ is a $2$-design. The same argument works on
+$\Atilde d$ with $q^{(d-1)/2}$, which is the circle of the proposed programme. Every eigenvalue of
+$L_E$ has $|\lambda|\ge\sqrt q$, so $L_E$ has no Betti-number factor.
+
+(3) \emph{The Ramanujan equivalence.} $\det(I-uL_E)=\det
+P(u)\det(I-u\bar L)/\bigl((1-u^{3})(1-q^{3}u^{3})\bigr)$, where $\bar L$ is the remainder. This
+holds whenever no nontrivial vertex eigenvalue lies on an explicit exceptional curve, and in
+particular for all Ramanujan complexes. The nontrivial spectrum of $L_E$ lies on the two
+circles $|\lambda|=q$ and $|\lambda|=\sqrt q$ \emph{if and only if} $Y$ is Ramanujan. Claim (a)
+is thus false as stated: $\rho(R)=q$, not $\sqrt q$. On $Y_{21}$, $54$ eigenvalues have
+modulus $2$. The Riemann hypothesis is equivalent to the Ramanujan property, not
+unconditional. On $Y_{21}$,
+$\det(I-uL_E)=(1-64u^{3})(1-8u^{3})^{18}(1-2u^{3}+8u^{6})^{9}(1+5u^{3}+8u^{6})^{6}$; this is
+checked in full numerically and exactly at eight values of $u$.
+
+(4) \emph{Level statistics.} A spectrum with multiplicities has an atom at $s=0$, so it is not
+Poisson. On $Y_{168}$ the $226$ remainder phases of one graded piece take only $16$ values,
+and $93\%$ of the spacings are exactly $0$. Under a perturbation the spectrum moves
+continuously, so no arbitrarily small $\varepsilon$ gives Wigner--Dyson statistics. Numerically,
+for $\varepsilon\le10^{-2}$, $93\%$ of the spacings are still below a tenth of the mean.
+Brody's family is phenomenological: its $b=1$ is the GOE surmise, but its $b=2$ is \emph{not}
+the GUE surmise. The symmetry class is set by antiunitary symmetries: a real $V$ gives
+GUE-like statistics here. Ramanujan (where the spectrum sits) and chaos (how phases
+correlate) are logically independent. What links them is the decomposition
+$\C^{E}=\operatorname{im}\Psi\oplus W$.
+\end{chapterabstract}
+
+\section*{Status of the results}
+
+Every numbered statement is proved except the numerical observations in
+Remark~\ref{V3P4:rem:numerics}. The classical inputs are analytic perturbation theory
+\cite{Kato}, which is used only in Proposition~\ref{V3P4:prop:split}, and the definition of
+Ramanujan complexes \cite{LSV05}. The equivalence of Theorem~\ref{V3P4:thm:ramanujan} is in the
+spirit of Kang--Li--Wang \cite{KLW10}. We prove it here, and we do not rely on their
+statement. All identities were checked by \texttt{code/v3p4\_verify.py}
+(Table~\ref{V3P4:tab:battery}).
+
+Notation follows Chapters~\ref{chap:V3P1}--\ref{chap:V3P3}. $Y$ satisfies (L) with $q\ge2$, and $\kappa=q^{2}+q+1$. $E$ is
+the set of type-increasing edges $x\to y$. $S,T\colon\C^{E}\to\C^{V}$ sum over edges with a
+given tail and head: $(Sf)(x)=\sum_{x\to y}f(x\to y)$ and $(Tf)(y)=\sum_{x\to y}f(x\to y)$. For
+a vertex $y$, $\mathrm{In}(y)$ and $\mathrm{Out}(y)$ are the edges into and out of $y$. In
+$\mathrm{Lk}(y)$ the in-neighbours are lines and the out-neighbours are points of $\PG(2,q)$,
+and $x\to y\to z$ lie in a chamber iff the point $z$ is on the line $x$. $\operatorname{Inc}_y$
+is the line--point incidence matrix, $J$ the all-ones matrix. $P(u)=I-uA_1+qu^{2}A_2-q^{3}u^{3}I$
+and $P_a(u)=1-au+q\bar au^{2}-q^{3}u^{3}$ for a joint eigenvalue $(a,\bar a)$ of
+$(A_1,A_2)$.
+
+\section{The geodesic edge operator}\label{V3P4:sec:LE}
+
+\begin{definition}\label{V3P4:def:LE}
+$L_E\in M_E(\Z)$ has $L_E(x\to y,\,y\to z)=1$ when $x,y,z$ do \emph{not} span a chamber, and
+all other entries $0$. Define $Q\colon\C^{V}\to\C^{E}$ by $(Q\varphi)(x\to y)=\sum_{z:\{x,y,z\}\in
+F}\varphi(z)$.
+\end{definition}
+
+\begin{lemma}[Local form]\label{V3P4:lem:local}
+$L_E=\bigoplus_yM_y$, where $M_y=J-\operatorname{Inc}_y$ maps $\C^{\mathrm{Out}(y)}\to
+\C^{\mathrm{In}(y)}$. Moreover $M_y\mathbf 1=q^{2}\mathbf 1$, $\mathbf 1^{t}M_y=q^{2}\mathbf
+1^{t}$, and $M_y^{t}M_y=M_yM_y^{t}=qI+(q^{2}-q)J$. So on the complements of the constants,
+$M_y$ is $\sqrt q$ times an isometry.
+\end{lemma}
+
+\begin{proof}
+The continuations of $x\to y$ are the $\kappa-(q+1)=q^{2}$ points of $\mathrm{Lk}(y)$ off the
+line $x$. Two distinct points lie on one common line, so
+$\operatorname{Inc}^{t}\operatorname{Inc}=qI+J$; dually, $\operatorname{Inc}\operatorname{Inc}^{t}=qI+J$.
+Then $M^{t}M=\kappa J-2(q+1)J+qI+J$.
+\end{proof}
+
+\begin{proposition}[Perron root and grading]\label{V3P4:prop:perron}
+$L_E$ has all row and column sums equal to $q^{2}$, so $\rho(L_E)=q^{2}$ with eigenvector
+$\mathbf 1_E$. $L_E$ maps edges with tail type $t$ to edges with tail type $t+1$. So
+$D_EL_ED_E^{-1}=\omega L_E$ for $D_E=\operatorname{diag}(\omega^{-\tau(\mathrm{tail})})$, and the
+spectrum is invariant under multiplication by $\omega$. The block structure is \emph{cyclic}
+of period $3$, not tridiagonal. On $\Atilde d$ it is cyclic of period $d+1$.
+\end{proposition}
+
+\begin{proposition}[Intertwining relations]\label{V3P4:prop:relations}
+\[
+TL_E=q^{2}S,\qquad L_ES^{t}=q^{2}T^{t},\qquad L_ET^{t}=T^{t}A_1-Q,\qquad L_EQ=qT^{t}A_2-qS^{t},
+\]
+and $SS^{t}=TT^{t}=\kappa I$, $ST^{t}=A_1$, $SQ=(q+1)A_2$, $TQ=(q+1)A_1$.
+\end{proposition}
+
+\begin{proof}
+The first two relations are the column and row sums of the $M_y$. For the third,
+$(L_ET^{t}\varphi)(x\to y)=\sum_{z\in\mathrm{Out}(y),\,z\notin x}\varphi(z)=(A_1\varphi)(y)-(Q\varphi)(x\to y)$.
+For the fourth, $(L_EQ\varphi)(x\to y)=\sum_{z\notin x}\sum_{w\ni z}\varphi(w)$, with $w$
+ranging over lines of $\mathrm{Lk}(y)$. The line $w=x$ contributes nothing, and each line
+$w\ne x$ contains exactly $q$ points off $x$. So the sum is
+$q\bigl((A_2\varphi)(y)-\varphi(x)\bigr)$. The rest are incidence counts: each edge lies in
+$q+1$ chambers.
+\end{proof}
+
+Let $\Psi\colon\C^{V}\otimes\C^{3}\to\C^{E}$, $\Psi(\varphi_1,\varphi_2,\varphi_3)=S^{t}\varphi_1+T^{t}\varphi_2+Q\varphi_3$, and
+\[
+\widehat N=\begin{pmatrix}0&0&-qI\\ q^{2}I&A_1&qA_2\\ 0&-I&0\end{pmatrix}.
+\]
+
+\begin{theorem}[The vertex block]\label{V3P4:thm:vertex}
+$L_E\Psi=\Psi\widehat N$ and $\det(I-u\widehat N)=\det P(u)$. So $\operatorname{im}\Psi$ is
+$L_E$-invariant, and $\ker\Psi$ is $\widehat N$-invariant. On a joint eigenvector with
+eigenvalue $a$, $\widehat N$ acts by a $3\times3$ matrix with characteristic polynomial
+$\lambda^{3}-a\lambda^{2}+q\bar a\lambda-q^{3}$.
+\end{theorem}
+
+\begin{proof}
+The identity is Proposition~\ref{V3P4:prop:relations} read column by column. For the
+determinant, expand $\det(\lambda I-N(a))$ with
+$N(a)=\begin{psmallmatrix}0&0&-q\\q^{2}&a&q\bar a\\0&-1&0\end{psmallmatrix}$ and diagonalize
+$(A_1,A_2)$ jointly.
+\end{proof}
+
+\section{The unitary remainder}\label{V3P4:sec:remainder}
+
+\begin{theorem}[Unitary remainder, unconditional]\label{V3P4:thm:unitary}
+Put $W=(\operatorname{im}\Psi)^{\perp}=\ker S\cap\ker T\cap\ker Q^{t}$. Then $L_E^{t}W\subseteq
+W$ and $\|L_E^{t}f\|=\sqrt q\,\|f\|$ for $f\in W$. Hence the compression $\bar L=P_WL_E|_W$
+satisfies $\bar L^{*}=L_E^{t}|_W$, and $\bar L=\sqrt q\,U$ with $U$ real orthogonal. In
+particular $\rho(\bar L)=\sqrt q$, every eigenvalue of $\bar L$ lies on $|\lambda|=\sqrt q$,
+and $\bar L$ is diagonalizable. No assumption beyond \textup{(L)} is used.
+\end{theorem}
+
+\begin{proof}
+$W$ is the orthogonal complement of an $L_E$-invariant subspace, so it is $L_E^{t}$-invariant.
+$W\subseteq\ker T$ means that $f|_{\mathrm{In}(y)}\perp\mathbf 1$ for every $y$. Now
+$(L_E^{t}f)|_{\mathrm{Out}(y)}=M_y^{t}f|_{\mathrm{In}(y)}$, and both families
+$\{\mathrm{In}(y)\}$ and $\{\mathrm{Out}(y)\}$ partition $E$. By Lemma~\ref{V3P4:lem:local},
+$\|L_E^{t}f\|^{2}=\sum_y\|M_y^{t}f|_{\mathrm{In}(y)}\|^{2}=q\|f\|^{2}$. The rest is linear
+algebra: $\langle\bar Lf,g\rangle=\langle f,L_E^{t}g\rangle$ for $f,g\in W$, and $L_E$ is real.
+\end{proof}
+
+\begin{theorem}[Lower bound]\label{V3P4:thm:lower}
+Every eigenvalue of $L_E$ satisfies $|\lambda|\ge\sqrt q$, with equality iff its eigenvectors
+lie in $\ker S\cap\ker T$. Consequently $1-u^{3}$ does not divide $\det(I-uL_E)$, and the Betti
+numbers of $Y$ do not enter $\det(I-uL_E)$. This is unlike rank one, where the Hashimoto
+operator has the eigenvalues $\pm1$ with multiplicity governed by $b_1$.
+\end{theorem}
+
+\begin{proof}
+Let $L_Ef=\lambda f$, and write $f|_{\mathrm{Out}(y)}=\sigma(y)\mathbf 1+g_y$ and
+$f|_{\mathrm{In}(y)}=\tau(y)\mathbf 1+h_y$ with $g_y,h_y\perp\mathbf 1$. By
+Lemma~\ref{V3P4:lem:local}, $\lambda\tau=q^{2}\sigma$ and $\|h_y\|=\frac{\sqrt q}{|\lambda|}\|g_y\|$. Put
+$s=\kappa\sum|\sigma|^{2}$, $G=\sum\|g_y\|^{2}$ and $\ell=|\lambda|^{2}$. Computing $\|f\|^{2}$ in
+both partitions gives $s+G=\frac{q^{4}}{\ell}s+\frac q\ell G$, i.e.\
+$s(\ell-q^{4})=G(q-\ell)$. If $\ell<q$, then the left side is $\le0$ and the right side is
+$\ge0$, so $s=G=0$ and $f=0$. If $\ell=q$, then $s=0$, i.e.\ $Sf=0$, and then $Tf=0$.
+\end{proof}
+
+\begin{remark}\label{V3P4:rem:betti}
+This sharpens Remark~\ref{V3P1:rem:betti}, which placed the factor $(1-u^{3})^{\chi(Y)}$ of the
+Kang--Li zeta function on the ``edge (branch)'' side. It cannot come from the edge operator
+$L_E$, which has no eigenvalue of modulus $1$. It must come from the branch operator.
+\end{remark}
+
+\begin{theorem}[The $\Atilde d$ version]\label{V3P4:thm:Ad}
+Let $Y$ be a finite complex all of whose vertex links are the flag complex of $\PG(d,q)$, with
+type-increasing edges $E$. Let $L_E$ continue $x\to y$ to $y\to z$ when $z\not\subset x$ in
+$\mathrm{Lk}(y)$. Let $\mathcal V$ be the smallest $L_E$-invariant subspace containing
+$T^{t}\C^{V}$. Then $L_E$ has Perron root $q^{d}$, and $L_E^{t}$ is $q^{(d-1)/2}$ times an
+isometry on $\mathcal V^{\perp}$. Every eigenvalue satisfies $|\lambda|\ge q^{(d-1)/2}$. For
+$d=2$, $\mathcal V=\operatorname{im}\Psi$.
+\end{theorem}
+
+\begin{proof}
+Points and hyperplanes of $\PG(d,q)$ form a symmetric $2$-design. Each point lies on
+$r=\frac{q^{d}-1}{q-1}$ hyperplanes, two points on $\lambda_2=\frac{q^{d-1}-1}{q-1}$, and
+$r-\lambda_2=q^{d-1}$. So $M_y=J-\operatorname{Inc}_y$ has sums $q^{d}$, and on the complements
+of the constants $M_y^{t}M_y=M_yM_y^{t}=q^{d-1}I$. The proofs of
+Theorems~\ref{V3P4:thm:unitary} and~\ref{V3P4:thm:lower} go through verbatim, with
+$(q^{2},q)$ replaced by $(q^{d},q^{d-1})$. For $d=2$, $\operatorname{im}\Psi$ contains
+$T^{t}\C^{V}$ and is invariant, and $L_ET^{t}$ and $L_EQ$ generate $Q$ and $S^{t}$.
+\end{proof}
+
+\begin{remark}\label{V3P4:rem:local}
+The proposed programme attributes the remainder circle to a ``global'' $\PGL_{d+1}(\F_q)$ symmetry.
+What is used is local: the double transitivity of $\PGL_{d+1}(\F_q)$ on points of the link
+makes the incidence matrix a design, and the design makes the remainder an exact isometry.
+No global group acts on $Y$ for this.
+\end{remark}
+
+\section{Factorization and the Ramanujan equivalence}\label{V3P4:sec:ramanujan}
+
+Call a joint eigenvalue $a$ \emph{trivial} if $a\in\{\kappa,\kappa\omega,\kappa\omega^{2}\}$.
+These are simple, with eigenvectors $\mathbf 1,\omega^{\tau},\omega^{2\tau}$
+(Lemma~\ref{V3P1:lem:sector}, Proposition~\ref{V3P1:prop:grading}). $Y$ is \emph{Ramanujan}
+\cite{LSV05} if every nontrivial $a$ is tempered: $a=q(z_1+z_2+z_3)$ with $|z_i|=1$ and
+$z_1z_2z_3=1$. Equivalently, every reciprocal root of $P_a$ has modulus $q$. In general the
+Satake parameters have the shape $\{re^{i\alpha},r^{-1}e^{i\alpha},e^{-2i\alpha}\}$, because
+$z\mapsto1/\bar z$ permutes them. Define the \emph{exceptional curve}
+\[
+\Gamma_q=\bigl\{(q+1)\lambda+q^{2}\lambda^{-2}:\ |\lambda|=\sqrt q\bigr\}.
+\]
+Then $a\in\Gamma_q$ iff $P_a$ has a reciprocal root of modulus $\sqrt q$, i.e.\ $r=q^{\pm1/2}$.
+In particular $\Gamma_q$ contains no tempered value.
+
+\begin{lemma}[The kernel of $\Psi$]\label{V3P4:lem:kernel}
+$\ker\Psi=K_t\oplus K_n$, where $K_t$ is $6$-dimensional and lies over the trivial
+eigenvalues. There $\widehat N$ has the eigenvalues $\omega^{k}$ and $q\omega^{k}$. $K_n\neq0$
+only if some nontrivial $a$ lies on $\Gamma_q$.
+\end{lemma}
+
+\begin{proof}
+$\Psi$ maps the trivial part $(\bigoplus_{\text{triv}}E_a)\otimes\C^{3}$ onto the span of
+$S^{t}\chi$ for the three trivial characters $\chi$, because $S^{t}\chi$, $T^{t}\chi$ and $Q\chi$
+are proportional. It maps the nontrivial part into the orthogonal complement of that span: for
+instance, $\langle S^{t}\chi,\Psi v\rangle=\langle\chi,S\Psi v\rangle=0$, since $S\Psi v$ lies
+in the nontrivial part. Hence $\ker\Psi$ splits, and $K_t$ has dimension $9-3=6$. On the image,
+$L_ES^{t}\chi=q^{2}T^{t}\chi$ has eigenvalue $q^{2}\omega^{k}$, so the other two roots
+$\omega^{k},q\omega^{k}$ of $P_{\kappa\omega^{k}}$ lie in $K_t$.
+
+Now let $v=(\varphi_1,\varphi_2,\varphi)\in K_n$ with $\widehat Nv=\lambda v$. Then $\lambda\ne0$,
+$\varphi_1=-\frac q\lambda\varphi$, $\varphi_2=-\lambda\varphi$, and $\Psi v=0$ reads
+$(Q\varphi)(x\to y)=\frac q\lambda\varphi(x)+\lambda\varphi(y)$ on every edge. At a vertex $y$
+this says $\operatorname{Inc}_y\varphi_{\mathrm{Out}}=\frac q\lambda\varphi_{\mathrm{In}}+
+\lambda\varphi(y)\mathbf 1$, and on the edges out of $y$ it says
+$\operatorname{Inc}_y^{t}\varphi_{\mathrm{In}}=\frac q\lambda\varphi(y)\mathbf
+1+\lambda\varphi_{\mathrm{Out}}$. Applying $\operatorname{Inc}^{t}$ to the first, and using
+$\operatorname{Inc}^{t}\operatorname{Inc}=qI+J$, gives
+$A_1\varphi=a(\lambda)\varphi$ with $a(\lambda)=(q+1)\lambda+q^{2}\lambda^{-2}$.
+Symmetrically, $A_2\varphi=(\lambda^{2}+q(q+1)\lambda^{-1})\varphi$. $A_1$ is normal, so the two
+values are complex conjugate. Write $\bar\lambda=qt/\lambda$ with $t=|\lambda|^{2}/q$. Then
+the conjugacy condition becomes $(t-1)\bigl[q(q+1)\lambda^{-1}-\lambda^{2}(1+t)t^{-2}\bigr]=0$.
+Either $t=1$, i.e.\ $a\in\Gamma_q$; or $\lambda^{3}=q(q+1)t^{2}/(1+t)>0$, which forces
+$|\lambda|\in\{1,q\}$ and $a(\lambda)$ trivial. The latter is impossible for $\varphi$ in
+the nontrivial part. Since $K_n$ is $\widehat N$-invariant, it is $0$ unless it contains such
+an eigenvector.
+\end{proof}
+
+\begin{theorem}[Factorization]\label{V3P4:thm:factor}
+If no nontrivial $a$ lies on $\Gamma_q$ (in particular, if $Y$ is Ramanujan), then
+$\dim W=|E|-3n+6=(q-1)(q+2)n+6$ and
+\[
+\det(I-uL_E)=\frac{\det P(u)}{(1-u^{3})(1-q^{3}u^{3})}\,\det(I-u\bar L),
+\]
+where all reciprocal roots of $\det(I-u\bar L)$ have modulus $\sqrt q$
+(Theorem~\ref{V3P4:thm:unitary}).
+\end{theorem}
+
+\begin{proof}
+With respect to $\C^{E}=\operatorname{im}\Psi\oplus W$, $L_E$ is block upper triangular with
+diagonal blocks $L_E|_{\operatorname{im}\Psi}$ and $\bar L$. $L_E|_{\operatorname{im}\Psi}$ is
+conjugate, via $\Psi$, to the map induced by $\widehat N$ on $\C^{3n}/\ker\Psi$. By
+Lemma~\ref{V3P4:lem:kernel}, $\ker\Psi=K_t$, which carries
+$\prod_k(1-\omega^{k}u)(1-q\omega^{k}u)=(1-u^{3})(1-q^{3}u^{3})$.
+\end{proof}
+
+\begin{theorem}[Riemann hypothesis $\Leftrightarrow$ Ramanujan]\label{V3P4:thm:ramanujan}
+The eigenvalues of $L_E$ other than $q^{2}\omega^{k}$ all lie on the two circles
+$|\lambda|=q$ and $|\lambda|=\sqrt q$ if and only if $Y$ is Ramanujan. Equivalently, the
+nontrivial poles of $Z_E(u)=\det(I-uL_E)^{-1}$ lie on $|u|=q^{-1}$ or $|u|=q^{-1/2}$. The
+circle $|u|=q^{-1/2}$ carries the $\dim W$ poles of the remainder unconditionally. On a
+Ramanujan complex the circle $|u|=q^{-1}$ carries $3(n-3)$ poles, and its occupation is
+\emph{exactly} the Ramanujan condition.
+\end{theorem}
+
+\begin{proof}
+($\Leftarrow$) Theorem~\ref{V3P4:thm:factor}: the nontrivial $P_a$ have reciprocal roots
+$qz_i$ with $|z_i|=1$, the trivial ones leave only $q^{2}\omega^{k}$, and $\bar L$ lives on the
+$\sqrt q$-circle. ($\Rightarrow$) Suppose a nontrivial $a$ is not tempered, with $r>1$. Then
+$N(a)$ has an eigenvector $v$ over $E_a$ with eigenvalue $\mu=qre^{i\alpha}$, and $|\mu|>q$. If
+$\Psi v=0$, Lemma~\ref{V3P4:lem:kernel} forces $|\mu|=\sqrt q$, which is false. So $\Psi v$ is an
+eigenvector of $L_E$ with $|\mu|\notin\{q,\sqrt q\}$.
+\end{proof}
+
+\begin{remark}[What the proposed programme's theorem gets right and wrong]\label{V3P4:rem:spec}
+The circle $q^{(d-1)/2}$ is right, for the remainder $W$ (Theorems~\ref{V3P4:thm:unitary},
+\ref{V3P4:thm:Ad}), and unconditionally so. It is wrong for ``$L_E$ minus its Perron root''.
+That operator has spectral radius $q$ on every Ramanujan complex with $n>3$: $54$ eigenvalues
+of modulus $2$ on $Y_{21}$, and $495$ on $Y_{168}$. Its $q$-circle is equivalent to the
+Ramanujan property, which is a global arithmetic input, not a consequence of (L). The five
+covers of this volume are all Ramanujan (line (F) of Table~\ref{V3P4:tab:battery}). ``In
+a suitable inner product'' is not needed: the standard one works, provided one compresses to $W$
+rather than restricting (W is $L_E^{t}$-invariant, not $L_E$-invariant).
+\end{remark}
+
+\section{Level statistics: what is provable}\label{V3P4:sec:stats}
+
+For a finite spectrum $\{\theta_1,\dots,\theta_N\}$ on the circle, counted with multiplicity
+and sorted, the \emph{empirical spacing measure} is $\frac1N\sum_i\delta_{s_i}$ with
+$s_i=\frac{N}{2\pi}(\theta_{i+1}-\theta_i)$.
+
+\begin{proposition}[Degenerate spectra are not Poisson]\label{V3P4:prop:atom}
+If the spectrum has $k<N$ distinct values, the spacing measure has an atom of mass $(N-k)/N$ at
+$s=0$. So it is not $e^{-s}\,ds$, and a sequence of such spectra with $(N-k)/N$ bounded below
+cannot converge to it.
+\end{proposition}
+
+\begin{proof}
+Exactly $N-k$ consecutive differences vanish. The measure $e^{-s}ds$ has no atoms.
+\end{proof}
+
+On $Y_{168}$, the remainder of one graded piece, $U^{3}$ on $W\cap\C^{E_0}$, has $N=226$
+eigenphases with $k=16$ distinct values. The atom has mass $210/226=0.929$. The
+``arithmetic Poisson spectrum'' of the proposed programme is really an arithmetic
+\emph{degenerate} spectrum. The deck groups of our covers are abelian
+($\Z/7$, $(\Z/2)^{3}$, $\Z/14$, $\Z/2\oplus\Z/14$, $(\Z/2)^{2}\oplus\Z/14$), so they force no
+degeneracy through irreducible dimensions. Decomposing along the characters $\chi$ of the deck
+group $A$, one expects pieces of dimension $18$ for $\chi=1$ (the remainder of $X_3$) and $12$
+for $\chi\ne1$. This is consistent with $18+12(|A|-1)=4n+6$, but we have not verified it
+piece by piece. The coincidences of values between pieces are observed, not explained.
+
+\begin{proposition}[Splitting, but not immediately]\label{V3P4:prop:split}
+Let $H_0$ be Hermitian with a repeated eigenvalue, and let $V$ be Hermitian with simple
+spectrum. Then:
+\begin{enumerate}
+\item[(i)] $H_0+\varepsilon V$ has simple spectrum for all but finitely many $\varepsilon\in\R$;
+\item[(ii)] an eigenvalue $E$ of $H_0$ of multiplicity $m$ splits as
+$E+\varepsilon\mu_i+O(\varepsilon^{2})$, where the $\mu_i$ are the eigenvalues of
+$P_EVP_E$ \cite{Kato};
+\item[(iii)] for fixed $N$, as $\varepsilon\to0$ the spacing measure of $H_0+\varepsilon V$
+converges weakly to that of $H_0$, which has an atom at $0$.
+\end{enumerate}
+So ``any $\varepsilon>0$ removes the degeneracy'' is true in the sense of (i), but ``any
+$\varepsilon>0$ produces Wigner--Dyson statistics'' is false in the sense of (iii). The same holds
+for the unitary family $U_0e^{i\varepsilon V}$ on compact $\varepsilon$-intervals.
+\end{proposition}
+
+\begin{proof}
+(i) The discriminant of $\det(\lambda-H_0-\varepsilon V)$ is a polynomial in $\varepsilon$. It is
+not identically zero, because $\varepsilon^{-1}(H_0+\varepsilon V)\to V$ has simple spectrum. (ii) is
+first-order degenerate perturbation theory. (iii) Eigenvalues depend continuously on
+$\varepsilon$. For the unitary family, the discriminant is real analytic in $\varepsilon$.
+\end{proof}
+
+\begin{proposition}[Brody is not Dyson]\label{V3P4:prop:brody}
+Let $P_b(s)=(b+1)\alpha_bs^{b}\exp(-\alpha_bs^{b+1})$ with
+$\alpha_b=\Gamma\bigl(\frac{b+2}{b+1}\bigr)^{b+1}$, normalized to unit mass and mean. Then
+$P_0=e^{-s}$, and $P_1=\frac\pi2se^{-\pi s^{2}/4}$ is the GOE Wigner surmise. But
+$P_2\neq\frac{32}{\pi^{2}}s^{2}e^{-4s^{2}/\pi}$, the GUE surmise: their logarithms decay like
+$-s^{3}$ and $-s^{2}$ respectively. The Brody parameter is therefore not Dyson's index. The
+family is an interpolation \cite{Brody73}, not a consequence of perturbation theory, and no
+``crossover formula'' $P_\beta$ with $\beta=2$ for GUE follows from it.
+\end{proposition}
+
+\begin{remark}[Numerical observations]\label{V3P4:rem:numerics}
+Let $U_3$ be the orthogonal $226\times226$ remainder of $Y_{168}$ above. Take
+$U_\varepsilon=U_3e^{i\varepsilon V}$, with $V=(A+A^{*})/(2\sqrt N)$ and $A$ a complex (``GUE'') or
+real (``GOE'') Gaussian matrix, and $12$ samples per $\varepsilon$ (seed fixed). We use the
+unfolding-free ratio $\langle r\rangle$ of consecutive spacings; the reference values are
+$0.386$ (Poisson), $0.531$ (GOE), $0.600$ (GUE) \cite{Atas13}.
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+$\varepsilon$ & $10^{-3}$ & $10^{-2}$ & $10^{-1}$ & $1$ & $3$\\
+\midrule
+GUE-type $V$: $\langle r\rangle$ & 0.509 & 0.513 & 0.527 & 0.595 & 0.593\\
+\quad spacings $<0.1\times$mean & 0.929 & 0.929 & 0.134 & 0.001 & 0.001\\
+GOE-type $V$: $\langle r\rangle$ & 0.523 & 0.510 & 0.538 & 0.601 & 0.595\\
+\quad spacings $<0.1\times$mean & 0.929 & 0.929 & 0.261 & 0.003 & 0.001\\
+\bottomrule
+\end{tabular}
+\end{center}
+(1) For $\varepsilon\le10^{-2}$ the spectrum is still $93\%$ clustered. The moderate
+$\langle r\rangle$ there is an artefact: the ratios inside a split cluster follow
+$P_EVP_E$ (Proposition~\ref{V3P4:prop:split}(ii)). (2) The crossover occurs around
+$\varepsilon\sim0.1$, the scale at which the splittings reach the mean spacing $2\pi/226$.
+(3) At saturation both kinds of $V$ give GUE-like values. $U_\varepsilon$ has no antiunitary
+symmetry even for real $V$, since $\overline{U_\varepsilon}=U_3e^{-i\varepsilon V}$. GOE statistics
+would require a time-reversal symmetry of the perturbed operator, not ``saturation''.
+\end{remark}
+
+\begin{remark}[Ramanujan and chaos]\label{V3P4:rem:unify}
+The two properties are about different things. Ramanujan is a statement about \emph{where} the
+nontrivial spectrum lies: the $q$-circle, Theorem~\ref{V3P4:thm:ramanujan}. Chaos is about
+\emph{how} the phases on the $\sqrt q$-circle correlate. The five covers of this volume are all
+Ramanujan, and their remainders are maximally degenerate. What is true is structural. The
+decomposition $\C^{E}=\operatorname{im}\Psi\oplus W$ separates the two questions. On
+$\operatorname{im}\Psi$ the vertex pencil lives, and there sits the Ramanujan condition. On $W$
+lives an exact unitary quantum map $U$, in the sense of quantum graphs \cite{KS97}, whose
+eigenphase statistics is the natural object for a Bohigas--Giannoni--Schmit type question
+\cite{BGS84,JMRR99}. We do not prove any universality statement for $U$.
+\end{remark}
+
+\section{The example \texorpdfstring{$Y_{21}$}{Y21}}\label{V3P4:sec:example}
+
+On $Y_{21}$, $|E|=147$. The joint eigenvalues are $7\omega^{k}$ (trivial) and $a=0$ with
+multiplicity $18$ (Corollary~\ref{V3P3:cor:Y21real}), and $0$ is tempered ($z=(1,\omega,\omega^{2})$).
+$\dim W=90$ and $\operatorname{rank}\Psi=57$. The characteristic polynomial is
+\[
+\det(I-uL_E)=(1-64u^{3})\,(1-8u^{3})^{18}\,(1-2u^{3}+8u^{6})^{9}\,(1+5u^{3}+8u^{6})^{6},
+\]
+The eigenvalues on both sides agree numerically, and the two integer polynomials agree exactly
+at $u=1,2,3,-1,-2,5,7,-3$ (Bareiss determinants). Eight points do not determine a polynomial of
+degree $147$, so the identity is checked, not proved. The factors $1-64u^{3}$ and
+$(1-8u^{3})^{18}$ are proved by Theorem~\ref{V3P4:thm:factor}. The first
+factor is the Perron orbit. The second is $P_0(u)=1-8u^{3}$, giving $54$ eigenvalues of modulus
+$2$. The last two are the remainder: $\lambda^{3}\in\{1\pm i\sqrt7,\,(-5\pm i\sqrt7)/2\}$, all
+of modulus $2^{3/2}$. The spectrum is therefore highly degenerate: only $4$ distinct values of
+$\lambda^{3}$ on $W$. For the other covers, see Table~\ref{V3P4:tab:battery}.
+
+\input{chapters/ch04-s06-gue-crossover}
+
+\section{Verification battery}\label{V3P4:sec:battery}
+
+\begin{table}[ht]
+\centering\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+check & complexes & result\\
+\midrule
+(R) sums $q^{2}$; block-cyclic; the relations of Proposition~\ref{V3P4:prop:relations} & five covers & exact\\
+(U) $W$ is $L_E^{t}$-invariant, $\|L_E^{t}f\|=\sqrt2\|f\|$; $\operatorname{rank}\Psi=3n-6$, $\dim W=4n+6$ & five covers & numeric $10^{-10}$\\
+(F) $\operatorname{spec}L_E$ as in Theorem~\ref{V3P4:thm:factor}; $|\lambda|\ge\sqrt2$; Ramanujan; circle counts $(q,\sqrt q)$: & & \\
+\quad $Y_{21}$ $(54,90)$, $Y_{24}$ $(63,102)$, $Y_{42}$ $(117,174)$, $Y_{84}$ $(243,342)$, $Y_{168}$ $(495,678)$ & five covers & numeric $10^{-6}$\\
+(X) the $Y_{21}$ product formula at $u=1,2,3,-1,-2,5,7,-3$ & $Y_{21}$ & exact\\
+(K) $\ker\Psi$ $6$-dimensional, trivial characters; $\Gamma_q$ property and disjointness from tempered $a$ ($q\le5$) & five covers & numeric\\
+(D) $J-\operatorname{Inc}(\PG(d,q))$: sums $q^{d}$, $q^{d-1}$ on $\mathbf 1^{\perp}$, $(d,q)\in\{(2,2),(2,3),(3,2),(3,3),(4,2)\}$ & --- & numeric $10^{-8}$\\
+(S) distinct $\lambda^{3}$ on $W$: $4,6,16,16,16$; atom $210/226$; perturbation table & $Y_{168}$ & numeric (seed 1)\\
+(B) Brody $b=1$ is the GOE surmise; $b=2$ differs from GUE by $0.162$ (sup) & --- & numeric\\
+\bottomrule
+\end{tabular}}
+\medskip
+\caption{Checks run by \texttt{code/v3p4\_verify.py}. Section~\ref{V3P4:sec:chaos} is checked by
+\texttt{code/v3p4\_quantum\_chaos.py} and \texttt{code/v3p4\_gue\_transition.py}.}
+\label{V3P4:tab:battery}
+\end{table}
+
+\section{Scope, residue, corrections}\label{V3P4:sec:scope}
+
+\begin{remark}[Solved, open]\label{V3P4:rem:scope}
+\emph{Solved:} the local form and intertwining relations of $L_E$; the unconditional unitary
+remainder, for all $d$; the lower bound $|\lambda|\ge q^{(d-1)/2}$; the factorization and the
+Ramanujan equivalence for $d=2$; the exact kernel of $\Psi$; the exact polynomial for $Y_{21}$.
+\emph{Open:} (a) the vertex block for $d\ge3$, which needs one operator like $Q$ for each
+intermediate type; (b) an explanation of the few distinct remainder values on abelian covers;
+(c) a (L)-complex with $q\ge2$ that is not Ramanujan, or a proof that none exists among
+quotients of a given building; (d) any universality statement for the eigenphases of $U$ along
+families.
+\end{remark}
+
+\begin{remark}[Corrections to the proposed programme]\label{V3P4:rem:corrections}
+(1) The block structure of $L_E$ is cyclic in the type grading, not tridiagonal. (2) The
+unconditional theorem is the unitary remainder on $W$, with $\rho=q^{(d-1)/2}$. The spectral
+radius of $L_E$ away from the Perron orbit is $q$, not $q^{(d-1)/2}$, and the full
+Riemann hypothesis for $\det(I-uL_E)$, in its two-circle form, is \emph{equivalent} to the
+Ramanujan property (Theorem~\ref{V3P4:thm:ramanujan}). (3) Degenerate spectra have an atom at
+$0$ and are not Poisson (Proposition~\ref{V3P4:prop:atom}). $\PGL_{d+1}(\F_q)$ acts on links,
+not on $Y$. (4) $L_E$ is not Hermitian, so $L_E+\varepsilon V$ is not a Hamiltonian. The
+natural unitary object is $U$ on $W$. A ``nonlinear'' perturbation has no spectrum; we use
+linear ones. (5) Small $\varepsilon$ splits degeneracies but does not produce Wigner--Dyson
+statistics (Proposition~\ref{V3P4:prop:split}); the crossover requires splittings of the order
+of the mean spacing. (6) Brody's parameter is not Dyson's $\beta$: $b=2$ is not GUE
+(Proposition~\ref{V3P4:prop:brody}). GOE versus GUE is decided by antiunitary symmetries
+(Remark~\ref{V3P4:rem:numerics}(3)). (7) The ``unification'' is the decomposition
+$\operatorname{im}\Psi\oplus W$, not an implication between Ramanujan and chaos
+(Remark~\ref{V3P4:rem:unify}).
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed. The definition of Ramanujan complexes is that of \cite{LSV05}. The two-circle
+characterization is in the spirit of \cite{KLW10}, and it is proved here independently. The
+perturbation-theoretic and random-matrix references \cite{Kato,Brody73,Atas13,KS97,BGS84,JMRR99}
+are cited for standard facts and terminology. The bibliographic data of these references
+have been checked against Crossref and zbMATH.

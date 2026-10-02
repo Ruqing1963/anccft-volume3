@@ -1,0 +1,7 @@
+﻿(A) Y_168: A_1 has 0^18, kappa = 7, the orbit of e^(i pi/3) (contains -1) with multiplicity 7, and the orbits of 2 sqrt 2 e^(+-i phi), phi = 0.162232 = 0.051640 pi, multiplicity 21 each   [     6 s]
+(S) 50 slices   [   281 s]
+(S) 100 slices   [   556 s]
+(S) 150 slices   [   830 s]
+(S) 150 slices (alpha, Phi) x 601 values of K_2: 274 losses of stability of stable cluster equilibria (Z/3 copies counted once): cluster (real): 191, transverse, complex (Hopf): 52, sigma_t (real): 23, transverse, real: 8
+(S) every Hopf event is in a block 2 sqrt 2 e^(+-i phi) (none in the e^(i pi/3) block); K_2 at the Hopf events in [-2.74, 0.61]   [   830 s]
+(L) alpha = 0.55: 26 Hopf points on 72 values of Phi; Omega_H in [0.0068, 0.0074], every slope d Re mu/d K_2 > 0: True   [  1285 s]

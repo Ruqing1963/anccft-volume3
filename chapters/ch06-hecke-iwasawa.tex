@@ -1,0 +1,567 @@
+﻿% Volume III, Paper 6 (drafted as "Chapter 32")
+\chapter{Hecke Algebras on Chambers, Iwasawa Modules, and the \texorpdfstring{$2$}{2}-adic Valuation Tower}\label{chap:V3P6}
+\chaptermark{Hecke Algebras and Iwasawa Modules}
+\begin{chapterabstract}
+The proposed programme asks for three things. (a) The operators of this volume --- $\DeltaH$, $L_E$
+and the chiral Kuramoto derivative --- are to be realized in representations of the degenerate
+affine Hecke algebra $\mathbb H_d$. (b) A non-commutative $p$-adic $L$-element $L_p(Y)\in
+K_1(\Sigma^{-1}\Lambda)$ is to be built from $\det(I-uC^{(d+1)})$, where $\Lambda=\Z_p[[G]]$.
+(c) A ``main conjecture'' $\partial L_p(Y)=[\mathrm{Sel}(Y/G)^{\vee}]$ is to be proved by a
+five-step scheme. This closing chapter states what is true.
+
+(1) \emph{Hecke algebras.} We give $\mathbb H_d$ and its polynomial representation, checked
+exactly. Every operator $L$ is $x_1$ in the $\mathbb H_d$-module $s_i\mapsto1$, $x_i\mapsto
+L+(i-1)c$, so ``realized in a representation of $\mathbb H_d$'' has no content. The algebra that
+acts naturally is the Iwahori--Hecke algebra $H_q(\Atwo)$ with parameter $q$, acting on
+functions on chambers. We prove that the quadratic and braid relations hold on every complex
+satisfying (L), including $Y_{21}$, which fails the flag condition. In this language
+$\Delta_2=3+T_0+T_1+T_2$, $A_1=(q+1)^{-1}\sum_t\pi_t\pi_{t+1}^{t}$, and
+$L_E=(q(q+1))^{-1}\,p\,T_tT_{t+2}T_t\,p^{t}$ blockwise. The vertex operators are images of
+symmetric polynomials under the Satake parameters: $A_1=qe_1$, $A_2=qe_2$, $e_3=1$. The
+Kuramoto derivative is nonlinear and is not an algebra representation. Its linearization at the
+twisted states is $-c_m\Delta_0$, which is central in this sense.
+
+(2) \emph{Localization.} We state Cohn localization and its $K$-theory sequence correctly, and
+note that the ``$\to0$'' holds when $K_0(\Lambda)\to K_0(\Sigma^{-1}\Lambda)$ is injective.
+Garland rigidity (Chapter~\ref{chap:V3P1}) implies that every open subgroup of a tower group has \emph{finite}
+abelianization. So no quotient $G/H\cong\Z_p$ exists, and the Ore set of
+Coates--Fukaya--Kato--Sujatha--Venjakob, with its category $\mathfrak M_H(G)$, is \emph{not
+available} for any tower over a thick complex. One must localize at all nonzero elements of the
+domain $\Lambda$.
+
+(3) \emph{The theorem that replaces the conjecture.} For every infinite pro-$p$ tower, the
+equivariant Hecke--Laplacian $\DeltaH_\Lambda\in M_n(\Lambda)$ is injective. If the tower group is
+moreover $p$-adic analytic, then $X=\coker\DeltaH_\Lambda$ is a torsion module of projective
+dimension $\le1$, and $\mathcal L=[\DeltaH_\Lambda]\in K_1(Q(\Lambda))$ satisfies
+$\partial\mathcal L=[X]$. In all cases descent gives $X_U\cong\Z_p\oplus\JacH(Y_U)\otimes\Z_p$. For every
+nontrivial Artin representation $\rho$, $\rho(\mathcal L)=\det\DeltaH_\rho\neq0$, and there is
+an analytic class number formula
+$\prod_{\rho\ne1}\det(\DeltaH_\rho)^{\dim\rho}=[G:U]\,|\JacH(Y_U)|/|\JacH(Y)|$. This formula is
+checked exactly on the abelian covers of $X_3$; on $Y_{21}$ the product is $7^{18}$. The
+``Selmer group'' has no definition for a complex. Replacing it by $X$ makes $\partial\mathcal
+L=[X]$ a theorem, whose content is the descent and the class number formula. Of the five
+proposed steps, one is used in a different role, one is not needed, and three do not apply
+(Section~\ref{V3P6:sec:five}).
+
+(4) \emph{The canonical tower (Sections~\ref{V3P6:sec:cs}--\ref{V3P6:sec:growth}).} The
+triples of the Vol.~I--II presentation satisfy $x+2y+4z\equiv0\pmod7$. So $a_x\mapsto1+\alpha^{x}\varphi$
+embeds $\Gamma$ in the cyclic division algebra $(\F_8(t)/\F_2(t),\mathrm{Frob},t)$. The building
+is therefore the Bruhat--Tits building of $\PGL_3(\F_2((s)))$, $s=1+t$; it is not exotic. The
+closure of $\pi_1(X_3)$ in the units of the maximal order at $t=0$ is a pro-$2$ group $P$ with
+$d(P)=3$ and \emph{infinite rank}. This gives an unconditional exhausting pro-$2$ tower, whose
+level~$2$ is $Y_{24}$. Its group is \emph{not} $p$-adic analytic: the proposed ``uniform pro-$p$
+group with Lie algebra $\mathfrak{pgl}_3$'' does not exist here. $\Gamma$ is discrete in
+$\PGL_3(\F_2((s)))$, so no congruence map exists at that place. Along any exhausting tower
+$\frac1n\log|\JacH|\to h_H(2)=2.063693$, a Plancherel integral; the tower gives $1.8629$,
+$2.0416$, $2.0544$, $2.0625$. The growth of the $2$-part stays open.
+
+(5) \emph{Retrospect and outlook.} We summarize the six chapters of Volume~III, and we list the
+open problems that Volume~IV inherits.
+\end{chapterabstract}
+
+\section*{Status of the results}
+
+Every numbered statement is proved, apart from the classical inputs, which are marked where
+they are used: the PBW theorem and the center of $\mathbb H_d$ \cite{Lus89}, Neumann's theorem
+that $\Z_p[[G]]$ is a domain \cite{Neu88}, and the localization sequences \cite{NR04}.
+Parts (i$'$) and (ii) of Theorem~\ref{V3P6:thm:main} need a $p$-adic analytic tower
+(Hypothesis~(T)); the other parts need only an infinite pro-$p$ tower (T$_p$). Such a tower exists
+over $X_3$ for $p=2$ (Theorem~\ref{V3P6:thm:tower}), which answers Chapter~\ref{chap:V3P1},
+Remark~\ref{V3P1:rem:scope}(c), for the Vol.~I--II complexes. Further quoted inputs are
+Lazard's rank criterion \cite{DDMS}, Oppenheim's trickling-down theorem \cite{Opp18}, Macdonald's
+Plancherel measure \cite{Mac71}, and, only in Remark~\ref{V3P6:rem:analytic}, Margulis
+\cite{Mar91}. The identities are checked by \texttt{code/v3p6\_verify.py} and
+\texttt{code/v3p6\_deep\_verify.py} (Table~\ref{V3P6:tab:battery}).
+
+\section{Hecke algebras}\label{V3P6:sec:hecke}
+
+\begin{definition}[Degenerate affine Hecke algebra \cite{Dri86,Lus89}]\label{V3P6:def:dah}
+Let $c\in\C$. $\mathbb H_d$ is generated by $s_1,\dots,s_d$ and $x_1,\dots,x_{d+1}$ subject to
+the relations: the $s_i$ satisfy the Coxeter relations of $S_{d+1}$; $x_ix_j=x_jx_i$;
+$s_ix_j=x_js_i$ for $j\notin\{i,i+1\}$; and $s_ix_{i+1}-x_is_i=c$. By the PBW theorem,
+$\mathbb H_d=\C[S_{d+1}]\otimes\C[x_1,\dots,x_{d+1}]$ as vector spaces. Its center is
+$\C[x]^{S_{d+1}}$, and its finite-dimensional irreducible modules have dimension at most
+$(d+1)!$ \cite{Lus89}.
+\end{definition}
+
+\begin{proposition}[Two representations]\label{V3P6:prop:reps}
+\begin{enumerate}
+\item[(i)] On $\C[y_1,\dots,y_{d+1}]$, the assignment $x_i\mapsto y_i$ and $s_i\mapsto\sigma_i-c\,\partial_i$,
+where $\partial_if=(f-\sigma_if)/(y_i-y_{i+1})$, is a representation.
+\item[(ii)] For \emph{every} endomorphism $L$ of a vector space $M$, the assignment
+$s_i\mapsto1$, $x_i\mapsto L+(i-1)c$ is a representation on $M$ with $x_1=L$.
+\end{enumerate}
+In particular, ``$L$ is realized in a representation of $\mathbb H_d$'' holds for every $L$,
+and it says nothing about $L$.
+\end{proposition}
+
+\begin{proof}
+(i) We have $\partial_i\sigma_i=-\partial_i$, $\sigma_i\partial_i=\partial_i$ and $\partial_i^{2}=0$, so
+$(\sigma_i-c\partial_i)^{2}=1$. Also $\partial_i(y_{i+1}f)-y_i\partial_if=-f$, which gives the
+cross relation. The braid relation is checked on all polynomials of degree $\le4$ in line (Dg).
+(ii) The $x_i$ commute, and $x_{i+1}-x_i=c$.
+\end{proof}
+
+The algebra that acts naturally is the one-parameter Iwahori--Hecke algebra of the affine Weyl
+group of type $\Atwo$ \cite{IM65}, acting on functions on chambers. For $i\in\Z/3$, the
+\emph{panel of cotype $i$} of a chamber is its edge that misses type $i$. Define $T_i$ on
+$\C^{F}$ by $(T_if)(c)=\sum f(c')$, the sum over chambers $c'\ne c$ with the same cotype-$i$
+panel.
+
+\begin{theorem}[Iwahori--Hecke action]\label{V3P6:thm:iwahori}
+If $Y$ satisfies \textup{(L)}, then $T_i^{2}=(q-1)T_i+q$ and $T_iT_jT_i=T_jT_iT_j$ for
+$i\neq j$. So $\C^{F}$ is a module over $H_q(\Atwo)=\langle T_0,T_1,T_2\rangle$. The flag
+condition is not needed.
+\end{theorem}
+
+\begin{proof}
+Each panel lies in $q+1$ chambers, which gives the quadratic relation. A gallery of type
+$(i,j,i)$ or $(j,i,j)$ pivots around the vertex $v$ of $c$ of the third type $k$. By (L), the
+chambers containing $v$ are the flags of $\PG(2,q)$. Write $c=(P,\ell)$. A non-stuttering
+gallery of type $(i,j,i)$ runs $(P,\ell)\to(P',\ell)\to(P',\ell')\to(P'',\ell')$, and it ends at
+a flag opposite to $c$: $P''\notin\ell$ and $P\notin\ell'$. Conversely, each opposite flag is
+reached by exactly one such gallery, with $P'=\ell\cap\ell'$. The same holds for $(j,i,j)$. So
+both products equal the ``opposite flag'' matrix of the star.
+\end{proof}
+
+Let $\pi_t\colon\C^{F}\to\C^{V_t}$ sum over the chambers at a vertex of type $t$. For each
+cotype $i$, let $p_i\colon\C^{F}\to\C^{E_i}$ sum over the chambers on an edge of that cotype.
+
+\begin{theorem}[The operators of Volume~III in Hecke language]\label{V3P6:thm:ops}
+Assume \textup{(L)}. Then:
+\begin{enumerate}
+\item[(i)] $\Delta_2=3+T_0+T_1+T_2$, with the type-increasing orientation of chambers;
+\item[(ii)] $A_1=\frac1{q+1}\sum_t\pi_t\pi_{t+1}^{t}$, so $\DeltaH=(q^{3}-1)+A_1-qA_2$ and
+$\Delta_0=2\kappa-A_1-A_2$;
+\item[(iii)] $L_E$ maps $\C^{E_t}$ to $\C^{E_{t+2}}$, and on this block
+$L_E=\frac1{q(q+1)}\,p_{t+2}\,T_tT_{t+2}T_t\,p_t^{t}$;
+\item[(iv)] on the joint eigenspace with Satake parameters $z$ (where $z_1z_2z_3=1$), $A_1=qe_1(z)$
+and $A_2=qe_2(z)$. So $\DeltaH$, $\Delta_0$ and $\det P(u)=\prod_i(1-qx_iu)$ are images of
+symmetric polynomials, i.e.\ of central elements of $\mathbb H_2$ or of $H_q$ modulo $e_3-1$.
+The Kuramoto field of Chapter~\ref{chap:V3P3} is nonlinear. Its linearization at the twisted states,
+$-c_m\Delta_0$, is of this central form.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) All incidences $[t:e]$ are $+1$, and distinct chambers share at most one panel.
+(ii) $\pi_t\pi_{t+1}^{t}(v,w)$ counts the chambers containing both $v$ and $w$, which is
+$q+1$ for an edge $v\to w$. (iii) An edge $e=x\to y$ has cotype $\tau(y)+1$, and $f=y\to z$ has
+cotype $\tau(y)-1$. The product $T_tT_{t+2}T_t$ connects exactly the opposite flags at $y$
+(proof of Theorem~\ref{V3P6:thm:iwahori}). For $z\notin x$ there are $q(q+1)$ opposite pairs:
+$q+1$ lines through $z$, and $q$ points of $x$ off each such line. For $z\in x$ there are none.
+(iv) If $P_a(u)=\prod(1-qz_iu)$, then $a=qe_1(z)$ and $q\bar a=q^{2}e_2(z)$.
+\end{proof}
+
+\begin{remark}\label{V3P6:rem:graded}
+The degenerate algebra $\mathbb H_d$ is Lusztig's graded version of $H_q$, obtained by
+filtering at a central character \cite{Lus89}. It models the representations of $H_q$ near a
+given Satake parameter. It does not act on the chain spaces of $Y$, and nothing in this volume
+needs it. The spectral data of Chapters~\ref{chap:V3P1}--\ref{chap:V3P4} are central characters, i.e.\ Satake parameters; the
+non-central operators ($L_E$, $\Delta_2$) live in $H_q$ and its parabolic modules.
+\end{remark}
+
+\section{Localization and the absence of a \texorpdfstring{$\Z_p$}{Zp}-direction}\label{V3P6:sec:loc}
+
+\begin{definition}[Cohn localization \cite{Coh85}]\label{V3P6:def:cohn}
+Let $\Sigma$ be a set of maps between finitely generated projective $\Lambda$-modules. A ring
+map $\Lambda\to\Sigma^{-1}\Lambda$ is the \emph{Cohn localization} if it makes every
+$\sigma\in\Sigma$ invertible and is universal with that property. If $\Lambda\to\Sigma^{-1}\Lambda$
+is injective and stably flat (for instance, an Ore localization), there is an exact sequence
+\cite{NR04}
+\[
+K_1(\Lambda)\to K_1(\Sigma^{-1}\Lambda)\xrightarrow{\ \partial\ }K_0(\Lambda,\Sigma)\to
+K_0(\Lambda)\to K_0(\Sigma^{-1}\Lambda).
+\]
+Here $K_0(\Lambda,\Sigma)$ is the $K_0$ of $\Sigma$-torsion modules of projective dimension
+$\le1$, and $\partial[\alpha]=[\coker\alpha]$ for injective $\alpha\colon\Lambda^{n}\to\Lambda^{n}$
+in $\Sigma$ (this is our sign convention). $\partial$ is surjective when $K_0(\Lambda)\to
+K_0(\Sigma^{-1}\Lambda)$ is injective, e.g.\ when $\Lambda$ is local and $\Sigma^{-1}\Lambda$
+is a skew field.
+\end{definition}
+
+The Ore set of \cite{CFKSV} is
+$S=\{s\in\Lambda(G):\Lambda(G)/\Lambda(G)s\text{ is finitely generated over }\Lambda(H)\}$.
+It requires a closed normal subgroup $H$ with $G/H\cong\Z_p$, and its torsion category is
+$\mathfrak M_H(G)$. The proposed programme's $\Sigma$ (``$M/M[p^{\infty}]$ finite, pseudo-null'') is not
+this set.
+
+\begin{theorem}[No $\Z_p$-direction]\label{V3P6:thm:nozp}
+Let $Y$ satisfy \textup{(L)} with $q\ge2$. Let $G$ be a profinite group that receives
+$\pi_1(Y)$ with dense image, so that its open subgroups $U$ correspond to finite covers $Y_U$.
+Then every open $U\le G$ has finite abelianization. In particular no open subgroup of $G$ has a
+quotient $\Z_p$, and the Ore set $S$ and the category $\mathfrak M_H(G)$ of \cite{CFKSV} do not
+exist for any open subgroup of $G$.
+\end{theorem}
+
+\begin{proof}
+This is Proposition~\ref{V3P1:prop:fab}(i),(ii). $H_1(Y_U;\Z)$ is finite by Garland rigidity,
+and it surjects onto a dense subgroup of $U^{\mathrm{ab}}$.
+\end{proof}
+
+So the only natural localization is the Goldie quotient. Under the following hypothesis,
+$\Lambda$ is a Noetherian domain \cite{Laz65,Neu88}, and the nonzero elements form an Ore set
+with skew field of fractions $Q(\Lambda)$.
+
+\begin{itemize}
+\item[(T$_p$)] $\pi_1(Y)\to G$ has dense image, where $G$ is an infinite pro-$p$ group. Put
+$\Lambda=\Z_p[[G]]$.
+\item[(T)] In addition, $G$ is a torsion-free $p$-adic Lie group. (Such $G$ has dimension $\ge3$
+and perfect Lie algebra, by Proposition~\ref{V3P1:prop:fab}(iii).)
+\end{itemize}
+Section~\ref{V3P6:sec:cs} shows that (T$_2$) holds \emph{unconditionally} over $X_3$, for a
+canonical tower. It also shows that this tower does \emph{not} satisfy (T).
+
+\section{The Iwasawa module of Hecke Jacobians}\label{V3P6:sec:main}
+
+Under (T$_p$), choose lifts of the vertices of $Y$ to the tower. Each arc $e\colon v\to w$ of $Y$
+acquires a voltage $g_e\in G$. Define $\DeltaH_\Lambda\in M_n(\Lambda)$ by
+\[
+(\DeltaH_\Lambda)_{vw}=(q^{3}-1)\delta_{vw}+\sum_{e:v\to w}g_e-q\sum_{e:w\to v}g_e^{-1},
+\]
+and put $X(Y/G)=\coker\DeltaH_\Lambda$. For $U$ open normal, $\Z_p[G/U]\otimes_\Lambda\DeltaH_\Lambda$
+is $\DeltaH(Y_U)\otimes\Z_p$, after identifying $\Z_p[G/U]^{n}$ with $\Z_p^{V(Y_U)}$.
+
+\begin{theorem}[Main theorem, replacing the main conjecture]\label{V3P6:thm:main}
+Assume \textup{(L)}, $q\ge2$, and \textup{(T$_p$)}. Then \textup{(i)}, \textup{(iii)},
+\textup{(iv)} and \textup{(v)} hold. If moreover \textup{(T)} holds, so do \textup{(i$'$)} and
+\textup{(ii)}.
+\begin{enumerate}
+\item[(i)] $\DeltaH_\Lambda$ is injective, and $0\to\Lambda^{n}\to\Lambda^{n}\to X\to0$ is exact.
+\item[(i$'$)] $\DeltaH_\Lambda$ is invertible over $Q(\Lambda)$, and $X$ is a finitely generated
+torsion $\Lambda$-module of projective dimension $\le1$.
+\item[(ii)] $\mathcal L(Y/G):=[\DeltaH_\Lambda]\in K_1(Q(\Lambda))$ satisfies
+$\partial\mathcal L(Y/G)=[X(Y/G)]$, and every characteristic element of $X$ differs from
+$\mathcal L$ by an element of the image of $K_1(\Lambda)$.
+\item[(iii)] Descent: $\Z_p[G/U]\otimes_\Lambda X\cong\Z_p\oplus\bigl(\JacH(Y_U)\otimes\Z_p\bigr)$.
+\item[(iv)] Interpolation: for every irreducible representation $\rho\ne1$ of $G/U$,
+$\rho(\DeltaH_\Lambda)=\DeltaH_\rho$ and $\det\DeltaH_\rho\neq0$. Moreover
+\[
+\prod_{\rho\neq1}\det(\DeltaH_\rho)^{\dim\rho}=[G:U]\,\frac{|\JacH(Y_U)|}{|\JacH(Y)|}.
+\]
+\item[(v)] In the variable $u$: $\det P_{Y_U}(u)=\prod_\rho\det P_\rho(u)^{\dim\rho}$, and the
+trivial factor is governed by the derivative identity of Theorem~\ref{V3P1:thm:deriv}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Let $x\in\Lambda^{n}$ with $\DeltaH_\Lambda x=0$, and let $x_U$ be its image at level $U$.
+Then $\DeltaH(Y_U)x_U=0$, so $x_U$ is constant (Lemma~\ref{V3P1:lem:sector} applied to $Y_U$).
+That is, $x_U=c_UN_U\mathbf 1$, where $N_U=\sum_{g\in G/U}g$. Compatibility under $U'\subset U$
+gives $c_U=[U:U']c_{U'}$. Since $G$ is infinite pro-$p$, the indices $[U:U']$ are unbounded
+powers of $p$, so $c_U=0$ and $x=0$. Only (T$_p$) has been used so far. (i$'$) Under (T),
+$\Lambda$ is an Ore domain, and an injective square matrix
+stays injective over $Q(\Lambda)$ (clear denominators), hence is invertible. Its cokernel has
+rank $0$, and $0\to\Lambda^{n}\to\Lambda^{n}\to X\to0$ is a free resolution. (ii) is the
+definition of $\partial$. Two characteristic elements have the same image under $\partial$, so
+by exactness they differ by an element of the image of $K_1(\Lambda)$. (iii) Tensor products are
+right exact. In the proof of Theorem~\ref{V3P1:thm:deriv}, $\coker\DeltaH(Y_U)\cong\Z\oplus\JacH(Y_U)$.
+(iv) Over $\C$, $\DeltaH(Y_U)\cong\bigoplus_\rho(\DeltaH_\rho)^{\oplus\dim\rho}$. The kernel is
+$\C\mathbf 1$, in the trivial summand. The other eigenvalues have positive real part by the
+sector lemma. The product of the nonzero eigenvalues of $\DeltaH(Y_U)$ is
+$n_U|\JacH(Y_U)|$ (proof of Theorem~\ref{V3P1:thm:deriv}), and similarly for $Y$. Divide, using
+$n_U/n_Y=[G:U]$. (v) The same decomposition applies to $P(u)$.
+\end{proof}
+
+\begin{remark}[Finite abelian check]\label{V3P6:rem:check}
+Statement (iv) is a finite-level identity, and it holds for every finite regular cover. For the
+abelian covers of $X_3$ it is checked exactly (line (CN)):
+$|\JacH(X_3)|=147$, and $\prod_{\chi\ne1}\det\DeltaH_\chi$ equals
+$7\cdot3\cdot7^{19}/147=7^{18}$ for $Y_{21}$, $8|\JacH(Y_{24})|/147$ for $Y_{24}$, and
+$14|\JacH(Y_{42})|/147$ for $Y_{42}$. On $Y_{21}$ the value $7^{18}$ is also $Q_0(1)$ of
+Chapter~\ref{chap:V3P1}: two readings of the same determinant. By Theorem~\ref{V3P6:thm:nozp} no infinite
+abelian tower exists. $Y_{21}$ and $Y_{42}$ illustrate (iv) only, while $Y_{24}$ is level~$2$
+of the canonical $2$-tower of Section~\ref{V3P6:sec:cs}.
+\end{remark}
+
+\begin{remark}[What happened to the Selmer group]\label{V3P6:rem:selmer}
+``$\mathrm{Sel}(Y/G)$'' has no definition for a simplicial complex. The natural candidate is the
+Iwasawa module $X(Y/G)$ of Hecke Jacobians, with $\Z_p$-coinvariants the $p$-parts of the
+$\JacH(Y_U)$. With this choice $\partial\mathcal L=[X]$ holds by construction. The non-formal
+content is the descent (iii) and the class number formula (iv), in the spirit of Iwasawa theory
+for graphs. Because $G^{\mathrm{ab}}$ is finite, there is no Iwasawa $\mu$--$\lambda$ formula
+along a $\Z_p$-direction. The total order $|\JacH(Y_U)|$ grows like $e^{h_Hn_U}$
+(Theorem~\ref{V3P6:thm:growth}). The growth of the $p$-part is open
+(Remark~\ref{V3P6:rem:twopart}).
+\end{remark}
+
+\section{The Cartwright--Steger model and the canonical \texorpdfstring{$2$}{2}-tower}\label{V3P6:sec:cs}
+
+Let $E=\F_8=\F_2(\alpha)$ with $\alpha^{3}=\alpha+1$, and let $\sigma(a)=a^{2}$. Put $K=\F_2(t)$ and
+let $D$ be the cyclic algebra $(E(t)/K,\sigma,t)$:
+$D=\bigoplus_{j<3}E(t)\varphi^{j}$, $\varphi a=\sigma(a)\varphi$, $\varphi^{3}=t$. It is a division
+algebra of degree $3$, because $t$ is not a norm from $E(t)$ ($v_t$ of a norm is divisible by $3$).
+Let $\Gamma$ be the group of the triangle presentation of Vol.~I--II,
+Construction~\ref{M-X:con:thick}, with generators $a_x$ ($x\in\Z/7$) and relations $a_xa_ya_z=1$
+for $(x,y,z)\in T$. It acts simply transitively on the vertices of an $\Atwo$ building $B$, and
+$\Gamma^{0}=\pi_1(X_3)$ is its type-preserving subgroup of index $3$.
+
+\begin{theorem}[The Cartwright--Steger model, in the style of \cite{CS98}]\label{V3P6:thm:cs}
+\begin{enumerate}
+\item[(i)] The assignment $a_x\mapsto u_x:=1+\alpha^{x}\varphi$ defines a homomorphism
+$\rho\colon\Gamma\to D^{\times}/K^{\times}$. Indeed $u_xu_yu_z=1+t$ for every $(x,y,z)\in T$.
+\item[(ii)] Put $s=1+t$. Then $D\otimes\F_2((s))\cong M_3(\F_2((s)))$. The group $\rho(\Gamma)$
+acts on the Bruhat--Tits building $B_s$ of $\PGL_3(\F_2((s)))$, and the $\rho(a_x)v_0$ are the
+$7$ neighbours of one type of the base vertex $v_0$.
+\item[(iii)] $\rho$ is injective, $\rho(\Gamma)$ acts simply transitively on the vertices of
+$B_s$, and $B\cong B_s$. In particular the building of Vol.~I--II is Bruhat--Tits, not exotic,
+and $X_3,Y_{21},\dots,Y_{168}$ are quotients of the building of $\PGL_3(\F_2((s)))$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) For $\beta_i\in E$,
+$(1+\beta_1\varphi)(1+\beta_2\varphi)(1+\beta_3\varphi)=1+(\beta_1+\beta_2+\beta_3)\varphi
++(\beta_1\sigma\beta_2+\beta_1\sigma\beta_3+\beta_2\sigma\beta_3)\varphi^{2}
++\beta_1\sigma(\beta_2)\sigma^{2}(\beta_3)\,t$. Take $\beta=(\alpha^{x},\alpha^{y},\alpha^{z})$ with
+$(x,y,z)\in T$. The triples of $T$ satisfy $x+2y+4z\equiv0\pmod7$, so the last coefficient is
+$1$, and the other two coefficients vanish (line (CS); the $\varphi$-coefficient vanishes
+because $\{x,y,z\}$ is a line of $\PG(2,2)=\F_8^{\times}/\F_2^{\times}$).
+
+(ii) At $s$, $E\otimes\F_2((s))=\F_8((s))$ is unramified and $t=1+s$ is a unit. So $t=N(e)$ for
+some unit $e\in\F_8[[s]]$. Then $\varphi'=e^{-1}\varphi$ satisfies $\varphi'^{3}=1$, so
+$D_s\cong(\F_8((s)),\sigma,1)=\operatorname{End}_{\F_2((s))}(\F_8((s)))$, with $\varphi'$ acting as
+Frobenius. Let $v_0$ be the class of the lattice $L_0=\F_8[[s]]$. Since
+$(\alpha^{x}\varphi)^{3}=t$, the reduced norm is $\mathrm{Nrd}(u_x)=1+t=s$. Also
+$u_x=1+\alpha^{x}e\varphi'$ is integral, so $sL_0\subset u_xL_0\subset L_0$ with
+$u_xL_0/sL_0=\operatorname{im}\bar u_x$, where $\bar u_x(y)=y+\beta_xy^{2}$,
+$\beta_x=\alpha^{x}\bar e$. Similarly $su_y^{-1}L_0/sL_0=\ker\bar u_y=\{0,\beta_y^{-1}\}$. Line (NB)
+checks, for every $\bar e\ne0$, that the seven images are the seven hyperplanes of $\F_8$, that the
+seven kernels are the seven lines, and that $\ker\bar u_y\subset\operatorname{im}\bar u_x$ iff
+$(x,z,y)\in T$ for some $z$. So the link of $v_0$ in $B_s$ is matched with the link of the base
+vertex of $B$, incidence for incidence.
+
+(iii) Define $f\colon B\to B_s$ on vertices by $f(\gamma v)=\rho(\gamma)v_0$. This is well defined
+because $\Gamma$ is simply transitive on the vertices of $B$. It is simplicial and equivariant,
+and by (ii) it is an isomorphism from each vertex star onto the image star. Hence $f$ is a
+covering map. $B_s$ is contractible, and $B$ is connected, so $f$ is an isomorphism. If
+$\rho(\gamma)=1$, then $f(\gamma v)=f(v)$, so $\gamma v=v$ and $\gamma=1$.
+\end{proof}
+
+At $t=0$ the algebra $D_0=D\otimes\F_2((t))$ is a division algebra, with maximal order
+$\mathcal O=\F_8[[\varphi;\sigma]]$ and uniformizer $\varphi$. Put
+\[
+P=(1+\varphi\mathcal O)\big/\bigl(1+t\F_2[[t]]\bigr),\qquad P_m=\text{image of }1+\varphi^{m}\mathcal O .
+\]
+
+\begin{theorem}[The canonical $2$-tower]\label{V3P6:thm:tower}
+\begin{enumerate}
+\item[(i)] $\rho(\Gamma^{0})\subset P$, and its closure is all of $P$.
+\item[(ii)] $\Phi(P)=P_2$, so $d(P)=3$, and $|P/P_m|=2^{3(m-1)-\lfloor(m-1)/3\rfloor}$.
+\item[(iii)] $d(P_k)\ge\dim_{\F_2}P_k/P_{2k}\ge2k$. So $P$ has infinite rank, and it is not a
+$p$-adic analytic group for any $p$.
+\item[(iv)] The groups $U_m=\Gamma^{0}\cap\rho^{-1}(P_m)$ are normal in $\Gamma^{0}$, with
+$\Gamma^{0}/U_m\cong P/P_m$ and $\bigcap_mU_m=1$. The covers $Y_m=U_m\backslash B$ satisfy
+\textup{(L)}, $Y_1=X_3$, and $Y_2=Y_{24}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Each $u_x\equiv1\bmod\varphi$, and $\mathrm{Nrd}(u_x)=1+t$ is a unit at $t=0$, so
+$\rho(\Gamma)\subset\mathcal O^{\times}/\F_2[[t]]^{\times}$ and $\rho(\Gamma^{0})\subset P$. The
+Schreier generators $u_0^{s}u_xu_0^{-((s+1)\bmod3)}$ reduce modulo $P_2$ to
+$\alpha^{x}+1$ or $\alpha^{x}$, and these span $P/P_2\cong\F_8$ (line (FR)). By the Burnside basis
+theorem for pro-$p$ groups and (ii), $\overline{\rho(\Gamma^{0})}=P$.
+
+(ii) The level-$k$ quotient $(1+\varphi^{k}\mathcal O)/(1+\varphi^{k+1}\mathcal O)$ is $\F_8$, via
+$1+c\varphi^{k}\mapsto c$. In $P$ the centre removes $\F_2$ when $3\mid k$. We have
+$[1+a\varphi^{i},1+b\varphi^{j}]\equiv1+(a\sigma^{i}(b)+b\sigma^{j}(a))\varphi^{i+j}$ and
+$(1+a\varphi^{i})^{2}=1+a\sigma^{i}(a)\varphi^{2i}$. For $k\ge2$ these values span the level-$k$
+quotient of $P$. This depends only on $k\bmod 6$, and it is checked for $k=2,\dots,13$ in line (FR).
+By successive approximation in the complete filtered group, $P_2\subset\Phi(P)$. The reverse
+inclusion holds because $P/P_2$ is elementary abelian. The order formula counts $3$ bits per
+level, minus one at each level divisible by $3$.
+
+(iii) In characteristic $2$, $(1+x)^{2}=1+x^{2}$, and commutators of elements of $P_k$ lie in
+$P_{2k}$. So $\Phi(P_k)\subset P_{2k}$ and $d(P_k)\ge\dim P_k/P_{2k}$. A pro-$p$ group is
+$p$-adic analytic iff it has finite rank \cite{DDMS}. An infinite pro-$2$ group is not
+$p$-adic analytic for odd $p$, because its open pro-$p$ subgroups would be trivial.
+
+(iv) The $U_m$ are preimages of normal subgroups, and they surject by density. Their
+intersection is $\ker\rho\cap\Gamma^{0}=1$ (Theorem~\ref{V3P6:thm:cs}(iii)). Covers are local
+isomorphisms, so (L) is inherited. $P/P_2\cong(\Z/2)^{3}$ is the maximal elementary abelian
+$2$-quotient of $\Gamma^{0}$, since $\dim H_1(X_3;\F_2)=3$. So $Y_2$ is the unique such cover,
+$Y_{24}$, and its Hecke Jacobian agrees (line (L2)).
+\end{proof}
+
+\begin{corollary}[Status of the hypotheses]\label{V3P6:cor:status}
+Over $X_3$ (and each $Y_m$), (T$_2$) holds unconditionally, with $G=P$. Hence
+Theorem~\ref{V3P6:thm:main}(i),(iii),(iv),(v) hold unconditionally along the canonical
+$2$-tower. The tower does not satisfy (T). Parts (i$'$) and (ii) remain open for it, because we do
+not know whether $\Z_2[[P]]$ is Noetherian or has a skew field of fractions.
+\end{corollary}
+
+\begin{remark}[Analytic towers]\label{V3P6:rem:analytic}
+$\Gamma$ is a cocompact lattice in $\PGL_3(\F_2((s)))$, a rank-$2$ group over a local field of
+characteristic $2$, and it is $S$-arithmetic in $D$. Congruence towers at the other places of
+$\F_2(t)$ are again characteristic-$2$ groups of infinite rank. By Margulis' superrigidity and
+arithmeticity \cite{Mar91}, one expects every representation of $\Gamma$ over a field of
+characteristic $0$ to have finite image (we have not re-checked the precise statement). If so, no
+infinite $p$-adic Lie tower exists over $X_3$ for any $p$, and (T) is false for every complex of
+Vol.~I--II. The request to make (T) unconditional is therefore answered by
+Theorem~\ref{V3P6:thm:tower} and Corollary~\ref{V3P6:cor:status}: the natural tower is pro-$2$
+and not analytic, and the theory has to be based on (T$_2$), not on (T).
+\end{remark}
+
+\section{Growth of Hecke Jacobians}\label{V3P6:sec:growth}
+
+Let $\nu_q$ be the spectral measure of $A_1$ at a vertex of an $\Atwo$ building of order $q$. It
+depends only on $q$, because closed-walk counts do. For the Bruhat--Tits building it is
+Macdonald's spherical Plancherel measure \cite{Mac71}: $a=q(z_1+z_2+z_3)$ on
+$\{|z_i|=1,\ z_1z_2z_3=1\}$, with density proportional to
+$\prod_{i<j}|1-z_j/z_i|^{2}/|1-q^{-1}z_j/z_i|^{2}$.
+
+\begin{theorem}[Exponential growth of the Hecke Jacobian]\label{V3P6:thm:growth}
+Let $Y_m$ be an exhausting tower of normal covers of a complex satisfying \textup{(L)} with $q\ge2$,
+i.e.\ $U_m$ normal, decreasing, and $\bigcap U_m=1$. Then
+\[
+\lim_{m\to\infty}\frac{\log|\JacH(Y_m)|}{n_m}=h_H(q):=\int\log|q^{3}-1+a-q\bar a|\,d\nu_q(a).
+\]
+For $q=2$, $h_H(2)=2.063693$. Along the canonical $2$-tower the values are $1.862909$,
+$2.041580$ and $2.054414$ at $m=2,3,4$ (line (J)), and $2.062520$ at $m=5$, where $n=6144$
+(exploratory run).
+\end{theorem}
+
+\begin{proof}
+Normality and $\bigcap U_m=1$ make the injectivity radius tend to infinity. Hence the moments
+$\frac1{n_m}\Tr(A_1^{j}A_2^{k})$ converge to those of $\nu_q$, and the empirical measures of the
+joint eigenvalues converge weakly. They live on a compact subset of $\C$, where polynomials in
+$a$ and $\bar a$ are dense. By Theorem~\ref{V3P1:thm:deriv},
+$\log|\JacH(Y_m)|=\sum_{a_i\neq\kappa}\log|\mu_i|-\log n_m$. The only zero of $a\mapsto
+q^{3}-1+a-q\bar a$ is $a=\kappa$. Trickling down \cite{Opp18} from the link gap gives a uniform
+bound: every nontrivial eigenvalue of the normalized $1$-skeleton walk is at most
+$\sqrt q/(q+1-\sqrt q)$. Hence
+$\operatorname{Re}\mu_i\ge(q^{3}-1)(\sqrt q-1)^{2}/(q+1-\sqrt q)>0$ for all levels and all
+$a_i\ne\kappa$. So $\log|\mu|$ is bounded and continuous on a set carrying all the measures, and
+the integrals converge.
+\end{proof}
+
+\begin{remark}[The $2$-part]\label{V3P6:rem:twopart}
+Along the canonical tower, $v_2|\JacH(Y_m)|=0,18,99,289$ for $m=1,2,3,4$, with $n=3,24,192,768$
+($|\JacH(X_3)|=147$ is odd). Per vertex this is $0,0.75,0.52,0.38$; per unit of index it is
+$0,2.25,1.55,1.13$. No asymptotic law is proved. $P$ is not analytic, so the growth theorems of
+analytic Iwasawa theory do not apply, and ``pseudo-null'' and ``characteristic divisor'' have no
+established meaning over $\Z_2[[P]]$. The total order grows like $e^{h_Hn}$
+(Theorem~\ref{V3P6:thm:growth}). Whether $v_2$ grows linearly in $n$ is open.
+\end{remark}
+
+\section{The five-step scheme}\label{V3P6:sec:five}
+
+\begin{center}
+\small
+\begin{tabular}{p{0.3\textwidth}p{0.62\textwidth}}
+\toprule
+proposed step & status\\
+\midrule
+\textcircled{1} Garland excludes $H^{1}$ poles & True fact (Theorem~\ref{V3P1:thm:garland}), but it plays another role. It makes every $U^{\mathrm{ab}}$ finite and so \emph{removes} the $\Z_p$-direction (Theorem~\ref{V3P6:thm:nozp}). The only degenerate factor of $\mathcal L$ is the trivial representation, which is handled in (iv).\\
+\textcircled{2} unitary remainder fixes Euler factors & Not used. The remainder of $L_E$ (Chapter~\ref{chap:V3P4}) lives on edges and does not enter the vertex Jacobians.\\
+\textcircled{3} $\Z/3$ chirality cancels odd obstructions & Does not apply. What is true is $\det P(u)\in\Z[u^{3}]$ and $\Tr(\Cthree)^{k}=0$ for $3\nmid k$ (Proposition~\ref{V3P1:prop:grading}). No ``odd obstruction'' is defined.\\
+\textcircled{4} spectral rigidity: determinant $=$ Fitting ideal & Does not apply in the stated form. Over commutative $\Z_p[G/U]$, $\mathrm{Fitt}_0(\coker M)=(\det M)$ for square $M$, which is a tautology. Over non-commutative $\Lambda$, Fitting ideals are not defined in general, and $K_1$ replaces them.\\
+\textcircled{5} spectrum $=$ class field invariants & Does not apply. No class field theory is involved. What is proved is descent and the class number formula (Theorem~\ref{V3P6:thm:main}(iii),(iv)).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Volume~III in retrospect, and Volume~IV}\label{V3P6:sec:retro}
+
+\paragraph{What Volume~III established.} Chapter~\ref{chap:V3P1} proved local Garland rigidity from the link gap
+alone, the cubic trace identity with and without the flag condition, and the exact Hecke
+pencil. Chapter~\ref{chap:V3P2} showed that no higher simplicial sandpile is abelian, and proved the Hodge
+factorization of critical groups and exact avalanche means. Chapter~\ref{chap:V3P3} showed that the gauge
+sector of chiral Kuramoto dynamics is a gradient flow, and derived the frustrated ground
+states and the block spectra. Chapter~\ref{chap:V3P4} proved the unconditional unitary remainder of the geodesic
+edge operator, and its Riemann hypothesis equivalent to Ramanujan. Chapter~\ref{chap:V3P5} showed that chamber
+public goods reduce to a pairwise game, and that thickness gives no catalysis. Chapter~\ref{chap:V3P6} described
+the Hecke action on chambers, the absence of a $\Z_p$-direction, and the Iwasawa module of Hecke
+Jacobians. The recurring lesson is that thick $\Atwo$ complexes are \emph{rigid} (Garland) and
+\emph{expanding}, and most proposed higher-order effects either collapse to the $1$-skeleton or
+are obstructed by rigidity. The surviving structure is spectral and local: links, Satake
+parameters, Hecke operators.
+
+\paragraph{What Volume~IV inherits.} Precise open problems. Problems (a) and (b) of the first
+version of this list are now settled as far as stated in Sections~\ref{V3P6:sec:cs}
+and~\ref{V3P6:sec:growth}. The complexes of Vol.~I--II are Bruhat--Tits quotients in
+characteristic $2$ with an unconditional non-analytic pro-$2$ tower, and $|\JacH|$ grows like
+$e^{2.063693\,n}$. What remains of them:
+(a) whether $\Z_2[[P]]$ admits a localization in which Theorem~\ref{V3P6:thm:main}(ii) holds
+(Section~\ref{V3P6:sec:pro2} proves the finite-level form unconditionally and reduces the question
+to whether $\Z_2[[P]]$ is an Ore domain), and the characteristic-$0$ statement of
+Remark~\ref{V3P6:rem:analytic};
+(b) the growth of $v_2|\JacH(Y_m)|$ along the canonical tower;
+(c) the vertex block of $L_E$ and the trace identities for $\Atilde d$, $d\ge3$;
+(d) universality, or its failure, for the eigenphases of the unitary remainder;
+(e) finite-noise thresholds and genuinely nonlinear chamber games;
+(f) chimeras and transverse Hopf bifurcations for the triadic lag.
+The first plan for Volume~IV (affine Kac--Moody algebras and cosmology) was replaced by the
+authors with topological economics and higher-order games, which continue Chapter~\ref{chap:V3P5}. Nothing
+proved here points to cosmology. For the geometric problems above, the natural continuation
+remains Kac--Moody buildings and their lattices, where Garland-type rigidity may fail.
+
+\input{chapters/ch06-s08-two-adic-tower}
+\input{chapters/ch06-s09-pro2-localization}
+
+\section{Verification battery}\label{V3P6:sec:battery}
+
+\begin{table}[ht]
+\centering\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+check & complexes & result\\
+\midrule
+(Dg) polynomial representation of $\mathbb H_2$ (degree $\le4$); trivial module with $x_1=L_E(Y_{21})$ & --- & exact / numeric\\
+(Hq) $T_i^{2}=(q-1)T_i+q$, braid relations & $Y_{21},Y_{24},Y_{168},T_6$ & exact\\
+(Op) $\Delta_2=3+\sum T_i$; $A_1=(q+1)^{-1}\sum\pi_t\pi_{t+1}^{t}$; $L_E=p\,T_tT_{t+2}T_t\,p^{t}/(q(q+1))$ & $Y_{21},Y_{168}$ & exact\\
+(Sa) $a=qe_1(z)$, $\bar a=qe_2(z)$, $e_3=1$; $\DeltaH$ as symmetric polynomial & $Y_{42},Y_{168}$ & numeric $10^{-8}$\\
+(CN) $\prod_{\chi\ne1}\det\DeltaH_\chi=|A||\JacH(Y_A)|/|\JacH(X_3)|$ & $Y_{21},Y_{24},Y_{42}$ & numeric vs exact Smith forms\\
+(B1) $b_1=0$, hence no $\Z_p$-quotient & five covers & exact\\
+\midrule
+\multicolumn{3}{l}{\texttt{code/v3p6\_deep\_verify.py}}\\
+(CS) $x+2y+4z\equiv0$ on $T$; $u_xu_yu_z=1+t$ & --- & exact\\
+(NB) the $7$ hyperplanes, $7$ lines and their incidence $=$ link of the CMSZ building, for every $\bar e$ & --- & exact\\
+(FR) generators span $P/P_2=\F_8$; squares and commutators fill levels $2..13$ & --- & exact\\
+(IM) image of $\Gamma^{0}$ $=$ $P/P_m$ for $m\le6$; lower bounds for $d(P_k)$ & --- & exact\\
+(L2) level $2$ has $\JacH(Y_{24})$ & $Y_2$ & exact\\
+(J) $v_2|\JacH|=18,99,289$; $\frac1n\log|\JacH|=1.8629,2.0416,2.0544$; Ramanujan; $\min\operatorname{Re}\mu>0$ & $Y_2,Y_3,Y_4$ & exact / numeric\\
+(PL) Plancherel moments $|a|^{2}\mapsto7$, $a^{3}\mapsto21$; $h_H(2)=2.063693$ & --- & numeric $10^{-6}$\\
+\bottomrule
+\end{tabular}}
+\medskip
+\caption{Checks run by \texttt{code/v3p6\_verify.py}.}
+\label{V3P6:tab:battery}
+\end{table}
+
+\section{Corrections}\label{V3P6:sec:scope}
+
+\begin{remark}[Corrections to the proposed programme]\label{V3P6:rem:corrections}
+(1) ``Strictly realized as a representation of $\mathbb H_d$'' is vacuous
+(Proposition~\ref{V3P6:prop:reps}(ii)). The natural structure is $H_q$ on chambers
+(Theorems~\ref{V3P6:thm:iwahori}, \ref{V3P6:thm:ops}), and the Kuramoto field is not linear.
+(2) The localization sequence ends in $\to0$ only under an injectivity condition on $K_0$. The
+set $\Sigma$ of the proposed programme is not the Ore set of \cite{CFKSV}, and that Ore set does not
+exist over thick complexes (Theorem~\ref{V3P6:thm:nozp}). (3) An ``unconditional'' $L$-element
+requires a tower, which is Hypothesis~(T); the element is then $[\DeltaH_\Lambda]$, and
+$\det(I-uC^{(3)})$ enters through its specializations (Theorem~\ref{V3P6:thm:main}(v)). (4)
+$\mathrm{Sel}(Y/G)$ is undefined. With $X(Y/G)$ in its place the ``main conjecture'' is a
+theorem, and its content is descent and the class number formula. (5) The five-step scheme is
+not a proof (Section~\ref{V3P6:sec:five}). (6) Nothing in Volume~III supports a
+cosmological reading. (7) (Deepening request.) $\Gamma$ is discrete in
+$\PGL_3(\F_2((s)))$, so the proposed map $\Gamma\to\PGL_3(\mathcal O_K/\mathfrak p^{m})$ at that
+place does not exist. Congruence towers come from other places of $\F_2(t)$. In
+characteristic $2$ their groups have infinite rank, so they are not ``uniform pro-$p$ with Lie
+algebra $\mathfrak{pgl}_3$''. What is unconditional is (T$_2$) and the parts of
+Theorem~\ref{V3P6:thm:main} that need only it (Corollary~\ref{V3P6:cor:status}). An ``exact
+asymptotic formula'' is proved for the total order (Theorem~\ref{V3P6:thm:growth}), not for the
+$2$-part.
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed. The inputs quoted without proof are the structure theory of $\mathbb H_d$
+\cite{Dri86,Lus89}, the Iwahori--Hecke algebra \cite{IM65}, Cohn localization and its
+$K$-theory \cite{Coh85,NR04}, Lazard's and Neumann's theorems on $\Z_p[[G]]$ \cite{Laz65,Neu88},
+and the framework of \cite{CFKSV}, which is used only to explain why it does not apply. The
+bibliographic data of \cite{Dri86,Lus89,IM65,Coh85,NR04,Neu88} have been checked against Crossref and zbMATH.
+
+

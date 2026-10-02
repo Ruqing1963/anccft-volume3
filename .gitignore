@@ -1,0 +1,19 @@
+# LaTeX build intermediates
+*.aux
+!references/anccft-vol1-2.aux
+*.log
+!data/logs/*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Python
+__pycache__/
+*.pyc
+code/prof.out
+
+# local working files
+.claude/
+ai_studio_code*.txt

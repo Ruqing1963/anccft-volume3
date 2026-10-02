@@ -1,0 +1,117 @@
+﻿% State of Volume III -- one \item per chapter; labels of Volumes I--II are read through xr
+% with the prefix M- (see ANCCFT_Volume_III.tex).
+\chapter*{State of Volume III}
+\addcontentsline{toc}{chapter}{State of Volume III}
+
+\begin{itemize}
+\item \textbf{Rank-two topology, proved locally} (Ch.~\ref{chap:V3P1}): the general cubic
+trace identity $\Tr(\Cthree)^{3}=\Tr A_1^{3}-3q|E|+3nq^{3}$, which equals $n(q-1)^{2}(q+1)$
+\emph{only under the flag condition} --- on $Y_{21}$ the true trace is $651$, of which $63$
+is the flag part and $588$ comes from non-simplex $3$-cycles
+(Thm.~\ref{V3P1:thm:trace}); Garland vanishing $H^{1}(Y;\mathcal E)=0$ for every unitary
+local system, from the link gap $1-\sqrt q/(q+1)>\tfrac12$ alone, with no building, group
+action or flag condition (Thm.~\ref{V3P1:thm:garland}); $\det(I-u\Cthree)=\det P(u)$ with
+$1-u^{3}$ of multiplicity exactly $b_0=1$, the Betti numbers $b_1,b_2$ entering only on the
+edge (branch) side of the Kang--Li zeta function (Thms.~\ref{V3P1:thm:det},
+\ref{V3P1:thm:orbit}, Rem.~\ref{V3P1:rem:betti}); the sector lemma removing the hypothesis
+of Vol.~I--II, Ch.~\ref{M-chap:X}, Thm.~\ref{M-X:thm:hecke}(ii); and the derivative identity
+$\frac{d}{du}\det(I-u\Cthree)|_{u=1}=(-1)^{n}n(q-1)^{2}(q+1)|\JacH(Y)|$
+(Thm.~\ref{V3P1:thm:deriv}).
+\item \textbf{Simplicial sandpiles} (Ch.~\ref{chap:V3P2}): on thick complexes none of
+$\Delta_1$, $\partial_2\partial_2^{t}$, $\Delta_2$, $\DeltaH$ can be switched to a Z-matrix, so
+edge, chamber and Hecke toppling are not abelian and have no recurrent group; only the
+vertex sandpile survives, and on thin tori the chamber sandpile is the honeycomb one
+(Thm.~\ref{V3P2:thm:sign}, Cor.~\ref{V3P2:cor:nonabelian}). The Hodge factorization
+$|\Jac_1|\operatorname{disc}\ker_\Z\Delta_1=n|\Jac_0||\Jac_2|\operatorname{disc}H_2(Y;\Z)$,
+which reads $|\Jac_1|=\det\Delta_1$ on thick complexes (Thm.~\ref{V3P2:thm:hodge}). Exact
+mean avalanche size $\langle s\rangle=n^{2}L^{+}_{ss}/(n-1)\in[n/\lambda_{\max},n/\lambda_2]$,
+hence $\Theta(n)$ on expanding families against $\Theta(n\log n)$ on $2$D tori
+(Thm.~\ref{V3P2:thm:mean}, Cor.~\ref{V3P2:cor:linear}); mean-field exponents conjectural
+(Conj.~\ref{V3P2:conj:mf}). The $1$-skeleton of $Y_{21}$ is $K_{7,7,7}$
+(Prop.~\ref{V3P2:prop:k777}).
+\item \textbf{Phase oscillators} (Ch.~\ref{chap:V3P3}): chiral connections of any flux exist on
+every $\Atwo$ complex and form a torsor under $\Hom(H_1,U(1))$, which has $64$ elements on
+$Y_{21}$ (Prop.~\ref{V3P3:prop:chiral}). The flux sector is a gradient flow for every flux, so
+there are no limit cycles and no Hopf bifurcation. Its ground states are twisted states
+carrying static currents (Thms.~\ref{V3P3:thm:gradient}, \ref{V3P3:thm:ground}). For all
+parameters the twisted states rotate at $\omega+K_2\sin\Phi$ with Jacobian $-c_m\Delta_0$
+(Thm.~\ref{V3P3:thm:twisted}). The cluster subspace is gradient modulo rotation, and the
+Jacobian at cluster states splits into $3\times3$ blocks, all real on $Y_{21}$
+(Thms.~\ref{V3P3:thm:clustergrad}, \ref{V3P3:thm:blocks}). The Ott--Antonsen reduction closes
+only for $K_2=0$, and then excludes chimeras for identical oscillators
+(Prop.~\ref{V3P3:prop:oa}, Thm.~\ref{V3P3:thm:nochimera}); chimeras for $K_2\ne0$ remain open.
+The geometric phase of a rigid rotation is $0$; flux threading permutes the twisted states
+cyclically; and $\Delta\Omega$ does not involve $\chi(Y)$ (Prop.~\ref{V3P3:prop:monodromy},
+Rem.~\ref{V3P3:rem:euler}).
+\item \textbf{Geodesic edge operator} (Ch.~\ref{chap:V3P4}): $L_E$ is $q^{2}$-biregular and
+block-cyclic. The subspace $S^{t}\C^{V}+T^{t}\C^{V}+Q\C^{V}$ is invariant and carries the Hecke
+pencil (Thm.~\ref{V3P4:thm:vertex}). On its complement $W$, $L_E^{t}$ is exactly $\sqrt q$
+times an isometry, unconditionally and for all $\Atilde d$ with $q^{(d-1)/2}$
+(Thms.~\ref{V3P4:thm:unitary}, \ref{V3P4:thm:Ad}), and every eigenvalue has
+$|\lambda|\ge\sqrt q$ (Thm.~\ref{V3P4:thm:lower}). $\det(I-uL_E)=\det
+P(u)\det(I-u\bar L)/((1-u^{3})(1-q^{3}u^{3}))$ off an explicit exceptional curve, and the
+two-circle Riemann hypothesis is equivalent to the Ramanujan property
+(Thms.~\ref{V3P4:thm:factor}, \ref{V3P4:thm:ramanujan}). Degenerate spectra are not Poisson,
+small perturbations do not give Wigner--Dyson statistics, and Brody $b=2$ is not GUE
+(Props.~\ref{V3P4:prop:atom}--\ref{V3P4:prop:brody}).
+\item \textbf{Chamber public-goods games} (Ch.~\ref{chap:V3P5}): the chamber game is an
+additive pairwise game on the $1$-skeleton, with the flags entering only through $q+1$
+(Thm.~\ref{V3P5:thm:reduction}). The mean-field threshold is $r_c=3$ for every $q$
+(Prop.~\ref{V3P5:prop:mf}). Zero-noise cluster thresholds are $3\kappa/(\kappa+\delta)$ with
+integer $\delta$, so $5/3$ never occurs for $q=2$, and $Y_{21}$ has no cages
+(Thm.~\ref{V3P5:thm:cluster}, Prop.~\ref{V3P5:prop:Y21}). In Monte Carlo runs thick complexes
+behave like random regular graphs, while the thin lattice favours cooperation
+(Rem.~\ref{V3P5:rem:mc}). Cyclic replicator dynamics has no limit cycle and no torus, and
+mutation produces a Hopf cycle at $\mu_H=(b-a)/18$ (Thms.~\ref{V3P5:thm:rps},
+\ref{V3P5:thm:mutation}).
+\item \textbf{Hecke algebras and Iwasawa theory} (Ch.~\ref{chap:V3P6}): realizing an operator
+in a representation of the degenerate affine Hecke algebra is vacuous. The Iwahori--Hecke
+algebra $H_q(\Atwo)$ acts on chambers under (L), and $\Delta_2$, $A_1$ and $L_E$ are expressed
+through it (Prop.~\ref{V3P6:prop:reps}, Thms.~\ref{V3P6:thm:iwahori}, \ref{V3P6:thm:ops}).
+Garland rigidity removes every $\Z_p$-direction, so the Ore set of Coates et al.\ is not
+available (Thm.~\ref{V3P6:thm:nozp}). Under a tower hypothesis the equivariant Hecke--Laplacian
+is injective, $\partial[\DeltaH_\Lambda]=[X]$, descent recovers the $\JacH(Y_U)$, and the class
+number formula $\prod_{\rho\ne1}\det(\DeltaH_\rho)^{\dim\rho}=[G:U]|\JacH(Y_U)|/|\JacH(Y)|$ holds;
+it equals $7^{18}$ on $Y_{21}$ (Thm.~\ref{V3P6:thm:main}). The presentation embeds in the cyclic division algebra $(\F_8(t)/\F_2(t),\mathrm{Frob},t)$ via $a_x\mapsto1+\alpha^{x}\varphi$, so the building is that of $\PGL_3(\F_2((s)))$ (Thm.~\ref{V3P6:thm:cs}). The resulting canonical pro-$2$ tower over $X_3$ is unconditional, starts with $Y_{24}$, and has a group of infinite rank that is not $p$-adic analytic (Thm.~\ref{V3P6:thm:tower}, Cor.~\ref{V3P6:cor:status}). $\frac1n\log|\JacH|\to h_H(2)=2.063693$ along any exhausting tower (Thm.~\ref{V3P6:thm:growth}).
+
+
+\end{itemize}
+
+\section*{Status at the close of Volume III}
+
+The open problems carried by Chapter~\ref{chap:V3P6} (Section~\ref{V3P6:sec:retro}) stand as follows.
+\begin{itemize}
+\item[(a)] \emph{Towers.} Settled in the form in which it can be settled. The group of Vol.~I--II
+is the Cartwright--Steger lattice of $\PGL_3(\F_2((s)))$, and its building is Bruhat--Tits. The
+canonical pro-$2$ tower over $X_3$ exists unconditionally, starts with $Y_{24}$, and satisfies
+(T$_2$). Hence Theorem~\ref{V3P6:thm:main}(i),(iii),(iv),(v) are unconditional. The tower is
+\emph{not} $p$-adic analytic, and (T) is expected to fail for every tower
+(Theorems~\ref{V3P6:thm:cs}, \ref{V3P6:thm:tower}, Corollary~\ref{V3P6:cor:status},
+Remark~\ref{V3P6:rem:analytic}). $P$ is torsion-free, and the characteristic element exists
+unconditionally as a compatible system $\mathcal L_\infty\in\varprojlim K_1(\Q_2A_m)$ with
+boundaries the finite modules $X_m^{\mathrm{nt}}$, whose limit is $X(Y/P)$
+(Theorem~\ref{V3P6:thm:pro2}). \emph{Still open:} whether $\Z_2[[P]]$ is an Ore domain, i.e.\ a
+localization in which Theorem~\ref{V3P6:thm:main}(ii) holds.
+\item[(b)] \emph{Growth of Hecke Jacobians.} Settled for the total order: along every exhausting
+tower, $\frac1n\log|\JacH|\to h_H(2)=2.063693$, a Plancherel integral
+(Theorem~\ref{V3P6:thm:growth}). For the $2$-part, $v_2|\JacH(Y_m)|$ is known exactly up to
+$n=1572864$ (Theorem~\ref{V3P6:thm:v2eight}), and $\liminf v_2/n\ge c_e$ with $0\le c_e\le0.0645$
+(Theorem~\ref{V3P6:thm:v2sharp}). \emph{Still open:} whether the slope is positive, i.e.\
+essentially whether $c_e>0$ (Remark~\ref{V3P6:rem:v2eight}).
+\item[(e)] \emph{Finite-noise thresholds and nonlinear chamber games.} Answered in Chapter~\ref{chap:V3P5},
+Sections~\ref{V3P5:sec:nonlinear}--\ref{V3P5:sec:clocks}. Nonlinearity is exactly what makes a
+chamber game irreducible. Symmetric games are potential games, so their selected state does not
+depend on geometry. Chiral games break the potential and cycle in the mean field; on large
+networks the cycle is coherent only when entrained by a synchronized clock. The thin-lattice
+advantage is the flat interface, and finite anchors cannot remove the frontier threshold of
+thick buildings. No ``topological catalysis'' by thickness exists. \emph{Still open:} the star
+formula for $q\ge3$, and finite-noise phase transitions on infinite complexes.
+\end{itemize}
+Problems (c), (d) and (f) of that list remain open: the vertex block of $L_E$ for $\Atilde d$,
+$d\ge3$ (the trace identity of (c) is settled: $\Tr(C^{(d+1)})^{d+1}=n\prod_{i=1}^{d}(1-q^{i})$ under
+the flag condition, Theorem~\ref{V3P1:thm:tracead}); universality for the remainder eigenphases (on $Y_{168}$ the crossover to GUE and its
+first-order scale are settled, Section~\ref{V3P4:sec:chaos}); and chimeras and transverse Hopf bifurcations
+for the triadic lag. Of (f), the transverse Hopf bifurcations are found on $Y_{168}$: they have
+multiplicity $21$, and in every case examined the loss of stability is hard and ends in a locked state
+(Section~\ref{V3P3:sec:hopf}); whether some equivariant branch is supercritical, and the chimeras,
+remain open. Volume~III closes with these results and these open problems.

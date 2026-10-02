@@ -1,0 +1,878 @@
+﻿% Volume III, Paper 5 (drafted as "Chapter 31")
+\chapter{Chamber Games and Higher-Order Interactions: Pairwise Reductions, Interfaces, and Entrainment}\label{chap:V3P5}
+\chaptermark{Chamber Games}
+\begin{chapterabstract}
+The proposed programme places a three-player public-goods game on every chamber of an $\Atwo$
+complex, with strategies updated by the Fermi rule. It asks for four claims. (a) A ``topological
+shielding cage'' built from the $\PG(2,q)$ flags lowers the critical synergy to
+$r_c=1+2/(q+1)$. (b) This is far below the value $r_c>3$ of ``traditional regular networks'',
+a ``topological catalysis'' that grows with the thickness $q$. (c) A $\Z/3$-chiral
+rock--paper--scissors variant has a torus attractor and persistent oscillations in the
+replicator dynamics. (d) There is a global phase diagram in $|F|/|V|$. We prove the
+following.
+
+(1) \emph{Pairwise reduction.} The public-goods payoff is linear in the strategies. On
+\emph{every} $2$-complex the chamber game is therefore the additive pairwise game
+$\pi_i=(\frac r3-1)D_2(i)s_i+\frac r3\sum_jw_{ij}s_j$ on the $1$-skeleton, where $w_{ij}$ is
+the number of chambers on the edge $ij$. Under (L), $w\equiv q+1$. After normalization by
+$D_2$, the flag geometry disappears entirely, and only the degree $2\kappa$ of the
+$1$-skeleton remains. There is no higher-order mechanism to exploit.
+
+(2) \emph{Thresholds.} Defection is strictly dominant in every configuration for $r<3$. The
+mean-field (replicator/Fermi) threshold is exactly $r_c=3$, for every $q$ and every $|F|/|V|$.
+At zero noise, a cooperator cluster $A$ is stable iff $r>3\kappa/(\kappa+\delta(A))$, where
+$\delta(A)$ is an integer boundary margin. So $5/3=1+2/(q+1)$ at $q=2$ is not the threshold of
+any cluster on any $q=2$ complex. A single mutant needs $r>3\kappa/(\kappa-1)$ ($=3.5$ for
+$q=2$). The best natural cage, the vertex star of $Y_{168}$, gives $7/3$. On $Y_{21}=K_{7,7,7}$
+no cluster resists below $r=3$.
+
+(3) \emph{No catalysis.} In Monte Carlo runs at noise $K=0.1$, $Y_{168}$ behaves like a random
+$14$-regular graph: cooperators die at $r=2.7$, and the transition is near $3$. The
+\emph{thin} complex, the triangular lattice $T_{12}$, keeps $40\%$ cooperators at $r=2.7$.
+Thickness makes the complex an expander, and expanders are mean-field. The effect claimed in
+(b) is reversed.
+
+(4) \emph{Cyclic dominance.} For the three-strategy replicator dynamics,
+$\frac{d}{dt}\log(x_1x_2x_3)=(a-b)(1-3\sigma)$. So there is global convergence ($a>b$), a
+heteroclinic attractor ($a<b$), or a neutral family of closed orbits ($a=b$). There are never
+limit cycles, and never a torus, since the phase space is a triangle. With mutation rate
+$\mu$ a Hopf bifurcation occurs at $\mu_H=(b-a)/18$. Below it there is a stable limit cycle
+(numerically supercritical): this is the correct form of ``persistent oscillations''.
+
+(5) \emph{Nonlinear and chiral chamber games (Sections~\ref{V3P5:sec:nonlinear},
+\ref{V3P5:sec:chiral}).} A chamber game is pairwise iff its synergy is affine. Symmetric
+chamber games are exact potential games, so best-response learning selects a state that does not
+depend on the geometry. Role-dependent (chiral) games break the potential. In the
+supply-chain game with hold-up, logit learning in the mean field has a Hopf bifurcation at noise
+$K_H=\frac14$ and periodic orbits below it. On large sparse complexes, however, the
+oscillation of class densities decays with size. Under imitation, flat walls of the thin
+lattice give the threshold $\frac{18}{11}$, while thick stars give $\frac{63}{19}$. We find no
+spectral-gap law, and we show that the economic ``iff' proposed for dominant voluntary
+cooperation is false.
+\end{chapterabstract}
+
+\section*{Status of the results}
+
+Every numbered statement is proved, with two exceptions. The finite-noise thresholds are
+Monte Carlo observations (Remark~\ref{V3P5:rem:mc}). In Theorem~\ref{V3P5:thm:mutation} the
+uniqueness of the interior equilibrium and the supercriticality are verified numerically. All
+checks are in \texttt{code/v3p5\_verify.py} (Table~\ref{V3P5:tab:battery}). Notation follows
+Chapters~\ref{chap:V3P1}--\ref{chap:V3P4}: $Y$ satisfies (L), $\kappa=q^{2}+q+1$, the $1$-skeleton is $2\kappa$-regular,
+every vertex lies in $D_2=\kappa(q+1)$ chambers, and $|F|/|V|=\kappa(q+1)/3$.
+
+\section{The model and its pairwise reduction}\label{V3P5:sec:model}
+
+\begin{definition}[Chamber public-goods game]\label{V3P5:def:pgg}
+A configuration is $s\in\{0,1\}^{V}$, with $1=C$. In a chamber $\Delta$ each cooperator pays
+$1$; the pool is multiplied by $r$ and shared equally among the three members. The payoff of
+$i$ is
+$\pi_i(s)=\sum_{\Delta\ni i}\bigl(\frac r3\,n_C(\Delta)-s_i\bigr)$, and the normalized payoff is
+$\hat\pi_i=\pi_i/D_2(i)$. Under the \emph{Fermi rule} \cite{ST98} a uniformly random vertex $i$
+picks a uniformly random neighbour $j$ and adopts $s_j$ with probability
+$f(\hat\pi_i-\hat\pi_j)$, where $f(z)=1/(1+e^{z/K})$. The master equation is
+\[
+\frac{d}{dt}P(s)=\sum_{i}\bigl[w_i(s^{(i)})P(s^{(i)})-w_i(s)P(s)\bigr],\qquad
+w_i(s)=\frac1{n\deg i}\sum_{j\sim i,\ s_j\ne s_i}f(\hat\pi_i-\hat\pi_j),
+\]
+where $s^{(i)}$ is $s$ with $s_i$ flipped.
+\end{definition}
+
+\begin{theorem}[Pairwise reduction]\label{V3P5:thm:reduction}
+On any finite $2$-complex,
+\[
+\pi_i=\Bigl(\frac r3-1\Bigr)D_2(i)\,s_i+\frac r3\sum_{j}w_{ij}s_j,\qquad w_{ij}=\#\{\Delta\in F:\ i,j\in\Delta\}.
+\]
+So the chamber game is an additive pairwise game on the weighted $1$-skeleton. Under (L),
+$w_{ij}=(q+1)[i\sim j]$, $D_2=\kappa(q+1)$, and
+\[
+\hat\pi_i=\Bigl(\frac r3-1\Bigr)s_i+\frac{r}{3\kappa}N_C(i),\qquad N_C(i)=\#\{j\sim i:s_j=1\}.
+\]
+The normalized dynamics depends on the complex only through its $1$-skeleton.
+\end{theorem}
+
+\begin{proof}
+$n_C(\Delta)=\sum_{j\in\Delta}s_j$. Summing $\frac r3n_C(\Delta)$ over the chambers at $i$
+counts $s_i$ $D_2(i)$ times and $s_j$ $w_{ij}$ times. Under (L), each edge lies in $q+1$
+chambers.
+\end{proof}
+
+\begin{remark}\label{V3P5:rem:noflags}
+The ``shielding cage from the $\PG(2,q)$ flags'' has no separate existence. The flags enter
+only through the constant $q+1$, which cancels after normalization. Any two complexes with the
+same $1$-skeleton and constant $w$ have identical dynamics, whether or not they satisfy the
+flag condition. This is a structural feature of public goods, which are linear. A nonlinear
+group payoff (threshold or volunteer games) would be genuinely higher-order.
+\end{remark}
+
+\begin{proposition}[Dominance and the mean-field threshold]\label{V3P5:prop:mf}
+\begin{enumerate}
+\item[(i)] In every configuration, switching $i$ from $D$ to $C$ changes $\pi_i$ by
+$D_2(r/3-1)$. So $D$ is strictly dominant for $r<3$ and $C$ for $r>3$.
+\item[(ii)] In the well-mixed (mean-field) limit the Fermi dynamics gives
+$\dot x=x(1-x)\tanh\bigl(\frac{r/3-1}{2K}\bigr)$, and the replicator dynamics gives
+$\dot x=x(1-x)(r/3-1)$. Both have the threshold $r_c=3$, independent of $q$ and $|F|/|V|$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) is read off Theorem~\ref{V3P5:thm:reduction}. (ii) With independent neighbours,
+$\mathbb E(\hat\pi_C-\hat\pi_D)=r/3-1$. The rates $D\to C$ and $C\to D$ are
+$x(1-x)f(-\Delta)$ and $x(1-x)f(\Delta)$, and $f(-\Delta)-f(\Delta)=\tanh(\Delta/2K)$.
+\end{proof}
+
+\section{Zero noise: pairs, clusters, cages}\label{V3P5:sec:zero}
+
+As $K\to0$ the Fermi rule becomes ``imitate a strictly better neighbour''.
+
+\begin{lemma}[Pair criterion]\label{V3P5:lem:pair}
+For adjacent $i$ ($C$) and $j$ ($D$), $\hat\pi_i>\hat\pi_j$ iff
+$\kappa+N_C(i)-N_C(j)>0$ and $r>3\kappa/(\kappa+N_C(i)-N_C(j))$. Moreover
+$N_C(i)-N_C(j)\le2\kappa-2-c_{ij}\le2\kappa-q-3$, where $c_{ij}\ge q+1$ is the number of
+common neighbours.
+\end{lemma}
+
+\begin{proof}
+$\hat\pi_i-\hat\pi_j=\frac r3-1+\frac r{3\kappa}(N_C(i)-N_C(j))$. Let $C_{ij}$ be the set of
+common neighbours and $m$ the number of cooperators in it. Since $s_j=0$, $N_C(i)\le
+m+(2\kappa-1-c_{ij})$. Since $s_i=1$, $N_C(j)\ge m+1$. The edge $ij$ lies in $q+1$ chambers,
+whose third vertices are common neighbours.
+\end{proof}
+
+For a set $A\subsetneq V$ of cooperators, define the \emph{boundary margin}
+$\delta(A)=\min\{N_A(i)-N_A(j):i\in A,\ j\notin A,\ i\sim j\}$, where $N_A(x)$ is the number
+of neighbours of $x$ in $A$.
+
+\begin{theorem}[Cluster stability at zero noise]\label{V3P5:thm:cluster}
+Under the zero-noise rule, no cooperator of $A$ ever imitates a defector iff
+$\kappa+\delta(A)>0$ and $r>r_A:=3\kappa/(\kappa+\delta(A))$. In particular:
+\begin{enumerate}
+\item[(i)] a cluster can resist for some $r<3$ only if $\delta(A)>0$;
+\item[(ii)] a single defector in a sea of cooperators, and a single cooperator in a sea of
+defectors, both change sides at $r_*=3\kappa/(\kappa-1)=3+\frac3{q(q+1)}$. This is $3.5$ for
+$q=2$, and it is \emph{above} the mean-field value;
+\item[(iii)] every zero-noise cluster threshold on a $q=2$ complex has the form $21/(7+\delta)$
+with $\delta\in\Z$. Since $21/(7+\delta)=5/3$ would need $\delta=5.6$, the value
+$1+2/(q+1)=5/3$ is not the threshold of any cluster.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Apply Lemma~\ref{V3P5:lem:pair} to every boundary pair. For (ii), use the sets $V\setminus\{v\}$
+($\delta=-1$) and $\{v\}$: a lone $C$ beats a $D$ neighbour with one cooperating neighbour iff
+$\frac r3-1>\frac r{3\kappa}$.
+\end{proof}
+
+\begin{proposition}[$Y_{21}$ has no cages]\label{V3P5:prop:Y21}
+On $Y_{21}$ every proper nonempty $A$ has $\delta(A)\le0$, with equality iff $|A\cap V_t|$ is
+the same for all three types. So $r_A\ge3$, and no cluster resists below the mean-field
+threshold.
+\end{proposition}
+
+\begin{proof}
+The $1$-skeleton is $K_{7,7,7}$ (Proposition~\ref{V3P2:prop:k777}), so
+$N_A(x)=|A|-a_{\tau(x)}$ with $a_t=|A\cap V_t|$, and $\delta(A)=\min(a_{t'}-a_t)$ over
+$t\ne t'$ with $a_t>0$, $a_{t'}<7$. Let $a_{t_0}=\max a_t\ge1$. If some $a_{t'}<a_{t_0}$, the
+pair $(t_0,t')$ gives $\le-1$. Otherwise all $a_t$ are equal and $<7$, and every pair gives
+$0$.
+\end{proof}
+
+\begin{remark}[Natural cages on the covers]\label{V3P5:rem:cages}
+Computed margins: vertex stars have $\delta=-6,0,2$ on $Y_{21},Y_{84},Y_{168}$; chambers have
+$\delta=0$ and edges $\delta=-1$ everywhere. The star of $Y_{168}$ is stable exactly for
+$r>21/9=7/3$, which is checked directly. On the thin torus $T_{12}$ ($\kappa=3$), stars have
+$\delta=1$ ($r>9/4$) and a half-torus strip has $\delta=2$ ($r>9/5$). These are statements
+about zero noise only.
+\end{remark}
+
+\section{Finite noise: no topological catalysis}\label{V3P5:sec:mc}
+
+\begin{remark}[Monte Carlo]\label{V3P5:rem:mc}
+We ran the Fermi dynamics with normalized payoffs, starting from $50\%$ cooperators, with $60$
+replicas and $400$ Monte Carlo steps. The table gives the final cooperator fraction.
+\begin{center}
+\small
+\begin{tabular}{llcccccc}
+\toprule
+$K$ & structure & $r=2.4$ & $2.7$ & $2.9$ & $3.0$ & $3.1$ & $3.3$\\
+\midrule
+$0.5$ & $Y_{168}$ & 0.00 & 0.00 & 0.00 & 0.29 & 0.95 & 1.00\\
+& $Y_{84}$ & 0.00 & 0.00 & 0.05 & 0.27 & 0.80 & 1.00\\
+& random $14$-regular & 0.00 & 0.00 & 0.00 & 0.17 & 0.96 & 1.00\\
+& $T_{12}$ (thin) & 0.00 & 0.00 & 0.09 & 0.64 & 0.93 & 1.00\\
+\midrule
+$0.1$ & $Y_{168}$ & 0.00 & 0.00 & 0.31 & 0.80 & 1.00 & 1.00\\
+& $Y_{84}$ & 0.00 & 0.00 & 0.00 & 0.50 & 0.97 & 1.00\\
+& random $14$-regular & 0.00 & 0.00 & 0.01 & 0.76 & 1.00 & 1.00\\
+& $T_{12}$ (thin) & 0.00 & 0.40 & 0.69 & 0.79 & 0.89 & 1.00\\
+\bottomrule
+\end{tabular}
+\end{center}
+The rows for $K=0.1$ and $Y_{168}$, $T_{12}$ and the random graph are reproduced by the
+battery. The $K=0.5$ rows and $Y_{84}$ come from the same code in an exploratory run. The
+thick complexes are indistinguishable from a random $14$-regular graph, and their transition is
+near the mean-field value $3$. The thin (Euclidean) complex supports cooperation at lower $r$:
+this is the classical network reciprocity of lattices \cite{NM92,SPS09}. The ``topological
+catalysis'' of the proposed programme is reversed. The $1$-skeleton of a thick complex is an
+expander (Chapter~\ref{chap:V3P1}), its neighbourhoods are large ($2\kappa=14$), and the dynamics is close to
+mean field. The sizes are small ($n\le168$), and we claim no critical values beyond this table.
+\end{remark}
+
+\begin{remark}[The comparison value ``$r_c>3$'']\label{V3P5:rem:three}
+For groups of size $G$ the well-mixed threshold is $r=G$, here $3$. On lattices with
+overlapping groups, network reciprocity gives $r_c<G$; for example $r_c/G\approx0.75$ on the
+square lattice with $G=5$ \cite{SPS09}. ``$r_c>3$ on traditional regular networks'' is not the
+correct baseline: our random $14$-regular graph has its transition near $3$.
+\end{remark}
+
+\paragraph{The ``global phase diagram''.} Under (L), $|F|/|V|=\kappa(q+1)/3$ is a function of
+$q$ ($7$ for $q=2$). The proved thresholds are the mean-field $r_c=3$ for all $q$ and the
+single-mutant $r_*=3+3/(q(q+1))$; both come from the table in line (E) of the battery. The
+normalized dynamics does not contain $|F|/|V|$ at all (Theorem~\ref{V3P5:thm:reduction}). A
+phase diagram in $|F|/|V|$ therefore carries no information beyond $q$, and no finite-noise
+phase boundary is proved.
+
+\section{Cyclic dominance and oscillations}\label{V3P5:sec:rps}
+
+Give each vertex a strategy in $\Z/3$. In every chamber it plays the rock--paper--scissors
+matrix $A=\begin{psmallmatrix}0&a&-b\\-b&0&a\\a&-b&0\end{psmallmatrix}$ against the two other
+members: $k$ beats $k+1$ (gain $a$) and loses to $k-1$ (loss $b$). The chiral asymmetry is
+$a\ne b$. By the argument of Theorem~\ref{V3P5:thm:reduction} the chamber game is again
+$(q+1)$ times a pairwise game, and its mean field is the replicator equation
+$\dot x_i=x_i((Ax)_i-x^{t}Ax)$ on the triangle $\Delta^{2}$.
+
+\begin{theorem}[No limit cycles, no torus]\label{V3P5:thm:rps}
+Let $V=x_1x_2x_3$ and $\sigma=x_1x_2+x_2x_3+x_3x_1\le\frac13$. Along the replicator flow,
+$\frac{d}{dt}\log V=(a-b)(1-3\sigma)$. Hence:
+\begin{enumerate}
+\item[(i)] if $a>b$, every interior orbit converges to the barycentre;
+\item[(ii)] if $a<b$, every interior orbit other than the barycentre converges to the
+heteroclinic boundary cycle, and its oscillations slow down without bound;
+\item[(iii)] if $a=b$, $V$ is conserved and interior orbits are closed. This family is neutral,
+not an attractor.
+\end{enumerate}
+In no case is there an isolated periodic orbit. Since the phase space is two-dimensional, there
+is no invariant torus.
+\end{theorem}
+
+\begin{proof}
+$\frac{d}{dt}\log V=\sum_i(Ax)_i-3x^{t}Ax$. The column sums of $A$ are $a-b$, and
+$x^{t}Ax=(a-b)\sigma$. Also $\sigma\le(\sum x_i)^{2}/3$, with equality only at the barycentre.
+In (i) and (ii), $V$ is a strict Lyapunov function on the interior minus the barycentre; LaSalle
+\cite{LaSalle60} gives the limits. In (iii) the level sets of $V$ are closed curves. A torus
+does not embed in the plane.
+\end{proof}
+
+\begin{theorem}[Mutation creates a limit cycle]\label{V3P5:thm:mutation}
+Consider $\dot x_i=x_i((Ax)_i-x^{t}Ax)+\mu(1-3x_i)$ with $\mu>0$. At the barycentre the
+linearization has eigenvalues $\frac{b-a}6-3\mu\pm i\frac{\sqrt3(a+b)}6$. For $a<b$ a Hopf
+bifurcation occurs at $\mu_H=(b-a)/18$. For $0<\mu<\mu_H$, the triangle is forward invariant and
+the barycentre is a repelling focus. So, if the barycentre is the only equilibrium, every other
+orbit accumulates on a periodic orbit by Poincaré--Bendixson.
+\end{theorem}
+
+\begin{proof}
+On $\{\sum\xi=0\}$ the linearization is $\frac13A-3\mu I$, because $\delta(x^{t}Ax)=0$ there.
+The eigenvalues of the circulant $A$ on that plane are $a\omega-b\omega^{2}$ and its conjugate,
+i.e.\ $\frac{b-a}2\pm i\frac{\sqrt3(a+b)}2$. On the face $x_i=0$ we have $\dot x_i=\mu>0$.
+\end{proof}
+
+Numerically, for $(a,b)=(1,2)$ the barycentre is the only equilibrium, on a $400\times400$ grid
+and for four parameter sets. The cycle is reached from inside and from near the boundary, with
+amplitudes $0.397,0.160,0.048$ at $\mu/\mu_H=0.5,0.9,0.99$. The squared amplitude scales like
+$1-\mu/\mu_H$, which indicates a supercritical bifurcation, and the cycle is gone at
+$1.05\mu_H$. This agrees with \cite{Mob10}. It is a limit cycle, a one-dimensional attractor,
+not a torus. A quasi-periodic torus would need at least three dimensions, for example the three
+type classes as separate populations; we do not treat that case.
+
+\section{Nonlinear chamber games}\label{V3P5:sec:nonlinear}
+
+This section treats open problem (d) of Remark~\ref{V3P5:rem:scope}. Let $f\colon\{0,1,2,3\}\to\R$
+with $f(0)=0$ be the synergy of a chamber. Every chamber pays each member $f(n_C)/3$ and charges
+each cooperator $1$, so
+\[
+\pi_i(s)=\sum_{\Delta\ni i}\Bigl(\tfrac13f(n_C(\Delta))-s_i\Bigr).
+\]
+The examples are the linear game $f=r(0,1,2,3)$, the threshold game $f=r(0,0,2,3)$ (so
+$f(0)=f(1)=0$, $f(2)=2r$, $f(3)=3r$), and the quadratic game $f(n)=rn^{2}$. On $\{0,1\}^{3}$,
+\[
+f(s_1+s_2+s_3)=c_1(s_1+s_2+s_3)+c_2(s_1s_2+s_1s_3+s_2s_3)+c_3s_1s_2s_3,
+\]
+with $c_1=f(1)$, $c_2=f(2)-2f(1)$ and $c_3=f(3)-3f(2)+3f(1)$. The threshold game has
+$(c_1,c_2,c_3)=(0,2r,-3r)$.
+
+\begin{theorem}[Irreducibility]\label{V3P5:thm:irreducible}
+Call a game \emph{pairwise} if every $\pi_i$ is a sum of a function of $s_i$ and functions of
+$(s_i,s_j)$ over the neighbours $j$ of $i$. On a $2$-complex in which every vertex lies in a
+chamber, the chamber game is pairwise iff $c_2=c_3=0$, i.e.\ iff $f$ is affine on
+$\{0,1,2,3\}$. Otherwise $\pi_i$ contains the monomials $\frac{c_2}3s_js_k$ and
+$\frac{c_3}3s_is_js_k$ for every chamber $\{i,j,k\}$, which are genuine three-body terms.
+\end{theorem}
+
+\begin{proof}
+Multilinear expansions of functions on $\{0,1\}^{V}$ are unique. A pairwise payoff contains only
+the monomials $1$, $s_i$, $s_j$ and $s_is_j$ with $j\sim i$. The monomial $s_js_k$, for
+$\{i,j,k\}\in F$, arises only from that chamber, with coefficient $c_2/3$. Likewise
+$s_is_js_k$ arises only from that chamber, with coefficient $c_3/3$. For affine $f$ we are back in
+Theorem~\ref{V3P5:thm:reduction}.
+\end{proof}
+
+\begin{theorem}[Exact potential]\label{V3P5:thm:potential}
+For every $f$ and every $2$-complex, $\Phi(s)=\sum_{\Delta}\bigl(\frac13f(n_C(\Delta))-n_C(\Delta)\bigr)$
+is an exact potential: switching $i$ changes $\pi_i$ and $\Phi$ by the same amount. Hence:
+\begin{enumerate}
+\item[(i)] the Nash equilibria are the local maxima of $\Phi$ under single switches;
+\item[(ii)] logit (best-response) dynamics is reversible, with Gibbs measure $\propto e^{\Phi/K}$;
+\item[(iii)] if $\psi(n)=\frac13f(n)-n$ is maximized over $\{0,1,2,3\}$ at $n\in\{0,3\}$ (true for
+convex $f$ and for the threshold game), then as $K\to0$ the stochastically stable state is all-$D$
+if $f(3)<9$ and all-$C$ if $f(3)>9$, \emph{on every complex}.
+\end{enumerate}
+In particular the threshold game switches at $r=3$, and $f=rn^{\gamma}$ switches at $r=3^{2-\gamma}$,
+whatever the geometry.
+\end{theorem}
+
+\begin{proof}
+The change of $\pi_i$ is $\sum_{\Delta\ni i}\bigl(\frac13(f(k_\Delta+1)-f(k_\Delta))-1\bigr)$, where
+$k_\Delta$ counts the other cooperators, and this is also the change of $\Phi$. (ii) is standard
+for exact potential games. (iii) Every chamber contributes at most $\max\psi$, and the uniform
+states attain that bound in every chamber simultaneously. For the threshold game,
+$\psi=(0,-1,\frac{2r}3-2,r-3)$, and $\psi(2)\le\max(0,r-3)$.
+\end{proof}
+
+\begin{proposition}[Type-stratified equilibria]\label{V3P5:prop:typeNash}
+On any complex in which every chamber has one vertex of each type ($\Atwo$ complexes, thick or
+thin), the state ``$D$ exactly on one type class'' puts two cooperators in every chamber. It is a
+Nash equilibrium iff $f(2)-f(1)\ge3\ge f(3)-f(2)$. For the threshold game this is
+$\frac32\le r\le3$. For $r\in(\frac32,3)$ it is a strict local maximum of $\Phi$, but not the
+global one, so it is metastable under logit dynamics. Under imitation it is unstable: a
+cooperator and a neighbouring defector see identical chambers, and the defector earns $D_2$
+more.
+\end{proposition}
+
+\begin{proof}
+A cooperator's other chamber members are one $C$ and one $D$, so switching changes its payoff by
+$D_2(1-\frac13(f(2)-f(1)))$. A defector's other members are two $C$'s, so switching changes its
+payoff by $D_2(\frac13(f(3)-f(2))-1)$.
+\end{proof}
+
+This is the one place where the $2$-cells matter for equilibria. What it uses is
+partiteness (the $\Z/3$ grading), not $q$ and not the flag structure.
+
+\paragraph{Imitation: mean field.} For the Fermi rule in the well-mixed limit,
+$\dot x=x(1-x)\tanh(\Delta(x)/2K)$ with
+$\Delta(x)=\frac13\sum_{k=0}^{2}\binom2kx^{k}(1-x)^{2-k}\bigl(f(k+1)-f(k)\bigr)-1$. For the threshold
+game, $\Delta(x)=\frac r3(4x-3x^{2})-1$. All-$D$ is always stable. For $r>\frac94$ a stable mixed
+state appears, and all-$C$ is stable iff $r>3$. So nonlinearity lowers the mean-field threshold
+from $3$ to $\frac94$. This effect does not depend on the geometry.
+
+\begin{proposition}[Star cages under imitation, $q\in\{1,2\}$]\label{V3P5:prop:starNL}
+Let $A$ be the star of a vertex in a complex whose radius-$3$ balls are those of an $\Atwo$
+building of order $q\in\{1,2\}$. Put $\varphi=f/r$. Then $A$ loses no cooperator at zero noise iff
+$r>r_{\mathrm{star}}$, where
+\[
+r_{\mathrm{star}}(q)=\frac{3(q+1)(q^{2}+q+1)}{(q+1)\bigl(\varphi(3)+q\varphi(2)+q^{2}\varphi(1)\bigr)-\varphi(2)-2q\varphi(1)}.
+\]
+This gives $\frac73,\frac{63}{19},\frac{63}{55}$ for $q=2$ (linear, threshold, quadratic) and
+$\frac94,\frac94,\frac9{11}$ for $q=1$.
+\end{proposition}
+
+\begin{proof}
+A boundary vertex $u$ of the star has $q+1$ chambers through $v$ (three cooperators), $q(q+1)$
+chambers with exactly one other cooperator, and $q^{2}(q+1)$ chambers with none. This follows from
+the link: its neighbours in the star are the $q+1$ link-neighbours of $u$ in $\mathrm{Lk}(v)$, and
+these are pairwise non-adjacent. The most dangerous outside neighbour $j$ is the third vertex of a
+chamber over a boundary edge. It has one chamber with two cooperators and $2q$ chambers with one.
+Then apply the zero-noise pair criterion. For $q=2$ the count at $j$, and the maximality of that
+$j$, are verified exactly in the radius-$3$ ball of the building (a level-$12$ cover of the
+canonical tower of Chapter~\ref{chap:V3P6}, whose ball sizes $1,14,98,560$ agree with those of the building) and
+on $Y_{168}$. For $q=1$ they are verified on $T_{12}$ (line (NL4)).
+\end{proof}
+
+For large $q$ the displayed formula grows like $\frac32q$ for the threshold game and tends to $3$
+in the other two cases, assuming the same counts. A linear $3$-uniform hypertree with the same
+chamber degree $D_2$ gives $3D_2/(\varphi(3)+(D_2-2)\varphi(1))$ for the star, i.e.\ $21$ for the
+threshold game when $D_2=21$. So the building's star beats the hypertree's star. The mechanism
+is the $(q+1)$-fold overlap of chambers along edges, not the incidence ``two points on one line''.
+The star does not beat the thin lattice, and it gets worse as $q$ grows.
+
+\begin{remark}[Exhaustive comparison on $21$ vertices]\label{V3P5:rem:exhaustive}
+For hypergraphs on $21$ vertices with $D_2=21$ we enumerated all $2^{21}-2$ cooperator sets and
+computed the best zero-noise cage threshold $\min_A r_A$ (line (NL3)).
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+hypergraph & linear & threshold & quadratic\\
+\midrule
+$Y_{21}$ (chambers) & $3$ & $\frac94$ & $0.677$\\
+random tripartite, $3$ seeds & $2.739$ & $2.10$--$2.17$ & $0.670$--$0.685$\\
+random $3$-uniform, $3$ seeds & $2.86$--$3$ & $2.17$--$2.25$ & $0.663$--$0.685$\\
+\bottomrule
+\end{tabular}
+\end{center}
+$Y_{21}$ is never better than the random models; for the linear game it is worse. The battery
+reproduces seed $0$ of each random model. The quadratic cages are almost full cooperation. They
+sit near the mean-field stability value $\frac35$ of all-$C$, where $\Delta(1)=\frac53r-1$.
+\end{remark}
+
+\begin{remark}[Monte Carlo]\label{V3P5:rem:nlmc}
+Threshold game, Fermi rule, $K=0.1$, $50\%$ initial cooperators, $60$ replicas, $300$ sweeps.
+Final cooperator fraction:
+\begin{center}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+structure & $r=2.25$ & $2.5$ & $2.75$ & $3.0$ & $3.25$ & $3.5$\\
+\midrule
+$Y_{21}$ & 0.00 & 0.00 & 0.50 & 0.77 & 0.85 & 0.90\\
+$Y_{168}$ & 0.00 & 0.59 & 0.94 & 1.00 & 1.00 & 1.00\\
+random, $n=168$, $D_2=21$ & 0.00 & 0.60 & 0.94 & 1.00 & 1.00 & 1.00\\
+$T_{12}$ (thin) & 0.09 & 0.87 & 0.99 & 1.00 & 1.00 & 1.00\\
+random, $n=144$, $D_2=6$ & 0.00 & 0.48 & 0.90 & 0.98 & 1.00 & 1.00\\
+\bottomrule
+\end{tabular}
+\end{center}
+For comparison, the linear game on the same structures (exploratory run) switches between $3.0$
+and $3.25$. The exceptions are $T_{12}$, which already has $0.50$ at $2.75$, and $Y_{21}$, which
+still has only $0.27$ at $3.25$. The battery reproduces the columns $2.25$--$3.0$ for $Y_{21}$, $T_{12}$,
+$Y_{168}$ and the $D_2=21$ random hypergraph. Three facts stand out. Nonlinearity lowers the
+transition from about $3$ to about $2.4$--$2.5$, in line with the mean-field value $\frac94$. The
+thick complex $Y_{168}$ is indistinguishable from a random hypergraph with the same chamber
+degree. The thin lattice is the most favourable structure, and the dense $Y_{21}=K_{7,7,7}$ the
+least.
+\end{remark}
+
+\begin{remark}[Answer to the deepening request]\label{V3P5:rem:deep}
+(1) ``Pairwise iff linear'' is true (Theorem~\ref{V3P5:thm:irreducible}); nonlinear chamber games
+are genuinely three-body. (2) The incidence fact that is actually used is ``each edge lies in $q+1$
+chambers''. Two edges at a vertex lie in at most one common chamber, not ``exactly one''. (3)
+Under best-response learning the geometry is irrelevant for the selected state
+(Theorem~\ref{V3P5:thm:potential}). The one structural effect, the type-stratified equilibria of
+Proposition~\ref{V3P5:prop:typeNash}, comes from partiteness and is metastable. (4) Under
+imitation, the $\Atwo$ star cage is much better than a hypertree star, but its threshold grows with
+$q$ and exceeds the thin-lattice value (Proposition~\ref{V3P5:prop:starNL}). Exhaustively, $Y_{21}$
+is no better than random hypergraphs with the same parameters (Remark~\ref{V3P5:rem:exhaustive}).
+At finite noise the thick complex matches a random hypergraph (Remark~\ref{V3P5:rem:nlmc}). A
+``topological shielding threshold significantly below that of random regular hypergraphs'' is
+therefore not established, and the data contradict it. What nonlinearity does lower, uniformly,
+is the mean-field threshold, from $3$ to $\frac94$.
+\end{remark}
+
+\section{Chiral games, interfaces, and an economic reading}\label{V3P5:sec:chiral}
+
+Every chamber has one vertex of each type. Let the vertex of type $\rho$ play \emph{role} $\rho$ in
+all its chambers, so that roles are ordered cyclically, $0\to1\to2\to0$. A \emph{chiral chamber
+game} gives role $\rho$ the per-chamber payoff $u_\rho(s_0,s_1,s_2)=s_\rho\,g_\rho(s_{\rho-1},s_{\rho+1})$.
+The gain $g_\rho$ may depend on the upstream member $\rho-1$ and the downstream member $\rho+1$
+differently. A vertex's payoff is the average of $u_{\tau(i)}$ over its $D_2$ chambers. The
+\emph{supply-chain game} has roles technology (0), manufacturing (1) and channel (2), with
+\[
+g_0=1-2s_2,\qquad g_1=2s_0-1,\qquad g_2=2s_1-1 .
+\]
+Manufacturing's investment pays only if technology invested; the channel's pays only if
+manufacturing did; technology is held up once the channel invests. The \emph{three-body variant}
+replaces $g_2$ by $4s_0s_1-1$: the channel's return is activated only when both upstream partners
+invest.
+
+\begin{theorem}[Potential criterion]\label{V3P5:thm:potcrit}
+Let $Y$ satisfy \textup{(L)}, and for $\rho\ne\sigma$ let $D_{\rho\sigma}u_\rho$ be the mixed
+difference of $u_\rho$ in $(s_\rho,s_\sigma)$, a function of the third strategy $s_\kappa$. The
+network game has an exact potential iff $D_{\rho\sigma}u_\rho\equiv D_{\rho\sigma}u_\sigma$ for
+all $\rho\ne\sigma$. It has a weighted potential iff there are $w_\rho>0$ with
+$w_\rho D_{\rho\sigma}u_\rho\equiv w_\sigma D_{\rho\sigma}u_\sigma$. The symmetric games of
+Section~\ref{V3P5:sec:nonlinear} satisfy the exact criterion. The supply-chain game and its
+three-body variant satisfy neither. Their Monderer--Shapley circulation on an upstream edge is
+$\pm(q+1)\cdot2/D_2$ ($\pm2/7$ on $Y_{21}$), and a single chamber has a $6$-cycle of strict
+improvements
+$(0,0,0)\to(1,0,0)\to(1,1,0)\to(1,1,1)\to(0,1,1)\to(0,0,1)\to(0,0,0)$. So there is not even an
+ordinal potential.
+\end{theorem}
+
+\begin{proof}
+A finite game has an exact potential iff every $2\times2$ subgame has zero circulation, i.e.\
+$D_{ij}\pi_i=D_{ij}\pi_j$ for all players $i,j$ and all profiles of the others \cite{MS96}.
+Players interact only along edges. For an edge $ij$ with roles $(\rho,\sigma)$, the $q+1$
+chambers containing it all assign the same roles, and their third vertices are distinct. So
+$D_{ij}\pi_i=\frac1{D_2}\sum_{\Delta\supset ij}D_{\rho\sigma}u_\rho(s_{k_\Delta})$. Setting all
+third vertices to $0$, or all to $1$, gives necessity of the per-chamber identity; sufficiency is
+clear. The weighted case is the same computation with $w_i\pi_i$. For the supply-chain game,
+$D_{10}u_1=2$ while $D_{10}u_0=0$, which cannot be balanced by any positive weights. The
+improvement cycle is read off the signs of $g_\rho$.
+\end{proof}
+
+In the well-mixed limit each type class is a population with cooperator fraction $x_\rho$, and
+logit learning at noise $K$ gives
+\begin{equation}\label{V3P5:eq:logitmf}
+\dot x_\rho=\sigma\bigl(G_\rho(x)/K\bigr)-x_\rho,\qquad \sigma(z)=\frac1{1+e^{-z}},\qquad
+G_\rho(x)=\mathbb E\,g_\rho .
+\end{equation}
+
+\begin{proposition}[Potential mean fields converge]\label{V3P5:prop:lyap}
+If $w_\rho G_\rho=\partial\Phi/\partial x_\rho$ for some $\Phi$ and weights $w_\rho>0$, then
+$L=\Phi/K+\sum_\rho w_\rho H(x_\rho)$, with $H(x)=-x\log x-(1-x)\log(1-x)$, increases strictly
+along \eqref{V3P5:eq:logitmf} away from equilibria. So there are no periodic orbits.
+\end{proposition}
+
+\begin{proof}
+$\dot L=\sum_\rho w_\rho\bigl(G_\rho/K-\operatorname{logit}x_\rho\bigr)\bigl(\sigma(G_\rho/K)-x_\rho\bigr)\ge0$,
+because $\sigma$ is increasing. Equality holds iff every factor vanishes.
+\end{proof}
+
+\begin{theorem}[Endogenous cycles in cyclic chiral games]\label{V3P5:thm:cycle}
+Suppose $G_\rho=G_\rho(x_{\rho-1})$ is strictly monotone with sign $\varepsilon_\rho$. Then
+\eqref{V3P5:eq:logitmf} is a monotone cyclic feedback system on $[0,1]^{3}$.
+\begin{enumerate}
+\item[(i)] If $\varepsilon_0\varepsilon_1\varepsilon_2=+1$, the system is cooperative and
+irreducible, and no nontrivial periodic orbit is asymptotically stable \cite{Smith95}.
+\item[(ii)] If $\varepsilon_0\varepsilon_1\varepsilon_2=-1$, the equilibrium $x^{*}$ is unique.
+Its linearization has eigenvalues $-1+|P|^{1/3}e^{i\pi(2k+1)/3}$, $k=0,1,2$, where
+$P=\prod_\rho\sigma'\bigl(G_\rho(x^{*}_{\rho-1})/K\bigr)G_\rho'(x^{*}_{\rho-1})/K<0$. So $x^{*}$
+is stable iff $|P|<8$. At $|P|=8$ a pair of eigenvalues crosses the imaginary axis at $\pm
+i\sqrt3$. For $|P|>8$ a nonconstant periodic orbit exists (Mallet-Paret--Smith
+\cite{MPS90}).
+\end{enumerate}
+For the supply-chain game $x^{*}=(\frac12,\frac12,\frac12)$ and $|P|=(2K)^{-3}$. The Hopf point is
+$K_H=\frac14$, and the period there is $2\pi/\sqrt3=3.628$.
+\end{theorem}
+
+\begin{proof}
+(i) With positive feedback the off-diagonal Jacobian entries are $\ge0$, and they form an
+irreducible cyclic pattern in the interior. (ii) An equilibrium solves $x_\rho=F_\rho(x_{\rho-1})$
+with $F_\rho=\sigma\circ(G_\rho/K)$ monotone of sign $\varepsilon_\rho$. The composite
+$F_0\circ F_2\circ F_1$ is decreasing, so it has exactly one fixed point. The Jacobian is $-I+C$,
+where $C$ is the cyclic matrix with entries $\sigma'G_\rho'/K$, and $C$ has eigenvalues $P^{1/3}$.
+The real part of $-1+|P|^{1/3}e^{\pm i\pi/3}$ is $-1+|P|^{1/3}/2$. For $|P|>8$ the equilibrium is
+unique and has a two-dimensional unstable manifold. The Poincar\'e--Bendixson theory for monotone
+cyclic feedback systems \cite{MPS90} (quoted) then gives a nonconstant periodic orbit.
+\end{proof}
+
+\begin{remark}[Mean-field numerics]\label{V3P5:rem:cyclenum}
+For the supply-chain game the cycle amplitude of $x_0$ is $0.294,0.287,0.263,0.206,0.098$ at
+$K=0.05,0.10,0.15,0.20,0.24$, and $0$ for $K\ge0.26$. The period is $3.00,3.26,3.47,3.59,3.63$,
+approaching $2\pi/\sqrt3$. The squared amplitude scales like $K_H-K$, which indicates a
+supercritical bifurcation. The three-body variant is not a cyclic feedback system, since $x_2$
+responds to both $x_0$ and $x_1$. Its Jacobian at $(\frac12,\frac12,\frac12)$ is
+$-I+\frac1{4K}M$, where $M$ has characteristic polynomial $\lambda^{3}+4\lambda+8$. So its Hopf point
+is $K_H=0.170582$, a quarter of the real part of the complex root. Numerically the
+cycle exists below $K_H$ (amplitude $0.186$ at $K=0.05$) and not above. Its existence beyond the
+local Hopf regime is not proved. Line (NC4) checks both Hopf points and the amplitudes.
+\end{remark}
+
+\begin{remark}[Networks: the cycle is a mean-field phenomenon]\label{V3P5:rem:cyclenet}
+Logit dynamics of the supply-chain game on the complexes themselves, at $K=0.1$ (below $K_H$), gives
+the following standard deviation of the class density $x_0(t)$ (exploratory runs over $120$ time
+units):
+\begin{center}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+& $Y_{24}$ & $Y_{768}$ & $Y_{6144}$ & $T_{12}$ & $T_{24}$ & $T_{48}$\\
+$n$ & $24$ & $768$ & $6144$ & $144$ & $576$ & $2304$\\
+\midrule
+std $x_0$, $K=0.1$ & $0.262$ & $0.091$ & $0.023$ & $0.094$ & $0.044$ & $0.025$\\
+std $x_0$, $K=0.4$ & $0.224$ & $0.041$ & $0.015$ & $0.074$ & $0.036$ & $0.021$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here $Y_{768}$ and $Y_{6144}$ are levels $4$ and $5$ of the canonical $2$-tower of Chapter~\ref{chap:V3P6}. In the
+mean field the standard deviation would be about $0.2$. On both thick and thin complexes it
+decays with $n$. The single-site autocorrelation has only a weak negative lobe ($-0.06$ on
+$Y_{768}$, $-0.09$ on $T_{24}$ at lag $3$), so local oscillations are weak and incoherent. The
+limit cycle of Theorem~\ref{V3P5:thm:cycle} describes well-mixed populations; on $Y_{21}=K_{7,7,7}$
+the drift is exactly mean-field. No coherent network rhythm was found on large sparse
+complexes, thick or thin. Line (NC6) reproduces the decay for $Y_{24}\to Y_{168}$ and
+$T_{12}\to T_{48}$.
+\end{remark}
+
+\begin{proposition}[Flat interfaces]\label{V3P5:prop:flat}
+In the thin complex $T_m$ ($3\mid m$), let $A$ be a half-torus bounded by two walls parallel to a
+lattice direction. At zero noise under imitation, $A$ loses no cooperator iff
+\[
+r>\frac{18}{3\varphi(3)+\varphi(2)-\varphi(1)},
+\]
+i.e.\ $r>\frac95$, $\frac{18}{11}$, $\frac35$ for the linear, threshold and quadratic games.
+\end{proposition}
+
+\begin{proof}
+A boundary cooperator has $6$ chambers: three with three cooperators, two with two, and one with
+one. Its defecting neighbour across the wall has one chamber with two cooperators, two with one,
+and three with none. So the gap in normalized payoffs is
+$r(3\varphi(3)+\varphi(2)-\varphi(1))/18-1$, with $D_2=6$. The two boundary vertices of each type are equivalent by translation.
+\end{proof}
+
+The flat wall is the exact mechanism behind the advantage of the thin lattice
+(Remark~\ref{V3P5:rem:nlmc}). A boundary cooperator on a wall has only one ``lonely'' chamber out of
+$6$. At the boundary of a thick star it has $q^{2}(q+1)=12$ out of $21$
+(Proposition~\ref{V3P5:prop:starNL}). Enlarging the cluster to balls of radius $2$ and $3$ in the
+thick building gives exactly the star thresholds again, as we computed in the level-$14$ cover. Thick
+buildings have no flat interfaces: their spheres grow exponentially.
+
+\begin{remark}[Why no analytic law $r_c(q+1,\lambda_2)$]\label{V3P5:rem:nolaw}
+A finite-noise critical value is not sharply defined on finite complexes, where the dynamics is
+absorbing. On the infinite building, the existence of a phase transition for this non-reversible
+particle system is itself open. The data also rule out $\lambda_2$ as the controlling variable.
+With normalized gaps $\lambda_2/\deg=0.089$ ($T_{12}$), $0.441$ (random, $D_2=6$), $0.601$
+($Y_{168}$), $0.697$ (random, $D_2=21$) and $1.000$ ($Y_{21}$), the threshold-game transitions of
+Remark~\ref{V3P5:rem:nlmc} lie at about $2.38$, $2.51$, $2.48$, $2.48$ and $2.75$. The ordering is
+roughly monotone, but $Y_{168}$ sits below a hypergraph with a smaller gap. Interfaces are what the
+proved statements identify (Propositions~\ref{V3P5:prop:starNL}, \ref{V3P5:prop:flat}). A
+chamber-cluster approximation could be written down, but it would be an uncontrolled closure,
+and we do not present its output as a law.
+\end{remark}
+
+\paragraph{An economic reading.} Firms (vertices) join three-party projects (chambers). Each
+project has one firm of each role, and each firm has $D_2$ projects. Axioms:
+\begin{itemize}
+\item[(A1)] a firm chooses one policy, contribute ($1$) or not ($0$), for all its projects;
+\item[(A2)] contributing costs $1$ per project;
+\item[(A3)] a project's output depends on its contributors through a technology, which is
+symmetric, $f(n_C)$ shared equally, or role-dependent, $u_\rho$;
+\item[(A4)] payoffs are averaged over projects.
+\end{itemize}
+An R\&D consortium is the symmetric case, with a threshold technology when a breakthrough needs at
+least two partners. A syndicated credit line is the same with ``lend'' for ``contribute''. A supply
+chain with hold-up is the chiral case.
+
+\begin{proposition}[Free riding, equilibrium and selection]\label{V3P5:prop:econ}
+In the symmetric case:
+\begin{enumerate}
+\item[(i)] contributing is a dominant strategy iff $\min_{k=0,1,2}\bigl(f(k+1)-f(k)\bigr)\ge3$. In
+particular it is \emph{never} dominant under a threshold technology ($f(1)=f(0)$);
+\item[(ii)] universal contribution is a Nash equilibrium iff $f(3)-f(2)\ge3$;
+\item[(iii)] under logit learning, universal contribution is selected as $K\to0$ iff $f(3)>9$
+(when $\psi$ peaks at the ends), \emph{whatever the contract network}.
+\end{enumerate}
+The network matters only for non-equilibrium social learning (imitation), through its
+interfaces (Proposition~\ref{V3P5:prop:flat}).
+\end{proposition}
+
+\begin{proof}
+(i) A firm's gain from contributing in a project with $k$ other contributors is
+$\frac13(f(k+1)-f(k))-1$; dominance must hold for every $k$ in every project. (ii) is the case
+$k=2$. (iii) is Theorem~\ref{V3P5:thm:potential}(iii).
+\end{proof}
+
+The proposed programme asks to prove that voluntary cooperation is a globally dominant equilibrium
+\emph{iff} the technology has a threshold and the network is moderately local. This is false in
+both directions. A threshold technology rules out dominance (i). Equilibrium selection
+under best-response learning ignores the network (iii). What locality does is help
+\emph{imitation} spread cooperation across flat interfaces. In the chiral (supply-chain) case,
+hold-up creates negative feedback and endogenous investment cycles for low noise. These are
+coherent in a well-mixed market (Theorem~\ref{V3P5:thm:cycle}) but not across a large sparse
+contract network (Remark~\ref{V3P5:rem:cyclenet}).
+
+\section{Clocks, entrainment and anchors}\label{V3P5:sec:clocks}
+
+The two obstacles found above are the decay of network oscillations
+(Remark~\ref{V3P5:rem:cyclenet}) and the absence of flat interfaces in thick buildings
+(Proposition~\ref{V3P5:prop:flat}). This section tests the two remedies proposed in the
+programme. The first is a settlement clock carried by the gauge field of Chapter~\ref{chap:V3P3}. The second is
+a committed core (``chain leader''). The first produces coherence, but by entrainment rather than
+endogenously. The second cannot overcome the geometry.
+
+\paragraph{The clock.} Each vertex carries a phase $\theta_i$ evolving by the flux sector of
+Chapter~\ref{chap:V3P3}: identical frequencies $\omega$, coupling $K_1>0$, flux $2\pi\alpha$. Its settlement cycle
+enters the supply-chain gain as $g_{\tau(i)}+\varepsilon\cos\theta_i$. The coupling is one-way:
+strategies do not act on phases.
+
+\begin{proposition}[The clock locks with a flux-selected twist]\label{V3P5:prop:clock}
+The phases converge to an equilibrium of the flux sector in the rotating frame
+(Theorem~\ref{V3P3:thm:gradient}). The ground states are the twisted states
+$\theta_i=\omega t+c+\frac{2\pi m^{*}}3\tau(i)$ with $m^{*}\equiv-\operatorname{round}(\alpha)$
+(Theorem~\ref{V3P3:thm:ground}). So a synchronized clock forces the three roles with a relative
+phase lag of $\frac{2\pi m^{*}}3$, and the flux selects this chirality. From random initial phases
+the clock reached the ground state, with order $>0.999$, on $Y_{24}$ and $Y_{168}$ for
+$\alpha=0.3,1.2,-0.8$ (so $m^{*}=0,2,1$), and on $Y_{768}$. On the thin torus $T_{48}$ it stopped at
+order $0.41$, trapped in a non-ground equilibrium. Expansion, which hurts cooperation, helps the
+clock.
+\end{proposition}
+
+\begin{theorem}[Entrained cycle: linear response]\label{V3P5:thm:entrain}
+Let $K>K_H=\frac14$, so that the mean-field equilibrium $x^{*}=(\frac12,\frac12,\frac12)$ of the
+supply-chain game is a stable focus (Theorem~\ref{V3P5:thm:cycle}). Force it with a clock of
+twist $m$, i.e.\ $\dot x_\rho=\sigma\bigl((G_\rho(x)+\varepsilon\cos(\omega t+\frac{2\pi
+m\rho}3))/K\bigr)-x_\rho$. For small $\varepsilon$ this has a unique attracting periodic solution
+$x^{*}+\varepsilon\operatorname{Re}\bigl(e^{i\omega t}X_m(\omega)\bigr)+O(\varepsilon^{2})$, with
+\[
+X_m(\omega)=\frac1{4K}\bigl(i\omega I+I-C\bigr)^{-1}f_m,\qquad f_m=\bigl(e^{2\pi im\rho/3}\bigr)_\rho,
+\]
+where $C$ is the cyclic matrix with entries $C_{02}=-\frac1{2K}$ and $C_{10}=C_{21}=\frac1{2K}$. The response peaks near the
+endogenous frequency $\sqrt3/(4K)$. At $K=0.4$ and resonance the $x_0$-amplitude per unit
+$\varepsilon$ is $0.94$, $0.78$, $1.20$ for $m=0,1,2$. If the clock is only partly synchronized,
+with class order parameters $r_\rho=|\langle e^{i\theta_i}\rangle_{V_\rho}|$, the first-order
+forcing is multiplied by $r_\rho$. So a macroscopic response exists at first order iff the clock
+is synchronized ($r>0$).
+\end{theorem}
+
+\begin{proof}
+The linearization at $x^{*}$ is $-I+C$, which is hyperbolic and stable for $K>\frac14$. The forcing
+enters through $\sigma'(0)/K=1/(4K)$. The periodic solution and its expansion follow from the
+implicit function theorem for periodic forcing of a hyperbolic equilibrium. For a partly
+synchronized clock, the class average of $\cos\theta_i$ equals $r_\rho\cos\psi_\rho$ to first
+order.
+\end{proof}
+
+\begin{remark}[Coherence on large complexes]\label{V3P5:rem:coherent}
+On the complexes themselves, the class-density standard deviation of the forced logit dynamics
+($\varepsilon=0.3$, clock from the flux sector with $\alpha=0.3$) is:
+\begin{center}
+\small
+\begin{tabular}{llccc}
+\toprule
+& clock & $Y_{24}$ & $Y_{768}$ & $Y_{6144}$\\
+\midrule
+$K=0.4$, $\omega=1.083$ & synchronized & $0.215$ & $0.110$ & $0.103$\\
+& random offsets & $0.201$ & $0.037$ & $0.013$\\
+& none & $0.222$ & $0.035$ & $0.013$\\
+\midrule
+$K=0.1$, $\omega=1.927$ & synchronized & $0.233$ & $0.156$ & $0.148$\\
+& random offsets & $0.239$ & $0.041$ & $0.022$\\
+& none & $0.247$ & $0.069$ & $0.028$\\
+\bottomrule
+\end{tabular}
+\end{center}
+With a synchronized clock the macroscopic oscillation no longer decays with $n$, both above and
+below $K_H$. With random offsets it decays like the unforced dynamics. Line (NA3) checks the
+$Y_{168}$ case. What produces coherence is the \emph{common clock}. The cycle is entrained,
+i.e.\ imposed by an external rhythm whose phases were synchronized separately. It is not an
+endogenous macroscopic cycle of the game. The game contributes the resonance and the chirality
+dependence of Theorem~\ref{V3P5:thm:entrain}. The ``iff'' of the proposed programme holds in this
+sense: coherent macroscopic response iff the clock order parameter is positive. For
+heterogeneous clock frequencies that is the classical Kuramoto synchronization condition, which
+concerns the clock and not the game.
+\end{remark}
+
+\paragraph{Anchors.} A \emph{committed set} $Z$ never changes strategy; it cooperates always.
+A chain leader enforcing cooperation in its own chambers is the case $Z=$ the star of a
+vertex.
+
+\begin{proposition}[Frontier principle]\label{V3P5:prop:frontier}
+Under zero-noise imitation, a committed set changes only the inequalities at its own boundary.
+In the thick building ($q=2$, computed in the level-$14$ cover, whose balls of radius $4$ have
+$1,14,98,560,2912$ vertices), we find the following.
+\begin{enumerate}
+\item[(i)] From an anchored ball of radius $1$ (the leader's star), cooperation spreads to the
+next sphere iff $r>\frac73,\frac{63}{19},\frac{63}{55}$ (linear, threshold, quadratic).
+\item[(ii)] From an anchored ball of radius $2$, it spreads iff $r>\frac{21}{10},3,\frac{21}{20}$.
+But the newly reached ball of radius $3$ is not anchored, and it is stable only for
+$r>\frac73,\frac{63}{19},\frac{63}{55}$.
+\end{enumerate}
+So sustained growth beyond an anchor of radius $\le2$ needs $r>\frac{63}{19}$ in the threshold
+game, whatever the anchor. In the thin lattice an anchored wall spreads, and every new front is
+again a flat wall, stable for $r>\frac95,\frac{18}{11},\frac35$.
+\end{proposition}
+
+\begin{proof}
+A defector $j$ adjacent to the cooperating set converts iff some cooperating neighbour earns more.
+This gives the thresholds $\min_i D_2/(\Phi_i-\Phi_j)$, maximized over the frontier. An
+unanchored cooperator keeps its strategy iff it earns more than every defecting neighbour
+(Theorem~\ref{V3P5:thm:cluster}). The values are exact computations over the ball (line (NA4)).
+\end{proof}
+
+The mechanism-design reading is negative. A leader's enforced contract protects its own
+neighbourhood, but the moving front has the geometry of spheres, and spheres in a thick building
+have the star thresholds. The absence of flat interfaces is a property of the geometry, and no
+finite anchor removes it. Only an \emph{infinite} anchored set shaped like a wall would help, and
+thick buildings have no sets with the small boundary of a wall.
+
+\begin{remark}[Anchors at finite noise]\label{V3P5:rem:anchorsmc}
+Threshold game, Fermi rule, $K=0.1$. Cooperator fraction among the non-committed vertices:
+\begin{center}
+\small
+\begin{tabular}{lcccc}
+\toprule
+& $r=2.0$ & $2.25$ & $2.4$ & $2.5$\\
+\midrule
+$Y_{168}$, no anchor & 0.00 & 0.00 & 0.27 & 0.57\\
+$Y_{168}$, leader star ($15$ committed) & 0.00 & 0.00 & 0.65 & 0.82\\
+$Y_{168}$, $15$ random committed & 0.00 & 0.00 & 0.68 & 0.80\\
+$T_{12}$, no anchor & 0.00 & 0.04 & 0.72 & 0.89\\
+$T_{12}$, committed row ($12$) & 0.01 & 0.64 & 0.87 & 0.95\\
+$T_{12}$, $12$ random committed & 0.00 & 0.60 & 0.87 & 0.92\\
+\bottomrule
+\end{tabular}
+\end{center}
+About $9\%$ of committed vertices raises cooperation near the transition on both geometries. The
+leader's star does no better than random commitment. On the thick complex cooperation is still
+absent at $r=2.25$, where the thin lattice with a committed row already has $0.64$. Anchors
+shift the transition slightly; they do not pin it low. Line (NA5) checks the $r=2.25$ and $2.5$
+columns.
+\end{remark}
+
+\section{Verification battery}\label{V3P5:sec:battery}
+
+\begin{table}[ht]
+\centering\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+check & complexes & result\\
+\midrule
+(R) chamber payoff $=$ reduced additive payoff; $w=q+1$ on edges, $0$ elsewhere; $D_2=\kappa(q+1)$ & $Y_{21},Y_{168},T_9$ & numeric $10^{-9}$\\
+(Dm) own switch changes own payoff by $D_2(r/3-1)$ & same & numeric\\
+(Z) $r_*=3.5$ both ways; margins of stars, chambers, edges; star of $Y_{168}$ at $7/3$; $5/3\notin\{21/(7+\delta)\}$ & $Y_{21},Y_{84},Y_{168},T_{12}$ & exact\\
+(MC) Fermi, $K=0.1$: $Y_{168}$, random $14$-regular graph, $T_{12}$ & --- & Monte Carlo (seeded)\\
+(P) $\frac{d}{dt}\log V$ identity; $\mu_H$ and frequency; cycle amplitudes; unique equilibrium & --- & numeric\\
+(E) $|F|/|V|$, $D_2$, $r_*$ for $q=2,3,4,5,7,8$ & --- & exact\\
+(NL1) multilinear coefficients; pairwise iff $f$ affine; $s_js_k$ coefficient $c_2/3$ & $Y_{21}$ & exact\\
+(NL2) exact potential; type-stratified Nash window $[\frac32,3]$ & $Y_{21},Y_{168},T_{12}$ & exact\\
+(NL3) best cages by enumeration of $2^{21}$ sets; $\max\Phi$ switches at $r=3$ & $Y_{21}$, random & exact\\
+(NL4) star cages $=$ closed form & $Y_{168},T_{12}$ & exact\\
+(NL5) threshold game, Fermi, $K=0.1$ & $Y_{21},T_{12},Y_{168}$, random & Monte Carlo (seeded)\\
+(NC1)--(NC2) circulation $\pm2/7$; strict improvement $6$-cycle & $Y_{21}$ & exact\\
+(NC3) Lyapunov function of potential mean fields & --- & numeric\\
+(NC4) Hopf points $\frac14$ and $0.170582$; amplitudes; period $2\pi/\sqrt3$; unique equilibrium & --- & numeric\\
+(NC5) flat interfaces $18/(3\varphi_3+\varphi_2-\varphi_1)$ & $T_{12}$ & exact\\
+(NC6) class-density oscillation shrinks with $n$ & $Y_{24},Y_{168},T_{12},T_{48}$ & Monte Carlo (seeded)\\
+(NA1) gauge clock reaches $m^{*}=-\operatorname{round}(\alpha)$ with order $>0.999$ & $Y_{24},Y_{168}$ & numeric\\
+(NA2) linear response $X_m(\omega)$ vs forced ODE ($3\%$); resonance & --- & numeric\\
+(NA3) synchronized vs random clock vs none & $Y_{168}$ & Monte Carlo (seeded)\\
+(NA4) spreading from anchored balls; stability of the radius-$3$ ball; anchored wall & building (level $14$), $T_{24}$ & exact\\
+(NA5) committed star vs random vs none; committed row & $Y_{168},T_{12}$ & Monte Carlo (seeded)\\
+\bottomrule
+\end{tabular}}
+\medskip
+\caption{Checks run by \texttt{code/v3p5\_verify.py}.}
+\label{V3P5:tab:battery}
+\end{table}
+
+\section{Scope, residue, corrections}\label{V3P5:sec:scope}
+
+\begin{remark}[Solved, open]\label{V3P5:rem:scope}
+\emph{Solved:} the pairwise reduction; dominance and the mean-field threshold; the exact
+zero-noise cluster criterion, with its integrality consequence and the absence of cages on
+$Y_{21}$; the trichotomy for cyclic replicator dynamics; the Hopf point with mutation.
+\emph{Open:} (a) finite-noise thresholds on families of thick complexes of growing size; (b) a
+pair or cluster approximation adapted to the $\Atwo$ $1$-skeleton; (c) a proof that the
+interior equilibrium with mutation is unique, and the sign of the first Lyapunov coefficient;
+(d) genuinely higher-order (nonlinear) chamber games, treated in
+Section~\ref{V3P5:sec:nonlinear}. What remains open there is the star formula for $q\ge3$, the
+optimal cages on large thick complexes, and finite-noise thresholds along growing families;
+(e) three-population versions with a three-dimensional mean field, where tori are possible.
+\end{remark}
+
+\begin{remark}[Corrections to the proposed programme]\label{V3P5:rem:corrections}
+(1) The chamber public-goods game is a pairwise game on the $1$-skeleton
+(Theorem~\ref{V3P5:thm:reduction}). The $\PG(2,q)$ flags enter only through the constant
+$q+1$, and there is no separate ``shielding cage''. (2) $r_c=1+2/(q+1)$ is not derived by any
+of the available notions. The mean-field threshold is $3$ (Proposition~\ref{V3P5:prop:mf}),
+and zero-noise cluster thresholds are $3\kappa/(\kappa+\delta)$, which never equals $5/3$ for
+$q=2$ (Theorem~\ref{V3P5:thm:cluster}). The best cage found, the star of $Y_{168}$, needs
+$r>7/3$, and $Y_{21}$ has none (Proposition~\ref{V3P5:prop:Y21}). (3) There is no topological
+catalysis. Thick complexes behave like random regular graphs, and the thin lattice supports
+cooperation better (Remark~\ref{V3P5:rem:mc}). ``$r_c>3$ on regular networks'' is not the
+correct baseline (Remark~\ref{V3P5:rem:three}). (4) The three-strategy replicator dynamics has
+no limit cycle and no torus (Theorem~\ref{V3P5:thm:rps}). Persistent oscillations arise as a
+limit cycle once mutation is added (Theorem~\ref{V3P5:thm:mutation}). (5) $|F|/|V|$ is a
+function of $q$ and does not enter the normalized dynamics.
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed. The Fermi rule is that of \cite{ST98}. Lattice reciprocity and the $r_c/G$ values
+are quoted from \cite{NM92,SPS09}, and the mutation-driven cycle is compared with \cite{Mob10}.
+LaSalle's principle \cite{LaSalle60} is classical. The bibliographic data of
+\cite{ST98,NM92,SPS09,Mob10} have been checked against Crossref and zbMATH.
+
+
+

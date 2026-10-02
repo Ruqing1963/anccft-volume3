@@ -1,0 +1,56 @@
+﻿(VA) direct elimination: v_2|Jac^H(Y_m)| = 18, 99, 289 and (1/n) log|Jac^H| = 1.862909, 2.041580, 2.054414 for m = 2, 3, 4   [    1.0 s]
+(QT) Y_3 -> Y_2: A = P_2/P_3 = (Z/2)^3, 7 twisted blocks of size 24; (CJ) 7 conjugation orbits on A^ - 1, sizes {1: 7}   [    1.0 s]
+(VA) Y_3: v_2 = 18 + 4 - 7 + 84 = 99;  per-orbit v_2 det D_chi values {12: 7}; largest block exponent 3;  (1/n) log|Jac| = 2.041580   [    1.0 s]
+(QT) Y_4 -> Y_2: A = P_2/P_4 = (Z/2)^5, 31 twisted blocks of size 24; (CJ) 10 conjugation orbits on A^ - 1, sizes {1: 7, 8: 3}   [    1.0 s]
+(VA) Y_4: v_2 = 18 + 4 - 9 + 276 = 289;  per-orbit v_2 det D_chi values {8: 3, 12: 7}; largest block exponent 3;  (1/n) log|Jac| = 2.054414   [    1.1 s]
+(QT) Y_5 -> Y_3: A = P_3/P_5 = (Z/2)^5, 31 twisted blocks of size 192; (CJ) 10 conjugation orbits on A^ - 1, sizes {1: 3, 4: 7}   [    1.1 s]
+(VA) Y_5: v_2 = 99 + 7 - 12 + 1648 = 1742;  per-orbit v_2 det D_chi values {52: 7, 64: 3}; largest block exponent 3;  (1/n) log|Jac| = 2.062520   [    1.5 s]
+(VA) the induced-character route reproduces 99, 289 and 1742 = v_2|Jac^H(Y_5)| (n = 6144), and (1/n) log|Jac^H(Y_5)| = 2.062520
+(QT) Y_6 -> Y_3: A = P_3/P_6 = (Z/2)^8, 255 twisted blocks of size 192; (CJ) 24 conjugation orbits on A^ - 1, sizes {1: 3, 4: 7, 16: 14}   [    1.5 s]
+(VA) Y_6: v_2 = 99 + 7 - 15 + 11504 = 11595;  per-orbit v_2 det D_chi values {39: 7, 49: 7, 52: 7, 64: 3}; largest block exponent 9;  (1/n) log|Jac| = 2.063511   [    4.6 s]
+(QT) Y_6 -> Y_4: A = P_4/P_6 = (Z/2)^6, 63 twisted blocks of size 768; (CJ) 21 conjugation orbits on A^ - 1, sizes {1: 7, 4: 14}   [    4.8 s]
+(VA) Y_6: v_2 = 289 + 9 - 15 + 11312 = 11595;  per-orbit v_2 det D_chi values {156: 7, 196: 7, 208: 7}; largest block exponent 10;  (1/n) log|Jac| = 2.063511   [   28.9 s]
+(NW) level 6, n = 49152: v_2|Jac^H(Y_6)| = 11595 by two independent routes (over Y_3 and over Y_4)
+(QT) Y_7 -> Y_4: A = P_4/P_7 = (Z/2)^8, 255 twisted blocks of size 768; (CJ) 24 conjugation orbits on A^ - 1, sizes {1: 7, 4: 14, 64: 3}   [   29.3 s]
+(VA) Y_7: v_2 = 289 + 9 - 17 + 36656 = 36937;  per-orbit v_2 det D_chi values {132: 3, 156: 7, 196: 7, 208: 7}; largest block exponent 10;  (1/n) log|Jac| = 2.063639   [   51.7 s]
+(NW) level 7, n = 196608: v_2|Jac^H(Y_7)| = 36937
+(QT) Y_7 -> Y_5: A = P_5/P_7 = (Z/2)^5, 31 twisted blocks of size 6144; (CJ) 10 conjugation orbits on A^ - 1, sizes {1: 7, 8: 3}   [   54.4 s]
+(VA) Y_7: v_2 = 1742 + 12 - 17 + 35200 = 36937;  per-orbit v_2 det D_chi values {1056: 3, 1408: 7}; largest block exponent 12;  (1/n) log|Jac| = 2.063639   [ 4300.1 s]
+(NW) level 7: the route over Y_5 gives 36937 as well
+(QT) Y_8 -> Y_4: A = P_4/P_8 = (Z/2)^11, 2047 twisted blocks of size 768; (CJ) 52 conjugation orbits on A^ - 1, sizes {1: 7, 4: 14, 64: 31}   [ 4300.6 s]
+(VA) Y_8: v_2 = 289 + 9 - 20 + 254384 = 254662;  per-orbit v_2 det D_chi values {115: 7, 116: 7, 121: 7, 132: 3, 134: 7, 156: 7, 196: 7, 208: 7}; largest block exponent 10;  (1/n) log|Jac| = 2.063684   [ 4355.9 s]
+(NW) level 8, n = 1572864: v_2|Jac^H(Y_8)| = 254662
+(E) m = 2: |supp F_m| = 8, e_m + 1 = dim F_2[G_m]/F_2[G_m]F_m = 7, (e_m+1)/n_m = 0.29167   [ 4355.9 s]
+(E) m = 3: |supp F_m| = 42, e_m + 1 = dim F_2[G_m]/F_2[G_m]F_m = 37, (e_m+1)/n_m = 0.19271   [ 4356.0 s]
+(E) m = 4: |supp F_m| = 154, e_m + 1 = dim F_2[G_m]/F_2[G_m]F_m = 100, (e_m+1)/n_m = 0.13021   [ 4356.2 s]
+(E) m = 5: |supp F_m| = 154, e_m + 1 = dim F_2[G_m]/F_2[G_m]F_m = 547, (e_m+1)/n_m = 0.08903   [ 4358.6 s]
+(E) m = 6: |supp F_m| = 154, e_m + 1 = dim F_2[G_m]/F_2[G_m]F_m = 3170, (e_m+1)/n_m = 0.06449   [ 4426.0 s]
+(E) bound over Y_2: v_2|Jac^H(Y_3)| = 99 >= 64  (v_2/n >= 0.33333)
+(E) bound over Y_2: v_2|Jac^H(Y_4)| = 289 >= 230  (v_2/n >= 0.29948)
+(E) bound over Y_3: v_2|Jac^H(Y_5)| = 1742 >= 1241  (v_2/n >= 0.20199)
+(E) bound over Y_3: v_2|Jac^H(Y_6)| = 11595 >= 9526  (v_2/n >= 0.19381)
+(E) bound over Y_4: v_2|Jac^H(Y_6)| = 11595 >= 6583  (v_2/n >= 0.13393)
+(E) bound over Y_4: v_2|Jac^H(Y_7)| = 36937 >= 25781  (v_2/n >= 0.13113)
+(E) bound over Y_4: v_2|Jac^H(Y_8)| = 254662 >= 204978  (v_2/n >= 0.13032)
+(TO) (1/n) log|Jac^H(Y_m)|: m=2: 1.862909, m=3: 2.041580, m=4: 2.054414, m=5: 2.062520, m=6: 2.063511, m=7: 2.063639, m=8: 2.063684   (h_H = 2.063693)
+
+(FT) m      n        v_2      v_2/n     local exponent  index
+(FT) 2        24       18   0.75000                   
+(FT) 3       192       99   0.51562      0.8198       8
+(FT) 4       768      289   0.37630      0.7728       4
+(FT) 5      6144     1742   0.28353      0.8639       8
+(FT) 6     49152    11595   0.23590      0.9116       8
+(FT) 7    196608    36937   0.18787      0.8358       4
+(FT) 8   1572864   254662   0.16191      0.9285       8
+(FT) local exponents log(v_2 ratio)/log(index): 0.820, 0.773, 0.864, 0.912, 0.836, 0.928
+(FT) power law on the last four levels: v_2 ~ n^0.8952
+(FT) three-parameter fits v_2/n = L + a n^-g through consecutive triples (m, m+1, m+2): m=2: L = -1.0797, g = 0.066; m=3: L = +0.2297, g = 0.482; m=4: L = +0.1857, g = 0.321; m=5: no solution; m=6: L = +0.1518, g = 0.610
+(FT) Pade [1/1] in 1/log_2 n through consecutive triples, limit p0: m=2: -2.6995; m=3: +0.0982; m=4: +0.0878; m=5: +0.4701; m=6: +0.1202
+(FT) the triple extrapolations jump with the period-3 pattern of the indices (8, 4, 8, 8, 4, 8): they are not stable and are not used for the verdict
+(FT) profile fit v_2/n = L + a n^-g on m = 3..8: best L = 0.0897, RSS(0)/RSS(L*) = 1.09; leave-one-out best L: 0.0000, 0.0950, 0.0000, 0.1251, 0.0909, 0.0000; with L = 0 the exponent is g = 0.1256 (v_2 ~ n^0.8744)
+(FT) rigorous: 0 <= c_e <= liminf v_2/n_m (sharpened bound over Y_k, k ~ m/2) and c_e <= (e_6+1)/n_6 = 0.06449 (Prop. schur (iii)); limsup v_2/n_m <= h_H/log 2 = 2.9773
+(FT) observed (v_2/n at m = 2k) / ((e_k+1)/n_k): k=2: 1.290, k=3: 1.224, k=4: 1.243
+(FT) (e_m+1)/n_m: 0.29167, 0.19271, 0.13021, 0.08903, 0.06449; successive ratios 0.661, 0.676, 0.684, 0.724
+(FT) v_2/n_m decreasing at every level: True; every local exponent < 1: True
+
+ALL CHECKS PASSED: (QT) (CJ) (VA) (NW) (TO) (FT).   [ 4428.3 s]

@@ -1,0 +1,82 @@
+﻿% ANCCFT_Volume_III.tex -- book driver for Volume III of "Algorithmic Non-commutative Class
+% Field Theory". Cross-references to Volumes I--II are read by xr-hyper from the label file
+% references/anccft-vol1-2.aux, which ships with this repository. Build: pdflatex twice.
+\documentclass[11pt,twoside,openright]{book}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{booktabs,array,longtable}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\raggedbottom
+\emergencystretch=2em
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\slshape\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\slshape\nouppercase{\rightmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+
+\numberwithin{equation}{section}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{problem}[theorem]{Problem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% chapter openings: introductory text set as ordinary paragraphs, followed by a rule of space
+\newenvironment{chapterabstract}{\par\noindent\ignorespaces}{\par\bigskip}
+% \doi{...}: read the argument with "_" as an ordinary character, typeset it breakably
+\providecommand{\doi}{\begingroup\catcode`\_=12 \doiaux}
+\newcommand{\doiaux}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}\endgroup}
+\input{macros}
+% after the macros: the external aux contains section titles that use them.
+% Prefix M-: labels of Volumes I--II are \ref{M-chap:X}, \ref{M-X:thm:hecke}, ...,
+% so they can never collide with the V3P<k>: labels of this volume.
+\externaldocument[M-]{references/anccft-vol1-2}
+
+\title{\bfseries Algorithmic Non-commutative Class Field Theory\\[6pt]
+\Large Volume III: Higher-Rank Buildings, Non-Equilibrium Topology and Higher-Order Games}
+\author{Ruqing Chen\\[4pt]\normalsize GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec, Canada\\
+\normalsize\texttt{ruqing@hotmail.com}}
+\date{September 2026\\[10pt]\normalsize\doi{10.5281/zenodo.23109523}}
+
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+\mainmatter
+% Volume III numbers its papers from 1. File names and label prefixes are V3P<k>,
+% so they cannot be confused with the Paper <k> folders or the labels of Volumes I--II.
+\input{chapters/ch01-higher-rank-buildings}
+\input{chapters/ch02-simplicial-sandpiles}
+\input{chapters/ch03-phase-oscillators}
+\input{chapters/ch04-geodesic-edge-operator}
+\input{chapters/ch05-chamber-games}
+\input{chapters/ch06-hecke-iwasawa}
+\backmatter
+\input{frontmatter/state-of-volume-iii}
+\input{bibliography}
+\end{document}
+

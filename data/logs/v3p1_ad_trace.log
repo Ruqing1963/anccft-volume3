@@ -1,0 +1,26 @@
+﻿(W) block trace of (C^(d+1))^k = sum over compositions j of k of j_1 (-1)^(k-r) q^(sum C(j_i,2)) Tr(A_j1 ... A_jr), as non-commutative words modulo rotation, for d <= 6 and k <= d+1   [  0.2 s]
+(Q) d = 1: Tr (C^(2))^2 / n = 1 - q
+(Q) d = 2: Tr (C^(3))^3 / n = (q - 1)**2*(q + 1)
+(Q) d = 3: Tr (C^(4))^4 / n = -(q - 1)**3*(q + 1)*(q**2 + q + 1)
+(Q) d = 4: Tr (C^(5))^5 / n = (q - 1)**4*(q + 1)**2*(q**2 + 1)*(q**2 + q + 1)
+(Q) d = 5: Tr (C^(6))^6 / n = -(q - 1)**5*(q + 1)**2*(q**2 + 1)*(q**2 + q + 1)*(q**4 + q**3 + q**2 + q + 1)
+(Q) d = 6: Tr (C^(7))^7 / n = (q - 1)**6*(q + 1)**3*(q**2 + 1)*(q**2 - q + 1)*(q**2 + q + 1)**2*(q**4 + q**3 + q**2 + q + 1)
+(Q) Tr (C^(d+1))^(d+1) = n prod_(i=1..d) (1 - q^i) = (-1)^d n (q-1)^d [d]_q!  for d = 1..12 (symbolic)   [129.4 s]
+(Q) d = 3: the conjectured n (q-1)^3 (q+1)(q^2+1) is false (difference -(q - 1)**3*(q + 1)*(2*q**2 + q + 2)); the value is -n (q-1)^3 (q+1)(q^2+q+1), e.g. -21 n at q = 2 (conjecture: +15 n)
+(Q) at q = 1 the trace vanishes to order exactly d; for q >= 2 its sign is (-1)^d
+(Q) the local Hecke polynomial at the trivial vertex eigenvalues is prod_(i=0..d)(x - q^i), and d/du prod_(i=0..d)(1 - q^i u) at u = 1 equals -Tr (C^(d+1))^(d+1)/n  (d <= 8)   [131.6 s]
+(F) F_2^3: 16 subspaces; every chain count is the q-multinomial; per-vertex trace in the building = 3 = prod (1 - 2^i)   [131.6 s]
+(F) F_2^4: 67 subspaces; every chain count is the q-multinomial; per-vertex trace in the building = -21 = prod (1 - 2^i)   [131.6 s]
+(F) F_3^3: 28 subspaces; every chain count is the q-multinomial; per-vertex trace in the building = 16 = prod (1 - 3^i)   [131.6 s]
+(F) F_3^4: 212 subspaces; every chain count is the q-multinomial; per-vertex trace in the building = -416 = prod (1 - 3^i)   [132.9 s]
+(F) F_2^5: 374 subspaces; every chain count is the q-multinomial; per-vertex trace in the building = 315 = prod (1 - 2^i)   [133.4 s]
+(T) thin A~_2 torus, m = 3: n = 9; Tr (C^(3))^k = 0 for k < 3 (explicit companion); Tr (C^(3))^3 = 27; flag condition fails: excess walks {(1, 1, 1): 27}   [133.4 s]
+(T) thin A~_2 torus, m = 6: n = 36; Tr (C^(3))^k = 0 for k < 3 (explicit companion); Tr (C^(3))^3 = 0; flag condition holds   [133.4 s]
+(T) thin A~_2 torus, m = 9: n = 81; Tr (C^(3))^k = 0 for k < 3 (explicit companion); Tr (C^(3))^3 = 0; flag condition holds   [133.4 s]
+(T) thin A~_3 torus, m = 4: n = 64; Tr (C^(4))^k = 0 for k < 4 (explicit companion); Tr (C^(4))^4 = 256; flag condition fails: excess walks {(1, 1, 1, 1): 256}   [133.4 s]
+(T) thin A~_3 torus, m = 8: n = 512; Tr (C^(4))^k = 0 for k < 4 (explicit companion); Tr (C^(4))^4 = 0; flag condition holds   [133.4 s]
+(T) thin A~_4 torus, m = 5: n = 625; Tr (C^(5))^k = 0 for k < 5; Tr (C^(5))^5 = 3125; flag condition fails: excess walks {(1, 1, 1, 1, 1): 3125}   [133.5 s]
+(T) thin A~_4 torus, m = 10: n = 10000; Tr (C^(5))^k = 0 for k < 5; Tr (C^(5))^5 = 0; flag condition holds   [134.2 s]
+(Y) Y_21 (q = 2, flag condition fails): Tr (C^(3))^3 = 651 = n prod(1-2^i) + 3 s = 63 + 3 * 196
+
+ALL CHECKS PASSED: (W) (Q) (F) (T) (Y).   [142.4 s]

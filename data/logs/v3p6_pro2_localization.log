@@ -1,0 +1,18 @@
+﻿(OR) |P/P_m| = 1, 8, 64, 256, 2048 (m = 1..5); H_m = P_m/P_{m+1} central elementary abelian of order 8, 8, 4, 8; fibres of Y_{m+1} -> Y_m have |H_m| vertices
+(PF) pi(step(v, x)) = step(pi v, x) on all arcs of Y_5 -> Y_4 -> Y_3 -> Y_2 -> Y_1; Pi DH_{m+1} = DH_m Pi, DH_{m+1} Pi^t = Pi^t DH_m and Pi DH_{m+1} Pi^t = |H_m| DH_m exactly (dense, m + 1 <= 4)
+(BL) DH(Y_{m+1}) E_chi = E_chi DH_chi exactly for all characters chi of H_m, E^t E = |H_m| I (m = 1, 2, 3); the trivial block is DH(Y_m) (m = 1..4)
+     level 1: n = 3, one eigenvalue 0, min Re of the others = 10.5000
+     level 2: n = 24, one eigenvalue 0, min Re of the others = 6.5000
+     level 3: n = 192, one eigenvalue 0, min Re of the others = 3.7679
+     level 4: n = 768, one eigenvalue 0, min Re of the others = 3.0562
+(SE) every twisted block DH_chi (chi != 1) of the four layers has all eigenvalues with Re > 0.5; det DH_chi > 0, exact (Bareiss) for the layers Y_2/Y_1, Y_3/Y_2, Y_4/Y_3
+(SM) coker DH(Y_m) = Z + Jac^H(Y_m) for m = 1, 2, 3 (Smith form); |Jac^H| = 147, 2^18 3 7^16, and a 171-digit number with v_2 = 99, v_7 = 16
+     X_m^nt = coker[DH_m | type indicators] is finite of order |P/P_m| |Jac^H(Y_m)| / 147 for m = 2, 3 (Smith form)
+(CN) layer Y_2/Y_1 (|H| = 8): prod_(chi != 1) det DH_chi = 8 |Jac^H(Y_2)| / |Jac^H(Y_1)| exactly; the product has 19 digits, v_2 = 21, v_3 = 0, v_7 = 14
+(CN) layer Y_3/Y_2 (|H| = 8): prod_(chi != 1) det DH_chi = 8 |Jac^H(Y_3)| / |Jac^H(Y_2)| exactly; the product has 152 digits, v_2 = 84, v_3 = 0, v_7 = 0
+(CN) layer Y_4/Y_3 (|H| = 4): |Jac^H(Y_4)| reconstructed exactly from 80 31-bit primes (686 digits, v_2 = 289, v_7 = 136, log/n = 2.054414) in 103 s; prod_(chi != 1) det DH_chi = 4 |Jac^H(Y_4)| / |Jac^H(Y_3)| exactly; the product has 516 digits, v_2 = 192, v_3 = 0, v_7 = 120
+     layer Y_5/Y_4 (|H| = 8): sum_chi log det DH_chi = 11096.414521 (numeric only; no independent |Jac^H(Y_5)|)
+(KR) layer Y_2/Y_1: |ker(Jac^H(Y_2) -> Jac^H(Y_1))| = 18-digit integer = |Jac^H(Y_2)|/|Jac^H(Y_1)| = prod det DH_chi / |H| (lattice index, exact); v_2 = 18
+(KR) layer Y_3/Y_2: |ker(Jac^H(Y_3) -> Jac^H(Y_2))| = 151-digit integer = |Jac^H(Y_3)|/|Jac^H(Y_2)| = prod det DH_chi / |H| (lattice index, exact); v_2 = 81
+
+ALL CHECKS PASSED: (OR) (PF) (BL) (SE) (SM) (CN) (KR).   [166 s]
